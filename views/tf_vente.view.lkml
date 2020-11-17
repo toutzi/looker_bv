@@ -19,7 +19,7 @@ view: tf_vente {
 
   measure: sum_ca_ht {
     type: sum
-    sql: ${TABLE}.CA_HT ;;
+    sql: ${ca_ht} ;;
   }
 
   dimension: ca_net {
@@ -29,7 +29,7 @@ view: tf_vente {
 
   measure: sum_ca_net {
     type: sum
-    sql: ${TABLE}.CA_NET ;;
+    sql: ${ca_net} ;;
   }
 
   dimension: cd_niv1 {

@@ -114,13 +114,13 @@ explore: tf_vente {
 
   join: article {
     type: full_outer
-    relationship: many_to_many
+    relationship: many_to_one
     sql_on: ${tf_vente.id_article}=${article.id_article} ;;
   }
 
   join: magasin {
     type: full_outer
-    relationship: many_to_many
+    relationship: many_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 }
