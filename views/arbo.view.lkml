@@ -4,6 +4,7 @@ view: arbo {
 
   dimension: id_arbo {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_ARBO ;;
   }
 

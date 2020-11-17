@@ -9,6 +9,7 @@ view: marque {
 
   dimension: id_marque {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_MARQUE ;;
   }
 
