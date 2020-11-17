@@ -274,6 +274,7 @@ view: article {
 
   dimension: id_article {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_ARTICLE ;;
   }
 

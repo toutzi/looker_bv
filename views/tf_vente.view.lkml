@@ -17,8 +17,18 @@ view: tf_vente {
     sql: ${TABLE}.CA_HT;;
   }
 
+  measure: sum_ca_ht {
+    type: sum
+    sql: ${TABLE}.CA_HT ;;
+  }
+
   dimension: ca_net {
     type: number
+    sql: ${TABLE}.CA_NET ;;
+  }
+
+  measure: sum_ca_net {
+    type: sum
     sql: ${TABLE}.CA_NET ;;
   }
 
@@ -94,6 +104,7 @@ view: tf_vente {
 
   dimension: id_tf_vte {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_TF_VTE ;;
   }
 
@@ -107,6 +118,11 @@ view: tf_vente {
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
 
+  measure: sum_marge_brute {
+    type: sum
+    sql: ${TABLE}.MARGE_BRUTE ;;
+  }
+
   dimension: mois {
     type: string
     sql: ${TABLE}.MOIS ;;
@@ -114,6 +130,11 @@ view: tf_vente {
 
   dimension: nb_ticket {
     type: number
+    sql: ${TABLE}.NB_TICKET ;;
+  }
+
+  measure: sum_nb_ticket {
+    type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
 
@@ -142,11 +163,20 @@ view: tf_vente {
     sql: ${TABLE}.QTITE ;;
   }
 
+  measure: sum_qtite {
+    type: sum
+    sql: ${TABLE}.QTITE ;;
+  }
+
   dimension: qtite_uvc {
     type: number
     sql: ${TABLE}.QTITE_UVC ;;
   }
 
+  measure: sum_qtite_uvc {
+    type: sum
+    sql: ${TABLE}.QTITE_UVC ;;
+  }
   dimension: statut_article {
     type: string
     sql: ${TABLE}.STATUT_ARTICLE ;;

@@ -19,6 +19,7 @@ view: fournisseur {
 
   dimension: id_fourn {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_FOURN ;;
   }
 

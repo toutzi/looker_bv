@@ -62,6 +62,7 @@ view: magasin {
 
   dimension: id_magasin {
     type: number
+    primary_key: yes
     sql: ${TABLE}.ID_MAGASIN ;;
   }
 
