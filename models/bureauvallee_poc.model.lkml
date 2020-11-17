@@ -123,4 +123,10 @@ explore: tf_vente {
     relationship: many_to_many
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
+
+  join: dt_view {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${tf_vente.id_tf_vte}=£${dt_view.ID_TF_VTE} ;;
+  }
 }
