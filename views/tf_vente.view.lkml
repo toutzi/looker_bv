@@ -14,7 +14,7 @@ view: tf_vente {
 
   dimension: ca_ht {
     type: number
-    sql: ${TABLE}.CA_HT ;;
+    sql: ${TABLE}.CA_HT;;
   }
 
   dimension: ca_net {
