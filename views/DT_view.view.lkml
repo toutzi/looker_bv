@@ -5,10 +5,6 @@ view: dt_view {
          tf_vente.ID_TF_VTE as ID_TF_VTE
          , COUNT(*) as nbre_ventes
          , sum(tf_vente.CA_HT) as CA_HT
-         , sum(tf_vente.CA_NET) as CA_NET
-         , sum(tf_vente.MARGE_BRUTE) as marge_brute
-         , sum(tf_vente.QTITE) as Quantite
-         , article.ID_ARTICLE as ID_ARTICLE
          , article_arbo.ID_ART_ARBO as ID_ART_ARBO
        FROM tf_vente
        LEFT JOIN article
@@ -18,4 +14,31 @@ view: dt_view {
        GROUP BY 1
        ;;
    }
+
+  dimension: ID_TF_VTE {
+    type: number
+    hidden: yes
+    primary_key: yes
+    sql: ${TABLE}.ID_TF_VTE ;;
+  }
+
+  dimension: CA_HT {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.CA_HT ;;
+  }
+
+  dimension: nbre_ventes {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.nbre_ventes ;;
+  }
+
+  dimension: ID_ART_ARBO {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.ID_ART_ARBO ;;
+  }
+
+
 }
