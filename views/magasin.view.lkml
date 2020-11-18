@@ -82,10 +82,10 @@ view: magasin {
     sql: ${TABLE}.PROGICIEL ;;
   }
 
-  dimension: raison_soc {
-    type: string
-    sql: ${TABLE}.RAISON_SOC ;;
-  }
+#  dimension: raison_soc {
+#    type: string
+#    sql: ${TABLE}.RAISON_SOC ;;
+#  }
 
   dimension: surf_vte {
     type: number

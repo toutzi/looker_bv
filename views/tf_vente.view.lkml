@@ -124,6 +124,16 @@ view: tf_vente {
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
 
+  dimension: tx_marge_brute {
+    type:  number
+    sql: ${marge_brute}/${ca_ht} ;;
+  }
+
+  measure: tot_tx_marge_brute {
+    type:  number
+    sql: sum(${marge_brute})/sum(${ca_ht}) ;;
+  }
+
   measure: sum_marge_brute {
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
