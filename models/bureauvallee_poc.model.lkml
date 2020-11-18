@@ -10,7 +10,7 @@ datagroup: bureauvallee_poc_default_datagroup {
 
 persist_with: bureauvallee_poc_default_datagroup
 
-explore: derived {}
+explore: deriv_table {}
 
 explore: arbo {}
 
@@ -151,9 +151,5 @@ explore: tf_vente {
     sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
   }
 
-  join: derived {
-    type: full_outer
-    relationship: many_to_many
-    sql_on: ${tf_vente.id_tf_vte}=${derived.id_tf_vte};;
-  }
+
 }
