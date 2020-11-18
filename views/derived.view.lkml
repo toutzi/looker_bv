@@ -4,7 +4,7 @@ view: derived {
       sql:
            SELECT
                tf.id_tf_vte AS "id_tf_vte"
-               , COUNT(*) AS "nbre_ventes"
+               , COUNT(*) AS "count"
              FROM tf_vente AS tf
              LEFT JOIN article ON tf_vente.id_article=article.id_article
              LEFT JOIN article_arbo ON article.id_article=article_arbo.id_article
@@ -19,13 +19,12 @@ view: derived {
 
     dimension: CA_HT {
       type: number
-      hidden: yes
       sql: ${TABLE}.CA_HT ;;
     }
 
     dimension: nbre_ventes {
       type: number
-      sql: ${TABLE}.nbre_ventes ;;
+      sql: ${TABLE}.count ;;
     }
 
  }
