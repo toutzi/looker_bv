@@ -19,6 +19,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht {
+    label: "Chiffre d'affaires"
     type: sum
     value_format_name: "eur"
     drill_fields: [detail*]
@@ -33,6 +34,7 @@ view: tf_vente {
 
   measure: sum_ca_net {
     type: sum
+    label: "CA NET"
     value_format_name: "eur"
     drill_fields: [detail*]
     sql: ${ca_net} ;;
@@ -98,6 +100,12 @@ view: tf_vente {
     sql: ${TABLE}.DTE_VENTE ;;
   }
 
+  measure: count_dte_vente {
+    label:"Nombre de jour"
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+  }
+
   dimension: id_article {
     type: number
     sql: ${TABLE}.ID_ARTICLE ;;
@@ -111,6 +119,12 @@ view: tf_vente {
   dimension: id_tf_vte {
     type: number
     primary_key: yes
+    sql: ${TABLE}.ID_TF_VTE ;;
+  }
+
+  measure: count_id_tf_vte {
+    label: "Nombre de lignes de vente"
+    type: count_distinct
     sql: ${TABLE}.ID_TF_VTE ;;
   }
 
@@ -130,11 +144,13 @@ view: tf_vente {
   }
 
   measure: tot_tx_marge_brute {
+    label: "Taux Marge brute"
     type:  number
     sql: sum(${marge_brute})/sum(${ca_ht}) ;;
   }
 
   measure: sum_marge_brute {
+    label: "Marge brute"
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
@@ -150,6 +166,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket {
+    label: "nb client"
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
@@ -180,6 +197,7 @@ view: tf_vente {
   }
 
   measure: sum_qtite {
+    label: "Qtés"
     type: sum
     sql: ${TABLE}.QTITE ;;
   }
@@ -210,6 +228,12 @@ view: tf_vente {
 
   dimension: val_achat_gbl {
     type: number
+    sql: ${TABLE}.VAL_ACHAT_GBL ;;
+  }
+
+  measure: sum_val_achat_gbl {
+    label: "coûts"
+    type: sum
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
   }
 

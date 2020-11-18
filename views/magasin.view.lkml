@@ -12,6 +12,12 @@ view: magasin {
     sql: ${TABLE}.CD_MAGASIN ;;
   }
 
+  measure: count_cd_magasin {
+    label: "Nbre de magasins vendeurs"
+    type: count_distinct
+    sql: ${TABLE}.CD_MAGASIN ;;
+  }
+
   dimension: cd_pays {
     type: string
     map_layer_name: countries
