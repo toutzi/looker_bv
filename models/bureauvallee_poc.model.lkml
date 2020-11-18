@@ -10,6 +10,8 @@ datagroup: bureauvallee_poc_default_datagroup {
 
 persist_with: bureauvallee_poc_default_datagroup
 
+explore: derived {}
+
 explore: arbo {}
 
 explore: article {
