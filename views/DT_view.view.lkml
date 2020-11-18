@@ -1,24 +1,22 @@
 view: dt_view {
 
    derived_table: {
-     sql: SELECT
-         tf_vente.ID_TF_VTE as ID_TF_VTE
-         , COUNT(*) as nbre_ventes
-         , sum(tf_vente.CA_HT) as CA_HT
-       FROM tf_vente
-       LEFT JOIN article
-       ON tf_vente.ID_ARTICLE=article.ID_ARTICLE
-       LEFT JOIN article_arbo
-       ON article.ID_ARTICLE=article_arbo.ID_ARTICLE
+     sql:
+     SELECT
+         tf.id_tf_vte AS "id_tf_vte"
+         , COUNT(*) AS "nbre_ventes"
+       FROM tf_vente AS tf
+       LEFT JOIN article ON tf_vente.id_article=article.id_article
+       LEFT JOIN article_arbo ON article.id_article=article_arbo.id_article
        GROUP BY 1
        ;;
    }
 
-  dimension: ID_TF_VTE {
+  dimension: id_tf_vte {
     type: number
     hidden: yes
     primary_key: yes
-    sql: ${TABLE}.ID_TF_VTE ;;
+    sql: ${TABLE}.id_tf_vte ;;
   }
 
   dimension: CA_HT {
@@ -29,7 +27,6 @@ view: dt_view {
 
   dimension: nbre_ventes {
     type: number
-    hidden: yes
     sql: ${TABLE}.nbre_ventes ;;
   }
 
