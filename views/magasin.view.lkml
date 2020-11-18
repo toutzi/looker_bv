@@ -14,6 +14,7 @@ view: magasin {
 
   dimension: cd_pays {
     type: string
+    map_layer_name: countries
     sql: ${TABLE}.CD_PAYS ;;
   }
 
