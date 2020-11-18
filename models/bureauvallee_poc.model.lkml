@@ -131,4 +131,10 @@ explore: tf_vente {
     relationship: many_to_many
     sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
   }
+
+  join: derived {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${tf_vente.id_tf_vte}=${derived.id_tf_vte};;
+  }
 }
