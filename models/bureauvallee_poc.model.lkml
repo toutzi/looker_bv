@@ -120,7 +120,7 @@ explore: tf_vente {
 
   join: magasin {
     type: full_outer
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 }
