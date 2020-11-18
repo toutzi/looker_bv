@@ -4,7 +4,7 @@ view: derived {
       sql:
            SELECT
                tf_vente.id_tf_vte AS "id_tf_vte"
-               , COUNT(DISTINCT tf_vente.id_tf_vte) AS "count"
+               , COUNT(*) AS "count"
              FROM tf_vente
              LEFT JOIN article ON tf_vente.id_article=article.id_article
              ;;
