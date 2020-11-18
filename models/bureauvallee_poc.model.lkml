@@ -151,5 +151,30 @@ explore: tf_vente {
     sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
   }
 
+  join: n4 {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4} ;;
+  }
+
+  join: n1_division {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${n4.id_arbo}=${n1_division.id_arbo} ;;
+  }
+
+  join: n2_famille {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${n1_division.id_arbo}=${n2_famille.id_arbo} ;;
+  }
+
+  join: n3_ss_famille {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${n2_famille.id_arbo}=${n3_ss_famille.id_arbo} ;;
+  }
+
+
 
 }
