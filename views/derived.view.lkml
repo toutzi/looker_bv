@@ -7,7 +7,6 @@ view: derived {
                , COUNT(DISTINCT tf_vente.id_tf_vte) AS "count"
              FROM tf_vente
              LEFT JOIN article ON tf_vente.id_article=article.id_article
-             LEFT JOIN article_arbo ON article.id_article=article_arbo.id_article
              ;;
     }
 
