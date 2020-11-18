@@ -28,7 +28,7 @@ view: magasin {
   }
 
   dimension: cp {
-    type: string
+    type: zipcode
     sql: ${TABLE}.CP ;;
   }
 

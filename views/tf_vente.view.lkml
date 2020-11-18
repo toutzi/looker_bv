@@ -14,21 +14,27 @@ view: tf_vente {
 
   dimension: ca_ht {
     type: number
+    value_format_name: "eur_0"
     sql: ${TABLE}.CA_HT;;
   }
 
   measure: sum_ca_ht {
     type: sum
+    value_format_name: "eur_0"
+    drill_fields: [detail*]
     sql: ${ca_ht} ;;
   }
 
   dimension: ca_net {
     type: number
+    value_format_name: "eur_0"
     sql: ${TABLE}.CA_NET ;;
   }
 
   measure: sum_ca_net {
     type: sum
+    value_format_name: "eur_0"
+    drill_fields: [detail*]
     sql: ${ca_net} ;;
   }
 
@@ -200,5 +206,9 @@ view: tf_vente {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  set: detail {
+    fields: [id_tf_vte, id_article, id_magasin]
   }
 }
