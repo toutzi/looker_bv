@@ -14,8 +14,6 @@ view: derived {
 
     dimension: id_tf_vte {
       type: number
-      hidden: yes
-      primary_key: yes
       sql: ${TABLE}.id_tf_vte ;;
     }
 
