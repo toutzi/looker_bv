@@ -47,6 +47,25 @@ explore: article_arbo {
     relationship: many_to_one
     sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4};;
   }
+
+  join: n1_division {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${n1_division.id_arbo};;
+  }
+
+  join: n2_famille {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${n2_famille.id_arbo};;
+  }
+
+  join: n3_ss_famille {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${n3_ss_famille.id_arbo};;
+  }
+
 }
 
 explore: fournisseur {}
