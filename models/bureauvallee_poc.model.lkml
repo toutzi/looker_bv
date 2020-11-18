@@ -124,9 +124,9 @@ explore: tf_vente {
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
-  join: dt_view {
+  join: article_arbo {
     type: full_outer
     relationship: many_to_many
-    sql_on: ${tf_vente.id_tf_vte}=£${dt_view.ID_TF_VTE} ;;
+    sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
   }
 }
