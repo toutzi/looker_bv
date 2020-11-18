@@ -5,7 +5,6 @@ view: dt_view {
          tf_vente.ID_TF_VTE as ID_TF_VTE
          , COUNT(*) as nbre_ventes
          , sum(tf_vente.CA_HT) as CA_HT
-         , article_arbo.ID_ART_ARBO as ID_ART_ARBO
        FROM tf_vente
        LEFT JOIN article
        ON tf_vente.ID_ARTICLE=article.ID_ARTICLE
@@ -32,12 +31,6 @@ view: dt_view {
     type: number
     hidden: yes
     sql: ${TABLE}.nbre_ventes ;;
-  }
-
-  dimension: ID_ART_ARBO {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.ID_ART_ARBO ;;
   }
 
 
