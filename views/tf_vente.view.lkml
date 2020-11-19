@@ -146,7 +146,7 @@ view: tf_vente {
   measure: tot_tx_marge_brute {
     label: "Taux Marge brute"
     type:  number
-    sql: sum(${marge_brute})/sum(${ca_ht}) ;;
+    sql: ${marge_brute})/${ca_ht} ;;
   }
 
   measure: sum_marge_brute {
