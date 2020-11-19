@@ -139,6 +139,18 @@ explore: tf_vente {
     sql_on: ${tf_vente.id_article}=${article.id_article} ;;
   }
 
+  join: fournisseur {
+    type: full_outer
+    relationship: many_to_one
+    sql_on: ${article.id_fourn}=${fournisseur.id_fourn} ;;
+  }
+
+  join: marque {
+    type: full_outer
+    relationship: many_to_one
+    sql_on: ${article.id_marque}=${marque.id_marque} ;;
+  }
+
   join: magasin {
     type: full_outer
     relationship: one_to_one
