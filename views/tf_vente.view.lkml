@@ -151,7 +151,7 @@ view: tf_vente {
 
   measure: sum_marge_brute {
     label: "Marge brute"
-    value_format: "decimal_2"
+    value_format: "0,00"
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
