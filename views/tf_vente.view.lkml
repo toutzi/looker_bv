@@ -151,6 +151,7 @@ view: tf_vente {
 
   measure: sum_marge_brute {
     label: "Marge brute"
+    value_format: "decimal_2"
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
@@ -167,6 +168,7 @@ view: tf_vente {
 
   measure: sum_nb_ticket {
     label: "nb client"
+    value_format: "decimal_0"
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
