@@ -134,56 +134,56 @@ explore: n4 {
 explore: tf_vente {
 
   join: article {
-    type: full_outer
+    type: left_outer
     relationship: many_to_one
     sql_on: ${tf_vente.id_article}=${article.id_article} ;;
   }
 
   join: fournisseur {
-    type: full_outer
+    type: left_outer
     relationship: many_to_one
     sql_on: ${article.id_fourn}=${fournisseur.id_fourn} ;;
   }
 
   join: marque {
-    type: full_outer
+    type: left_outer
     relationship: many_to_one
     sql_on: ${article.id_marque}=${marque.id_marque} ;;
   }
 
   join: magasin {
-    type: full_outer
-    relationship: one_to_one
+    type: left_outer
+    relationship: many_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
   join: article_arbo {
-    type: full_outer
-    relationship: many_to_many
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
   }
 
   join: n4 {
-    type: full_outer
-    relationship: many_to_many
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4} ;;
   }
 
   join: n1_division {
-    type: full_outer
-    relationship: many_to_many
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${n4.id_arbo}=${n1_division.id_arbo} ;;
   }
 
   join: n2_famille {
-    type: full_outer
-    relationship: many_to_many
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${n1_division.id_arbo}=${n2_famille.id_arbo} ;;
   }
 
   join: n3_ss_famille {
-    type: full_outer
-    relationship: many_to_many
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${n2_famille.id_arbo}=${n3_ss_famille.id_arbo} ;;
   }
 
