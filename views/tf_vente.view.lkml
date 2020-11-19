@@ -153,7 +153,6 @@ view: tf_vente {
     label: "Marge brute"
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
-    value_format: "0,00"
   }
 
   dimension: mois {
@@ -170,7 +169,6 @@ view: tf_vente {
     label: "nb client"
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
-    value_format: "decimal_0"
   }
 
   dimension: num_jour {
