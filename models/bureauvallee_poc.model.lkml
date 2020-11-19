@@ -14,59 +14,9 @@ explore: deriv_table {}
 
 explore: arbo {}
 
-explore: article {
-  join: fournisseur {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article.id_fourn}=${fournisseur.id_fourn} ;;
-  }
+explore: article {}
 
-  join: marque {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article.id_marque}=${marque.id_marque} ;;
-  }
-}
-
-explore: article_arbo {
-
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
-  }
-
-  join: article {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_article}=${article.id_article};;
-  }
-
-  join: n4 {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4};;
-  }
-
-  join: n1_division {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_arbo}=${n1_division.id_arbo};;
-  }
-
-  join: n2_famille {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_arbo}=${n2_famille.id_arbo};;
-  }
-
-  join: n3_ss_famille {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_arbo}=${n3_ss_famille.id_arbo};;
-  }
-
-}
+explore: article_arbo {}
 
 explore: fournisseur {}
 
@@ -74,62 +24,13 @@ explore: magasin {}
 
 explore: marque {}
 
-explore: n1_division {
+explore: n1_division {}
 
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n1_division.id_arbo}=${arbo.id_arbo};;
-  }
-}
+explore: n2_famille {}
 
-explore: n2_famille {
+explore: n3_ss_famille {}
 
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n2_famille.id_arbo}=${arbo.id_arbo};;
-  }
-
-  join: n1_division {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n2_famille.id_n1_division}=${n1_division.id_n1_division};;
-  }
-
-}
-
-explore: n3_ss_famille {
-
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n3_ss_famille.id_arbo}=${arbo.id_arbo};;
-  }
-
-  join: n2_famille {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n3_ss_famille.id_n2_famille}=${n2_famille.id_n2_famille};;
-  }
-
-}
-
-explore: n4 {
-
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n4.id_arbo}=${arbo.id_arbo};;
-  }
-
-  join: n3_ss_famille {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${n4.id_n3_ssfamille}=${n3_ss_famille.id_n3_ssfamille};;
-  }
-
-}
+explore: n4 {}
 
 explore: tf_vente {
 
@@ -151,42 +52,46 @@ explore: tf_vente {
     sql_on: ${article.id_marque}=${marque.id_marque} ;;
   }
 
+  join: article_arbo {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
+  }
+
+  join: arbo {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
+  }
+
+  join: n4 {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4};;
+  }
+
+  join: n3_ss_famille {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${n4.id_n3_ssfamille}=${n3_ss_famille.id_n3_ssfamille};;
+  }
+
+  join: n2_famille {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${n3_ss_famille.id_n2_famille}=${n2_famille.id_n2_famille};;
+  }
+
+  join: n1_division {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${n2_famille.id_n1_division}=${n1_division.id_n1_division};;
+  }
+
   join: magasin {
     type: left_outer
     relationship: many_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
-
-  join: article_arbo {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${tf_vente.id_article}=${article_arbo.id_article} ;;
-  }
-
-  join: n4 {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${article_arbo.id_n4_n4}=${n4.id_n4_n4} ;;
-  }
-
-  join: n1_division {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${n4.id_arbo}=${n1_division.id_arbo} ;;
-  }
-
-  join: n2_famille {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${n1_division.id_arbo}=${n2_famille.id_arbo} ;;
-  }
-
-  join: n3_ss_famille {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${n2_famille.id_arbo}=${n3_ss_famille.id_arbo} ;;
-  }
-
-
 
 }
