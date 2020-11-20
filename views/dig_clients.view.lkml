@@ -14,6 +14,7 @@ view: dig_clients {
 
   dimension: code_client {
     type: number
+    primary_key: yes
     sql: ${TABLE}.Code_client ;;
   }
 

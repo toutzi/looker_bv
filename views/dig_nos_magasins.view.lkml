@@ -19,6 +19,7 @@ view: dig_nos_magasins {
 
   dimension: code_magasin {
     type: string
+    primary_key: yes
     sql: ${TABLE}.code_magasin ;;
   }
 
