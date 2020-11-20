@@ -251,12 +251,18 @@ view: tf_vente {
     drill_fields: []
   }
 
-  measure: Nb_de_jours {
+  measure: Nb_de_jours_N {
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0"]
+    filters: [typ_vente: "0", dte_vente_year: "this year"]
   }
 
+  measure: Nb_de_jours_N_1 {
+    label: "Nb de jours N-1"
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_year: "last year"]
+  }
 
 
   set: detail {
