@@ -45,7 +45,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_N_1 {
-    label: "CA N-2"
+    label: "CA N-1"
     type: sum
     value_format_name: "eur"
     drill_fields: [detail*]
@@ -54,7 +54,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_N_2 {
-    label: "CA N-3"
+    label: "CA N-2"
     type: sum
     value_format_name: "eur"
     drill_fields: [detail*]
