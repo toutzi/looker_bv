@@ -202,13 +202,13 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket {
-    label: "nb client"
+    label: "nbre client"
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
 
   measure: sum_nb_ticket0 {
-    label: "Nb client / an"
+    label: "Nb client"
     type: sum
     sql: ${nb_ticket} ;;
     filters: [typ_vente: "0"]
