@@ -71,9 +71,23 @@ view: dig_commandes {
     sql: ${TABLE}.Total_HT ;;
   }
 
+  measure: sum_total_ht {
+    type: sum
+    value_format_name: "eur_0"
+    #drill_fields: [detail*]
+    sql: ${total_ht} ;;
+  }
+
   dimension: total_tt {
     type: number
     sql: ${TABLE}.Total_TT ;;
+  }
+
+  measure: sum_total_tt {
+    type: sum
+    value_format_name: "eur_0"
+    #drill_fields: [detail*]
+    sql: ${total_tt} ;;
   }
 
   dimension: type_de_livraison {
