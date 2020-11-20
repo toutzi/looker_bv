@@ -35,6 +35,33 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_year: "this year"]
   }
 
+  measure: sum_ca_ht_no {
+    label: "CA"
+    type: sum
+    value_format_name: "eur"
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0"]
+  }
+
+  measure: sum_ca_ht_N_1 {
+    label: "CA N"
+    type: sum
+    value_format_name: "eur"
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
+  }
+
+  measure: sum_ca_ht_N_2 {
+    label: "CA N"
+    type: sum
+    value_format_name: "eur"
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_year: "3 years ago"]
+  }
+
   dimension: ca_net {
     type: number
     value_format_name: "eur"
@@ -180,6 +207,20 @@ view: tf_vente {
     sql: ${TABLE}.NB_TICKET ;;
   }
 
+  measure: sum_nb_ticket0 {
+    label: "Nb client / an"
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0"]
+  }
+
+  measure: sum_nb_ticket_N1 {
+    label: "Nb client N-1"
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
+  }
+
   dimension: num_jour {
     type: string
     sql: ${TABLE}.NUM_JOUR ;;
@@ -246,6 +287,18 @@ view: tf_vente {
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
   }
 
+  measure: sum_val_achat_gbl0 {
+    type: sum
+    sql: ${TABLE}.VAL_ACHAT_GBL ;;
+    filters: [typ_vente: "0"]
+  }
+
+  measure: sum_val_achat_gbl_N1 {
+    type: sum
+    sql: ${TABLE}.VAL_ACHAT_GBL ;;
+    filters: [typ_vente: "0"]
+  }
+
   measure: count {
     type: count
     drill_fields: []
@@ -254,16 +307,89 @@ view: tf_vente {
   measure: Nb_de_jours_N {
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_year: "this year"]
+    filters: [typ_vente: "0", dte_vente_month: "12 months"]
+  }
+
+  measure: Nb_de_jours {
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0"]
   }
 
   measure: Nb_de_jours_N_1 {
     label: "Nb de jours N-1"
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_year: "last year"]
+    filters: [typ_vente: "0", dte_vente_month: "24 months"]
   }
 
+  measure: Nb_de_jours_N_2 {
+    label: "Nb de jours N-2"
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_month: "36 months"]
+  }
+
+  measure: Prog_CA {
+    label: "Prog CA"
+    type: number
+    sql: (${sum_ca_ht}-${sum_ca_ht_N_1})/${sum_ca_ht_N_1};;
+    value_format_name: "percent_2"
+  }
+
+  measure: ca_par_jour_annee {
+    label: "CA / jour/ Année"
+    sql: ${sum_ca_ht_no}/${Nb_de_jours} ;;
+  }
+
+  measure: Prog_CA_1 {
+    label: "Prog.CA"
+    type: number
+    sql: ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/(${sum_ca_ht_N_1}/${Nb_de_jours_N_1});;
+    value_format_name: "percent_2"
+  }
+
+  measure: CA_m_carre {
+    label: "CA au m²"
+    sql: ${sum_ca_ht_no}/${magasin.sum_surf_vte} ;;
+  }
+
+  measure: Taux_de_marge {
+    label: "Taux de marge Année"
+    sql: (${sum_ca_ht_no}-${sum_val_achat_gbl0})/${sum_ca_ht_no};;
+    value_format_name: "percent_2"
+  }
+
+  measure: Taux_de_marge_N1 {
+    label: "Taux de marge Année N-1"
+    sql: (${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1})/${sum_ca_ht_N_1};;
+    value_format_name: "percent_2"
+  }
+
+  measure: prog_marge {
+    label: "Prog Marge"
+    sql: ((${sum_ca_ht_no}-${sum_val_achat_gbl0})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}) ;;
+  }
+
+  measure: Nb_clt_Annee {
+    label: "Nb client / an"
+    sql:  ;;
+  }
+
+  measure: Nb_moy_client {
+    label: "Nb moyen clients"
+    sql: ${sum_nb_ticket0}/${Nb_de_jours};;
+  }
+
+  measure: panier_moyen {
+    label: "panier moyen"
+    sql: ${sum_ca_ht_no}/${sum_nb_ticket0} ;;
+  }
+
+  measure: panier_moyen_N1 {
+    label: "panier moyen N-1"
+    sql: ${sum_ca_ht_N_1}/${sum_nb_ticket_N1};;
+  }
 
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
