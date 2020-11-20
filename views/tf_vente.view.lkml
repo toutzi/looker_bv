@@ -26,6 +26,15 @@ view: tf_vente {
     sql: ${ca_ht} ;;
   }
 
+  measure: sum_ca_ht_N {
+    label: "CA N"
+    type: sum
+    value_format_name: "eur"
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_year: "this year"]
+  }
+
   dimension: ca_net {
     type: number
     value_format_name: "eur"
@@ -241,6 +250,14 @@ view: tf_vente {
     type: count
     drill_fields: []
   }
+
+  measure: Nb_de_jours {
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0"]
+  }
+
+
 
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
