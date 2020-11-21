@@ -284,6 +284,7 @@ view: tf_vente {
 
   measure: sum_val_achat_gbl {
     label: "coûts"
+    value_format_name: eur_0
     type: sum
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
   }
