@@ -284,7 +284,7 @@ view: tf_vente {
 
   measure: sum_val_achat_gbl {
     label: "coûts"
-    value_format_name: eur_0
+    value_format_name: eur
     type: sum
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
   }
@@ -334,43 +334,43 @@ view: tf_vente {
 
   measure: Prog_CA {
     label: "Prog CA"
+    value_format_name: percent_2
     type: number
-    sql: (${sum_ca_ht}-${sum_ca_ht_N_1})/${sum_ca_ht_N_1};;
-    value_format_name: "percent_2"
+    sql: 1.0 * (${sum_ca_ht}-${sum_ca_ht_N_1})/NULLIF(${sum_ca_ht_N_1},0);;
   }
 
   measure: ca_par_jour_annee {
     label: "CA / jour/ Année"
-    sql: ${sum_ca_ht_no}/${Nb_de_jours} ;;
+    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
   }
 
   measure: Prog_CA_1 {
     label: "Prog.CA"
+    value_format_name: percent_2
     type: number
-    sql: ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/(${sum_ca_ht_N_1}/${Nb_de_jours_N_1});;
-    value_format_name: "percent_2"
+    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/NULLIF(${Nb_de_jours_N_1},0)),0);;
   }
 
   measure: CA_m_carre {
     label: "CA au m²"
-    sql: ${sum_ca_ht_no}/${magasin.sum_surf_vte} ;;
+    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${magasin.sum_surf_vte},0) ;;
   }
 
   measure: Taux_de_marge {
     label: "Taux de marge Année"
-    sql: (${sum_ca_ht_no}-${sum_val_achat_gbl0})/${sum_ca_ht_no};;
+    sql: 1.0 * (${sum_ca_ht_no}-${sum_val_achat_gbl0})/NULLIF(${sum_ca_ht_no},0);;
     value_format_name: "percent_2"
   }
 
   measure: Taux_de_marge_N1 {
     label: "Taux de marge Année N-1"
-    sql: (${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1})/${sum_ca_ht_N_1};;
+    sql: 1.0 * (${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1})/NULLIF(${sum_ca_ht_N_1},0);;
     value_format_name: "percent_2"
   }
 
   measure: prog_marge {
     label: "Prog Marge"
-    sql: ((${sum_ca_ht_no}-${sum_val_achat_gbl0})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}) ;;
+    sql: 1.0 * ((${sum_ca_ht_no}-${sum_val_achat_gbl0})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
   }
 
   measure: Nb_clt_Annee {
@@ -380,17 +380,17 @@ view: tf_vente {
 
   measure: Nb_moy_client {
     label: "Nb moyen clients"
-    sql: ${sum_nb_ticket0}/${Nb_de_jours};;
+    sql: 1.0 * ${sum_nb_ticket0}/NULLIF(${Nb_de_jours},0);;
   }
 
   measure: panier_moyen {
     label: "panier moyen"
-    sql: ${sum_ca_ht_no}/${sum_nb_ticket0} ;;
+    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${sum_nb_ticket0},0) ;;
   }
 
   measure: panier_moyen_N1 {
     label: "panier moyen N-1"
-    sql: ${sum_ca_ht_N_1}/${sum_nb_ticket_N1};;
+    sql:1.0 * ${sum_ca_ht_N_1}/NULLIF(${sum_nb_ticket_N1},0);;
   }
 
   measure: Marges {
