@@ -127,6 +127,7 @@ view: tf_vente {
       raw,
       date,
       week,
+      week_of_year,
       month,
       quarter,
       year
