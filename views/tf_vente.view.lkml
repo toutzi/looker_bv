@@ -393,6 +393,7 @@ view: tf_vente {
   }
 
   measure: Marges {
+    value_format_name: decimal_2
     sql: ${sum_ca_ht}-${sum_val_achat_gbl} ;;
   }
 
