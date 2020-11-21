@@ -13,6 +13,7 @@ view: n1_division {
   }
 
   dimension: libelle {
+    label: "Division"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }

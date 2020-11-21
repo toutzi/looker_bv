@@ -18,6 +18,7 @@ view: n2_famille {
   }
 
   dimension: libelle {
+    label: "Famille"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }

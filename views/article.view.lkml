@@ -309,6 +309,7 @@ view: article {
   }
 
   dimension: libelle {
+    label: "lib_article"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }

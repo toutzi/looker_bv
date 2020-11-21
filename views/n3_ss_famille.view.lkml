@@ -18,6 +18,7 @@ view: n3_ss_famille {
   }
 
   dimension: libelle {
+    label: "Sous famille"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }

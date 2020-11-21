@@ -9,6 +9,7 @@ view: arbo {
   }
 
   dimension: libelle {
+    label: "lib_arbo"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }

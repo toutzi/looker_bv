@@ -18,6 +18,7 @@ view: n4 {
   }
 
   dimension: libelle {
+    label: "Niveau 4"
     type: string
     sql: ${TABLE}.LIBELLE ;;
   }
