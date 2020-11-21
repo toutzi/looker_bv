@@ -14,7 +14,7 @@ view: tf_vente {
 
   dimension: ca_ht {
     type: number
-    value_format_name: "eur"
+    value_format_name: eur
     sql: ${TABLE}.CA_HT;;
   }
 
@@ -411,6 +411,7 @@ view: tf_vente {
 
   measure: sum_ca_ht_moisN {
     label: "CA HT au mois N"
+    value_format_name: eur
     type: sum
     sql: ${ca_ht} ;;
     filters: [dte_vente_month: "last month"]
@@ -418,6 +419,7 @@ view: tf_vente {
 
   measure: sum_ca_ht_moisN1 {
     label: "CA HT au mois N-1"
+    value_format_name: eur
     type: sum
     sql: ${ca_ht} ;;
     filters: [dte_vente_month: "12 months ago"]
