@@ -182,7 +182,8 @@ view: tf_vente {
   measure: tot_tx_marge_brute {
     label: "Taux Marge brute"
     type:  number
-    sql: ${sum_marge_brute}/${sum_ca_ht} ;;
+    value_format_name: percent_2
+    sql:  1.0 * ${sum_marge_brute}/NULLIF(${sum_ca_ht},0) ;;
   }
 
   measure: sum_marge_brute {
