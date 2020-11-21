@@ -392,6 +392,10 @@ view: tf_vente {
     sql: ${sum_ca_ht_N_1}/${sum_nb_ticket_N1};;
   }
 
+  measure: Marges {
+    sql: ${sum_ca_ht}-${sum_val_achat_gbl} ;;
+  }
+
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
   }
