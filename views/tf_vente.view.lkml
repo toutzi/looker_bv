@@ -32,7 +32,7 @@ view: tf_vente {
     value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
-    filters: [typ_vente: "0", dte_vente_year: "this year"]
+    filters: [typ_vente: "0", dte_vente_date: "this year"]
   }
 
   measure: sum_ca_ht_no {
@@ -50,7 +50,7 @@ view: tf_vente {
     value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
-    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
+    filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
   }
 
   measure: sum_ca_ht_N_2 {
@@ -59,7 +59,7 @@ view: tf_vente {
     value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
-    filters: [typ_vente: "0", dte_vente_year: "3 years ago"]
+    filters: [typ_vente: "0", dte_vente_date:  "3 years ago"]
   }
 
   dimension: ca_net {
@@ -221,7 +221,7 @@ view: tf_vente {
     label: "Nb client N-1"
     type: sum
     sql: ${nb_ticket} ;;
-    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
+    filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
   }
 
   dimension: num_jour {
@@ -312,7 +312,7 @@ view: tf_vente {
   measure: Nb_de_jours_N {
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_year: "this year"]
+    filters: [typ_vente: "0", dte_vente_date: "this year"]
   }
 
   measure: Nb_de_jours {
@@ -325,14 +325,14 @@ view: tf_vente {
     label: "Nb de jours N-1"
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_year:"2 years ago"]
+    filters: [typ_vente: "0", dte_vente_date:"2 years ago"]
   }
 
   measure: Nb_de_jours_N_2 {
     label: "Nb de jours N-2"
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_year: "3 years ago"]
+    filters: [typ_vente: "0", dte_vente_date: "3 years ago"]
   }
 
   measure: Prog_CA {
@@ -420,7 +420,7 @@ view: tf_vente {
     value_format_name: eur
     type: sum
     sql: ${ca_ht} ;;
-    filters: [dte_vente_month: "last month"]
+    filters: [dte_vente_date: "last month"]
   }
 
   measure: sum_ca_ht_moisN1 {
@@ -428,7 +428,7 @@ view: tf_vente {
     value_format_name: eur
     type: sum
     sql: ${ca_ht} ;;
-    filters: [dte_vente_month: "12 months ago"]
+    filters: [dte_vente_date: "12 months ago"]
   }
 
   measure: Marges_N1 {
@@ -442,14 +442,14 @@ view: tf_vente {
     label: "val achat gbl mois N"
     type: sum
     sql: ${val_achat_gbl} ;;
-    filters: [dte_vente_month: "last month"]
+    filters: [dte_vente_date: "last month"]
   }
 
   measure: sum_val_achat_gbl_moisN1 {
     label: "val achat gbl mois N-1"
     type: sum
     sql: ${val_achat_gbl} ;;
-    filters: [dte_vente_month: "12 months ago"]
+    filters: [dte_vente_date: "12 months ago"]
   }
 
   set: detail {
