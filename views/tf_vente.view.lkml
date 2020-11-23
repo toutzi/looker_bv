@@ -21,7 +21,7 @@ view: tf_vente {
   measure: sum_ca_ht {
     label: "Chiffre d'affaires"
     type: sum
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
   }
