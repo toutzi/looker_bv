@@ -405,6 +405,7 @@ view: tf_vente {
 
   measure: Marges_N {
     label: "Marge au mois N"
+    value_format_name: decimal_2
     type: number
     sql: ${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN} ;;
   }
@@ -427,6 +428,7 @@ view: tf_vente {
 
   measure: Marges_N1 {
     label: "Marge mois N-1"
+    value_format_name: decimal_2
     type: number
     sql: ${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1} ;;
   }
