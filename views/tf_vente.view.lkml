@@ -426,6 +426,13 @@ view: tf_vente {
     sql: 1.0 * ((${sum_nb_ticket_N}/${Nb_de_jours_N})-(${sum_nb_ticket_N1}/${Nb_de_jours_N_1}))/NULLIF((${sum_nb_ticket_N1}/${Nb_de_jours_N_1}),0);;
   }
 
+  measure: Prog_ca_jour {
+    label: "Prog CA / jour"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
+  }
+
   measure: CA_m_carre {
     label: "CA au m²"
     value_format_name: decimal_2
