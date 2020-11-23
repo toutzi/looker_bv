@@ -74,7 +74,7 @@ view: dig_commandes {
 
   measure: sum_total_ht {
     type: sum
-    value_format_name: "eur_0"
+    #value_format_name: "eur_0"
     #drill_fields: [detail*]
     sql: ${total_ht} ;;
   }
