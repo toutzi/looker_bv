@@ -221,12 +221,28 @@ view: tf_vente {
     filters: [typ_vente: "0"]
   }
 
+  measure: sum_nb_ticket_N {
+    label: "Nb client N"
+    value_format_name: decimal_0
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_date: "this year"]
+  }
+
   measure: sum_nb_ticket_N1 {
     label: "Nb client N-1"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
     filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
+  }
+
+  measure: sum_nb_ticket_N2 {
+    label: "Nb client N-2"
+    value_format_name: decimal_0
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_date: "3 years ago"]
   }
 
   dimension: num_jour {
@@ -396,6 +412,13 @@ view: tf_vente {
     sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
   }
 
+  measure: Prog_Clients {
+    label: "Prog clients / jour"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_nb_ticket_N}/${Nb_de_jours_N})-(${sum_nb_ticket_N1}/${Nb_de_jours_N_1}))/NULLIF((${sum_nb_ticket_N1}/${Nb_de_jours_N_1}),0);;
+  }
+
   measure: CA_m_carre {
     label: "CA au m²"
     value_format_name: decimal_2
@@ -450,6 +473,13 @@ view: tf_vente {
     value_format_name: decimal_2
     type: number
     sql: ${sum_ca_ht_N_1}/NULLIF(${sum_nb_ticket_N1},0);;
+  }
+
+  measure: Prog_PM {
+    label: "Prog panier moyen"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N}-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/NULLIF((${sum_ca_ht_N_1}/${sum_nb_ticket_N1}),0);;
   }
 
   measure: Marges {
