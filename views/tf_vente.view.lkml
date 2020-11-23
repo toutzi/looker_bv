@@ -385,10 +385,17 @@ view: tf_vente {
   }
 
   measure: Prog_CA_mois {
-    label: "Prog CA au mois"
+    label: "Prog CA au mois N"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${sum_ca_ht_moisN}-${sum_ca_ht_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
+  }
+
+  measure: Prog_CA_moisN1 {
+    label: "Prog CA au mois N-1"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_ca_ht_moisN1}-${sum_ca_ht_moisN2})/NULLIF(${sum_ca_ht_moisN2},0);;
   }
 
   measure: ca_par_jour_annee {
@@ -509,6 +516,14 @@ view: tf_vente {
     type: sum
     sql: ${ca_ht} ;;
     filters: [dte_vente_date: "13 months ago"]
+  }
+
+  measure: sum_ca_ht_moisN2 {
+    label: "CA HT au mois N-2"
+    value_format_name: eur
+    type: sum
+    sql: ${ca_ht} ;;
+    filters: [dte_vente_date: "25 months ago"]
   }
 
   measure: Marges_N1 {
