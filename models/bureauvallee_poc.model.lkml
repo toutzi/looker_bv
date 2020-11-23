@@ -95,3 +95,25 @@ explore: tf_vente {
   }
 
 }
+
+explore: dig_commandes {
+
+  join: dig_clients {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_client} = ${dig_clients.code_client} ;;
+  }
+
+  join: dig_nos_magasins {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
+
+  join: dig_produits_commandes {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
+  }
+
+}
