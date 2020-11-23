@@ -393,7 +393,7 @@ view: tf_vente {
     label: "Prog.CA N-1"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF(${Nb_de_jours_N_1},0);;
+    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
   }
 
   measure: CA_m_carre {
