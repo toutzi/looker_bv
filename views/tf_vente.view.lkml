@@ -413,7 +413,7 @@ view: tf_vente {
     label: "Prog Marge au mois N"
     value_format_name: percent_2
     type: number
-    sql:  ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
+    sql:  ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF((${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
   }
 
   measure: Nb_moy_client {
