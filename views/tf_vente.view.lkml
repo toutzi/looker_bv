@@ -344,6 +344,7 @@ view: tf_vente {
 
   measure: ca_par_jour_annee {
     label: "CA / jour/ Année"
+    value_format_name: eur
     type: number
     sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
   }
