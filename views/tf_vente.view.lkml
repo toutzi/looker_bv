@@ -29,7 +29,7 @@ view: tf_vente {
   measure: sum_ca_ht_N {
     label: "CA N"
     type: sum
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
     filters: [typ_vente: "0", dte_vente_year: "this year"]
@@ -38,7 +38,7 @@ view: tf_vente {
   measure: sum_ca_ht_no {
     label: "CA"
     type: sum
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
     filters: [typ_vente: "0"]
@@ -47,7 +47,7 @@ view: tf_vente {
   measure: sum_ca_ht_N_1 {
     label: "CA N-1"
     type: sum
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
     filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
@@ -56,7 +56,7 @@ view: tf_vente {
   measure: sum_ca_ht_N_2 {
     label: "CA N-2"
     type: sum
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
     filters: [typ_vente: "0", dte_vente_year: "3 years ago"]
@@ -64,14 +64,14 @@ view: tf_vente {
 
   dimension: ca_net {
     type: number
-    value_format_name: "eur"
+    value_format_name: eur
     sql: ${TABLE}.CA_NET ;;
   }
 
   measure: sum_ca_net {
     type: sum
     label: "CA NET"
-    value_format_name: "eur"
+    value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_net} ;;
   }
