@@ -377,6 +377,7 @@ view: tf_vente {
 
   measure: prog_marge {
     label: "Prog Marge"
+    value_format_name: percent_2
     type: number
     sql:  ((${sum_ca_ht_no}-${sum_val_achat_gbl0})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
   }
@@ -389,12 +390,14 @@ view: tf_vente {
 
   measure: panier_moyen {
     label: "panier moyen"
+    value_format_name: decimal_2
     type: number
     sql:  ${sum_ca_ht_no}/NULLIF(${sum_nb_ticket0},0) ;;
   }
 
   measure: panier_moyen_N1 {
     label: "panier moyen N-1"
+    value_format_name: decimal_2
     type: number
     sql: ${sum_ca_ht_N_1}/NULLIF(${sum_nb_ticket_N1},0);;
   }
