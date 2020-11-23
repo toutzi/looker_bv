@@ -323,18 +323,26 @@ view: tf_vente {
     drill_fields: []
   }
 
-  measure: Nb_de_jours_N {
+  measure: Nb_de_jours_N0 {
+    label: "Nb de jours N"
     type: count_distinct
     value_format_name: decimal_0
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0", dte_vente_date: "this year"]
+    filters: [typ_vente: "0"]
   }
 
   measure: Nb_de_jours {
     type: count_distinct
     value_format_name: decimal_0
     sql: ${TABLE}.DTE_VENTE ;;
-    filters: [typ_vente: "0"]
+  }
+
+
+  measure: Nb_de_jours_N {
+    type: count_distinct
+    value_format_name: decimal_0
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_date: "this year"]
   }
 
   measure: Nb_de_jours_N_1 {
@@ -371,6 +379,13 @@ view: tf_vente {
     label: "CA / jour/ Année"
     value_format_name: eur
     type: number
+    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours_N0},0) ;;
+  }
+
+  measure: ca_par_jour_mois {
+    label: "CA / jour/ mois"
+    value_format_name: eur
+    type: number
     sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
   }
 
@@ -378,7 +393,7 @@ view: tf_vente {
     label: "Prog.CA N-1"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/nullif(${sum_ca_ht_N_1},0)/NULLIF(${Nb_de_jours_N_1},0));;
+    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF(${Nb_de_jours_N_1},0);;
   }
 
   measure: CA_m_carre {
