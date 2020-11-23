@@ -360,6 +360,13 @@ view: tf_vente {
     sql: 1.0 * (${sum_ca_ht_N}-${sum_ca_ht_N_1})/NULLIF(${sum_ca_ht_N_1},0);;
   }
 
+  measure: Prog_CA_mois {
+    label: "Prog CA au mois"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_ca_ht_moisN}-${sum_ca_ht_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
+  }
+
   measure: ca_par_jour_annee {
     label: "CA / jour/ Année"
     value_format_name: eur
@@ -400,6 +407,13 @@ view: tf_vente {
     value_format_name: percent_2
     type: number
     sql:  ((${sum_ca_ht_N}-${sum_val_achat_gbl_N})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
+  }
+
+  measure: prog_marge_mois {
+    label: "Prog Marge au mois N"
+    value_format_name: percent_2
+    type: number
+    sql:  ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
   }
 
   measure: Nb_moy_client {
