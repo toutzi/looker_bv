@@ -339,7 +339,7 @@ view: tf_vente {
     label: "Prog CA"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${sum_ca_ht}-${sum_ca_ht_N_1})/NULLIF(${sum_ca_ht_N_1},0);;
+    sql: 1.0 * (${sum_ca_ht_N}-${sum_ca_ht_N_1})/NULLIF(${sum_ca_ht_N_1},0);;
   }
 
   measure: ca_par_jour_annee {
