@@ -251,6 +251,7 @@ view: tf_vente {
 
   measure: sum_qtite {
     label: "Qtés"
+    value_format_name: decimal_0
     type: sum
     sql: ${TABLE}.QTITE ;;
   }
