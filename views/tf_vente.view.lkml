@@ -368,7 +368,7 @@ view: tf_vente {
   }
 
   measure: Prog_CA_1 {
-    label: "Prog.CA"
+    label: "Prog.CA N-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/nullif(${sum_ca_ht_N_1},0)/NULLIF(${Nb_de_jours_N_1},0));;
