@@ -139,6 +139,7 @@ view: tf_vente {
 
   measure: count_dte_vente {
     label:"Nombre de jour"
+    value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
   }
@@ -161,6 +162,7 @@ view: tf_vente {
 
   measure: count_id_tf_vte {
     label: "Nombre de lignes de vente"
+    value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.ID_TF_VTE ;;
   }
@@ -189,7 +191,7 @@ view: tf_vente {
 
   measure: sum_marge_brute {
     label: "Marge brute"
-    value_format_name: decimal_0
+    value_format_name: decimal_2
     type: sum
     sql: ${TABLE}.MARGE_BRUTE ;;
   }
@@ -206,12 +208,14 @@ view: tf_vente {
 
   measure: sum_nb_ticket {
     label: "nbre client"
+    value_format_name: decimal_0
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
 
   measure: sum_nb_ticket0 {
     label: "Nb client"
+    value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
     filters: [typ_vente: "0"]
@@ -219,6 +223,7 @@ view: tf_vente {
 
   measure: sum_nb_ticket_N1 {
     label: "Nb client N-1"
+    value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
     filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
@@ -294,14 +299,23 @@ view: tf_vente {
 
   measure: sum_val_achat_gbl0 {
     type: sum
+    value_format_name: eur
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
     filters: [typ_vente: "0"]
   }
 
-  measure: sum_val_achat_gbl_N1 {
+  measure: sum_val_achat_gbl_N {
+    value_format_name: eur
     type: sum
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
-    filters: [typ_vente: "0"]
+    filters: [typ_vente: "0", dte_vente_date:"this year"]
+  }
+
+  measure: sum_val_achat_gbl_N1 {
+    value_format_name: eur
+    type: sum
+    sql: ${TABLE}.VAL_ACHAT_GBL ;;
+    filters: [typ_vente: "0", dte_vente_date:"2 years ago"]
   }
 
   measure: count {
@@ -311,18 +325,21 @@ view: tf_vente {
 
   measure: Nb_de_jours_N {
     type: count_distinct
+    value_format_name: decimal_0
     sql: ${TABLE}.DTE_VENTE ;;
     filters: [typ_vente: "0", dte_vente_date: "this year"]
   }
 
   measure: Nb_de_jours {
     type: count_distinct
+    value_format_name: decimal_0
     sql: ${TABLE}.DTE_VENTE ;;
     filters: [typ_vente: "0"]
   }
 
   measure: Nb_de_jours_N_1 {
     label: "Nb de jours N-1"
+    value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
     filters: [typ_vente: "0", dte_vente_date:"2 years ago"]
@@ -330,6 +347,7 @@ view: tf_vente {
 
   measure: Nb_de_jours_N_2 {
     label: "Nb de jours N-2"
+    value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
     filters: [typ_vente: "0", dte_vente_date: "3 years ago"]
@@ -358,6 +376,7 @@ view: tf_vente {
 
   measure: CA_m_carre {
     label: "CA au m²"
+    value_format_name: decimal_2
     type: number
     sql:  ${sum_ca_ht_no}/NULLIF(${magasin.sum_surf_vte},0) ;;
   }
@@ -380,11 +399,12 @@ view: tf_vente {
     label: "Prog Marge"
     value_format_name: percent_2
     type: number
-    sql:  ((${sum_ca_ht_no}-${sum_val_achat_gbl0})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
+    sql:  ((${sum_ca_ht_N}-${sum_val_achat_gbl_N})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
   }
 
   measure: Nb_moy_client {
     label: "Nb moyen clients"
+    value_format_name: decimal_2
     type: number
     sql:  ${sum_nb_ticket0}/NULLIF(${Nb_de_jours},0);;
   }
@@ -441,6 +461,7 @@ view: tf_vente {
 
   measure: sum_val_achat_gbl_moisN {
     label: "val achat gbl mois N"
+    value_format_name: eur
     type: sum
     sql: ${val_achat_gbl} ;;
     filters: [dte_vente_date: "last month"]
@@ -448,6 +469,7 @@ view: tf_vente {
 
   measure: sum_val_achat_gbl_moisN1 {
     label: "val achat gbl mois N-1"
+    value_format_name: eur
     type: sum
     sql: ${val_achat_gbl} ;;
     filters: [dte_vente_date: "13 months ago"]
