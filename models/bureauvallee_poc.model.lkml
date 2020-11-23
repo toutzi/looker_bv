@@ -94,6 +94,36 @@ explore: tf_vente {
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
+  join: dig_commandes {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${tf_vente.id_magasin} = ${dig_commandes.code_magasin};;
+  }
+
+  join: dig_nos_magasins {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
+
+  join: dig_clients {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${dig_commandes.code_client} = ${dig_clients.code_client} ;;
+  }
+
+  join: dig_clients_connexions {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${dig_clients.code_client}=${dig_clients_connexions.code_client} ;;
+  }
+
+  join: dig_produits_commandes {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
+  }
+
 }
 
 explore: dig_commandes {
