@@ -429,7 +429,7 @@ view: tf_vente {
     value_format_name: eur
     type: sum
     sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "12 months ago"]
+    filters: [dte_vente_date: "13 months ago"]
   }
 
   measure: Marges_N1 {
@@ -450,7 +450,7 @@ view: tf_vente {
     label: "val achat gbl mois N-1"
     type: sum
     sql: ${val_achat_gbl} ;;
-    filters: [dte_vente_date: "12 months ago"]
+    filters: [dte_vente_date: "13 months ago"]
   }
 
   set: detail {
