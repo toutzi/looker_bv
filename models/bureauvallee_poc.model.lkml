@@ -147,4 +147,16 @@ explore: dig_commandes {
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
 
+  join: magasin {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
+  }
+
+  join: tf_vente {
+    type: inner
+    relationship: many_to_one
+    sql_on: CAST(${tf_vente.id_magasin} as String) = ${dig_commandes.code_magasin} ;;
+  }
+
 }
