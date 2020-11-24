@@ -32,6 +32,14 @@ explore: n3_ss_famille {}
 
 explore: n4 {}
 
+explore: dig_clients {}
+
+explore: dig_clients_connexions {}
+
+explore: dig_nos_magasins {}
+
+explore: dig_produits_commandes {}
+
 explore: tf_vente {
 
   join: article {
