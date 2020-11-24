@@ -129,34 +129,34 @@ explore: tf_vente {
 
 explore: dig_commandes {
 
-  join: dig_clients {
-    type: inner
-    relationship: one_to_many
-    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
-  }
+#  join: dig_clients {
+#    type: inner
+#    relationship: one_to_many
+#    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
+#  }
+#
+#  join: dig_nos_magasins {
+#    type: inner
+#    relationship: one_to_many
+#    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
+#  }
 
-  join: dig_nos_magasins {
-    type: inner
-    relationship: one_to_many
-    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
-  }
+# join: dig_produits_commandes {
+#    type: inner
+#    relationship: one_to_many
+#    sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
+#  }
 
-  join: dig_produits_commandes {
-    type: inner
-    relationship: one_to_many
-    sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
-  }
+#  join: tf_vente {
+#    type: inner
+#    relationship: many_to_one
+#    sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
+#  }
 
-  join: tf_vente {
-    type: inner
-    relationship: many_to_one
-    sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
-  }
-
-  join: magasin {
-    type: inner
-    relationship: many_to_one
-    sql_on: ${dig_commandes.code_magasin} = ${magasin.cd_magasin}  ;;
-  }
+#  join: magasin {
+#    type: inner
+#    relationship: many_to_one
+#    sql_on: ${dig_commandes.code_magasin} = ${magasin.cd_magasin}  ;;
+#  }
 
 }
