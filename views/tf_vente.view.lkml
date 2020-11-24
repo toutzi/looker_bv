@@ -431,7 +431,7 @@ view: tf_vente {
 
   measure: Nb_de_jours_moisN {
     type: count_distinct
-    label: "Nb de jours au mois N-1"
+    label: "Nb de jours au mois N"
     value_format_name: decimal_0
     sql: ${TABLE}.DTE_VENTE ;;
     filters: [typ_vente: "0", dte_vente_date: "last month"]
@@ -513,7 +513,7 @@ view: tf_vente {
     label: "Prog clients / jour au mois N"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_nb_ticket_moisN}/${Nb_de_jours_moisN})-(${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}))/NULLIF((${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}),0);;
+    sql: 1.0 * ((${sum_nb_ticket_moisN}/${Nb_de_jours_moisN})-(${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
   }
 
   measure: Prog_ca_jour {
@@ -527,7 +527,7 @@ view: tf_vente {
     label: "Prog CA / jour au mois N"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_moisN}/${Nb_de_jours_moisN})-(${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}))/NULLIF((${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}),0);;
+    sql: 1.0 * ((${sum_ca_ht_moisN}/${Nb_de_jours_moisN})-(${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}))/(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
   }
 
   measure: CA_m_carre {
@@ -535,13 +535,6 @@ view: tf_vente {
     value_format_name: decimal_2
     type: number
     sql:  ${sum_ca_ht_no}/NULLIF(${magasin.sum_surf_vte},0) ;;
-  }
-
-  measure: CA_m {
-    label: "CA au m² au mois N"
-    value_format_name: decimal_2
-    type: number
-    sql:  ${sum_ca_ht_moisN}/NULLIF(${magasin.sum_surf_vte},0) ;;
   }
 
 
