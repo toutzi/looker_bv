@@ -32,13 +32,6 @@ explore: n3_ss_famille {}
 
 explore: n4 {}
 
-explore: dig_clients {}
-
-explore: dig_clients_connexions {}
-
-explore: dig_nos_magasins {}
-
-explore: dig_produits_commandes {}
 
 explore: tf_vente {
 
@@ -115,19 +108,19 @@ explore: tf_vente {
   }
 
   join: dig_clients {
-    type: inner
+    type: left_outer
     relationship: many_to_one
     sql_on: ${dig_commandes.code_client} = CAST(${dig_clients.code_client} as String) ;;
   }
 
   join: dig_clients_connexions {
-    type: inner
+    type: left_outer
     relationship: one_to_one
     sql_on: ${dig_clients.code_client}=${dig_clients_connexions.code_client} ;;
   }
 
   join: dig_produits_commandes {
-    type: inner
+    type: left_outer
     relationship: one_to_many
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
