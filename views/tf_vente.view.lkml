@@ -680,6 +680,16 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
   }
 
+  parameter: date_selector {
+    type: date_time
+  }
+
+  dimension: date {
+    sql: ${dte_vente_date}={%parameter date_selector%} ;;
+  }
+
+
+
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
   }
