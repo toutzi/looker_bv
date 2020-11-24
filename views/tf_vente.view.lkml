@@ -398,6 +398,13 @@ view: tf_vente {
     sql: 1.0 * (${sum_ca_ht_moisN1}-${sum_ca_ht_moisN2})/NULLIF(${sum_ca_ht_moisN2},0);;
   }
 
+  measure: client_par_jour {
+    label: "Clients / jour"
+    value_format_name: decimal_0
+    type: number
+    sql: 1.0 * ${sum_nb_ticket0}/NULLIF(${Nb_de_jours_N0},0) ;;
+  }
+
   measure: ca_par_jour_annee {
     label: "CA / jour/ Année"
     value_format_name: eur
@@ -493,7 +500,7 @@ view: tf_vente {
     label: "Prog panier moyen"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N}-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/NULLIF((${sum_ca_ht_N_1}/${sum_nb_ticket_N1}),0);;
+    sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N})-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/NULLIF((${sum_ca_ht_N_1}/${sum_nb_ticket_N1}),0);;
   }
 
   measure: Marges {
