@@ -680,36 +680,6 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
   }
 
-  filter: date_selector {
-    type: date
-  }
-
-  dimension_group: date_filter_date_vte {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      week_of_year,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${dte_vente %date_selector%} ;;
-  }
-
-  measure: date_filter_CA {
-    type: sum
-    value_format_name: eur
-    drill_fields: [detail*]
-    sql: ${ca_ht} ;;
-    filters: [typ_vente: "0", date_filter_date_vte_date: "last month"]
-  }
-
-
-
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
   }
