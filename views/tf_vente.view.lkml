@@ -705,7 +705,7 @@ view: tf_vente {
     value_format_name: eur
     drill_fields: [detail*]
     sql: ${ca_ht} ;;
-    filters: [typ_vente: "0", date_filter_date_vte_date: "this year"]
+    filters: [typ_vente: "0", date_filter_date_vte_date: "last month"]
   }
 
 
