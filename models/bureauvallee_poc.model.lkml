@@ -130,31 +130,31 @@ explore: tf_vente {
 explore: dig_commandes {
 
   join: dig_clients {
-    type: inner
+    type: full_outer
     relationship: one_to_many
     sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
   }
 
   join: dig_nos_magasins {
-    type: inner
+    type: full_outer
     relationship: one_to_many
     sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
   }
 
   join: dig_produits_commandes {
-    type: inner
+    type: full_outer
     relationship: one_to_many
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
 
   join: magasin {
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
   join: tf_vente {
-    type: inner
+    type: full_outer
     relationship: many_to_one
     sql_on: CAST(${tf_vente.id_magasin} as String) = ${dig_commandes.code_magasin} ;;
   }
