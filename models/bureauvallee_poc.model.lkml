@@ -105,7 +105,7 @@ explore: tf_vente {
   join: dig_commandes {
     type: inner
     relationship: many_to_one
-    sql_on: ${tf_vente.id_magasin} = CAST(${dig_commandes.code_magasin} as String);;
+    sql_on: CAST(${tf_vente.id_magasin} as String) = ${dig_commandes.code_magasin} ;;
   }
 
   join: dig_nos_magasins {
@@ -117,7 +117,7 @@ explore: tf_vente {
   join: dig_clients {
     type: inner
     relationship: many_to_one
-    sql_on: ${dig_commandes.code_client} = ${dig_clients.code_client} ;;
+    sql_on: ${dig_commandes.code_client} = CAST(${dig_clients.code_client} as String) ;;
   }
 
   join: dig_clients_connexions {
