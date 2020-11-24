@@ -156,7 +156,7 @@ explore: dig_commandes {
 
   join: tf_vente {
     type: inner
-    relationship: many_to_one
+    relationship: one_to_many
     sql_on: ${tf_vente.id_magasin} = ${dig_commandes.code_magasin};;
   }
 
