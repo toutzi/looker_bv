@@ -97,7 +97,7 @@ explore: tf_vente {
 
   join: dig_commandes {
     type: full_outer
-    relationship: one_to_one
+    relationship: one_to_many
     sql_on: CAST(${magasin.id_magasin} as String) = ${dig_commandes.code_magasin} ;;
   }
 
