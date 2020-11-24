@@ -154,16 +154,4 @@ explore: dig_commandes {
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
 
-  join: tf_vente {
-    type: inner
-    relationship: one_to_many
-    sql_on: ${tf_vente.id_magasin} = ${dig_commandes.code_magasin};;
-  }
-
-  join: magasin {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
-  }
-
 }
