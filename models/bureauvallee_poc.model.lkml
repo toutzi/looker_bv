@@ -96,31 +96,31 @@ explore: tf_vente {
   }
 
   join: dig_commandes {
-    type: inner
+    type: full_outer
     relationship: many_to_one
     sql_on: CAST(${tf_vente.id_magasin} as String) = ${dig_commandes.code_magasin} ;;
   }
 
   join: dig_nos_magasins {
-    type: inner
+    type: full_outer
     relationship: many_to_one
     sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
   }
 
   join: dig_clients {
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
     sql_on: ${dig_commandes.code_client} = CAST(${dig_clients.code_client} as String) ;;
   }
 
   join: dig_clients_connexions {
-    type: left_outer
+    type: full_outer
     relationship: one_to_one
     sql_on: ${dig_clients.code_client}=${dig_clients_connexions.code_client} ;;
   }
 
   join: dig_produits_commandes {
-    type: left_outer
+    type: full_outer
     relationship: one_to_many
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
