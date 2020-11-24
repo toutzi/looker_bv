@@ -96,31 +96,31 @@ explore: tf_vente {
   }
 
   join: dig_commandes {
-    type: full_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${magasin.cd_magasin} = ${dig_commandes.code_magasin} ;;
   }
 
   join: dig_nos_magasins {
-    type: full_outer
+    type: inner
     relationship: many_to_one
     sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
   }
 
   join: dig_clients {
-    type: full_outer
+    type: inner
     relationship: many_to_one
     sql_on: ${dig_commandes.code_client} = CAST(${dig_clients.code_client} as String) ;;
   }
 
   join: dig_clients_connexions {
-    type: full_outer
+    type: inner
     relationship: one_to_one
     sql_on: ${dig_clients.code_client}=${dig_clients_connexions.code_client} ;;
   }
 
   join: dig_produits_commandes {
-    type: full_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
@@ -130,31 +130,31 @@ explore: tf_vente {
 explore: dig_commandes {
 
   join: dig_clients {
-    type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
   }
 
   join: dig_nos_magasins {
-    type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
   }
 
   join: dig_produits_commandes {
-    type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dig_commandes.code_commande} = ${dig_produits_commandes.code_commande};;
   }
 
-  join: magasin {
-    type: left_outer
+  join: tf_vente {
+    type: inner
     relationship: many_to_one
     sql_on: ${tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
-  join: tf_vente {
-    type: full_outer
+  join: magasin {
+    type: inner
     relationship: many_to_one
     sql_on: ${dig_commandes.code_magasin} = ${magasin.cd_magasin}  ;;
   }
