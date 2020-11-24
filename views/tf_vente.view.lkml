@@ -62,6 +62,34 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date:  "3 years ago"]
   }
 
+  measure: sum_ca_ht_moisN {
+    label: "CA au mois N"
+    type: sum
+    value_format_name: eur
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_date: "last month"]
+  }
+
+  measure: sum_ca_ht_moisN1 {
+    label: "CA au mois N-1"
+    type: sum
+    value_format_name: eur
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_date: "13 months ago"]
+  }
+
+  measure: sum_ca_ht_moisN2 {
+    label: "CA au mois N-2"
+    type: sum
+    value_format_name: eur
+    drill_fields: [detail*]
+    sql: ${ca_ht} ;;
+    filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
+  }
+
+
   dimension: ca_net {
     type: number
     value_format_name: eur
@@ -245,6 +273,30 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date: "3 years ago"]
   }
 
+  measure: sum_nb_ticket_moisN {
+    label: "Nb client au mois N"
+    value_format_name: decimal_0
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_date: "last month"]
+  }
+
+  measure: sum_nb_ticket_moisN1 {
+    label: "Nb client au mois N-1"
+    value_format_name: decimal_0
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_date: "13 months ago"]
+  }
+
+  measure: sum_nb_ticket_moisN2 {
+    label: "Nb client au mois N-2"
+    value_format_name: decimal_0
+    type: sum
+    sql: ${nb_ticket} ;;
+    filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
+  }
+
   dimension: num_jour {
     type: string
     sql: ${TABLE}.NUM_JOUR ;;
@@ -377,6 +429,30 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date: "3 years ago"]
   }
 
+  measure: Nb_de_jours_moisN {
+    type: count_distinct
+    label: "Nb de jours au mois N-1"
+    value_format_name: decimal_0
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_date: "last month"]
+  }
+
+  measure: Nb_de_jours_mois_N1 {
+    label: "Nb de jours au mois N-1"
+    value_format_name: decimal_0
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_date:"13 months ago"]
+  }
+
+  measure: Nb_de_jours_mois_N2 {
+    label: "Nb de jours au mois N-2"
+    value_format_name: decimal_0
+    type: count_distinct
+    sql: ${TABLE}.DTE_VENTE ;;
+    filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
+  }
+
   measure: Prog_CA {
     label: "Prog CA"
     value_format_name: percent_2
@@ -433,11 +509,25 @@ view: tf_vente {
     sql: 1.0 * ((${sum_nb_ticket_N}/${Nb_de_jours_N})-(${sum_nb_ticket_N1}/${Nb_de_jours_N_1}))/NULLIF((${sum_nb_ticket_N1}/${Nb_de_jours_N_1}),0);;
   }
 
+  measure: Prog_Clients_moisN {
+    label: "Prog clients / jour au mois N"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_nb_ticket_moisN}/${Nb_de_jours_moisN})-(${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}))/NULLIF((${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}),0);;
+  }
+
   measure: Prog_ca_jour {
     label: "Prog CA / jour"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
+  }
+
+  measure: Prog_ca_jour_moisN {
+    label: "Prog CA / jour au mois N"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_ca_ht_moisN}/${Nb_de_jours_moisN})-(${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}))/NULLIF((${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}),0);;
   }
 
   measure: CA_m_carre {
@@ -454,6 +544,14 @@ view: tf_vente {
     sql: 1.0 * (${sum_ca_ht_no}-${sum_val_achat_gbl0})/NULLIF(${sum_ca_ht_no},0);;
   }
 
+  measure: Taux_de_marge_moisN {
+    label: "Taux de marge au mois N"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})/NULLIF(${sum_ca_ht_moisN},0);;
+  }
+
+
   measure: Taux_de_marge_N1 {
     label: "Taux de marge Année N-1"
     value_format_name: percent_2
@@ -461,11 +559,25 @@ view: tf_vente {
     sql: 1.0 * (${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1})/NULLIF(${sum_ca_ht_N_1},0);;
   }
 
+  measure: Taux_de_marge_moisN1 {
+    label: "Taux de marge au mois N-1"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
+  }
+
   measure: prog_marge {
     label: "Prog Marge"
     value_format_name: percent_2
     type: number
     sql:  ((${sum_ca_ht_N}-${sum_val_achat_gbl_N})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
+  }
+
+  measure: prog_marge_moisN {
+    label: "Prog Marge au mois N"
+    value_format_name: percent_2
+    type: number
+    sql:  ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF((${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
   }
 
   measure: prog_marge_mois {
@@ -489,6 +601,13 @@ view: tf_vente {
     sql:  ${sum_ca_ht_no}/NULLIF(${sum_nb_ticket0},0) ;;
   }
 
+  measure: panier_moyen_moisN {
+    label: "panier moyen au mois N"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0) ;;
+  }
+
   measure: panier_moyen_N1 {
     label: "panier moyen N-1"
     value_format_name: decimal_2
@@ -496,11 +615,25 @@ view: tf_vente {
     sql: ${sum_ca_ht_N_1}/NULLIF(${sum_nb_ticket_N1},0);;
   }
 
+  measure: panier_moyen_moisN1 {
+    label: "panier moyen au mois N-1"
+    value_format_name: decimal_2
+    type: number
+    sql: ${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0);;
+  }
+
   measure: Prog_PM {
     label: "Prog panier moyen"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N})-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/NULLIF((${sum_ca_ht_N_1}/${sum_nb_ticket_N1}),0);;
+  }
+
+  measure: Prog_PM_moisN {
+    label: "Prog panier moyen au mois N"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ((${sum_ca_ht_moisN}/${sum_nb_ticket_moisN})-(${sum_ca_ht_moisN1}/${sum_nb_ticket_moisN1}))/NULLIF((${sum_ca_ht_moisN1}/${sum_nb_ticket_moisN1}),0);;
   }
 
   measure: Marges {
@@ -516,30 +649,6 @@ view: tf_vente {
     sql: ${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN} ;;
   }
 
-  measure: sum_ca_ht_moisN {
-    label: "CA HT au mois N"
-    value_format_name: eur
-    type: sum
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "last month"]
-  }
-
-  measure: sum_ca_ht_moisN1 {
-    label: "CA HT au mois N-1"
-    value_format_name: eur
-    type: sum
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "13 months ago"]
-  }
-
-  measure: sum_ca_ht_moisN2 {
-    label: "CA HT au mois N-2"
-    value_format_name: eur
-    type: sum
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "25 months ago"]
-  }
-
   measure: Marges_N1 {
     label: "Marge mois N-1"
     value_format_name: decimal_2
@@ -552,7 +661,7 @@ view: tf_vente {
     value_format_name: eur
     type: sum
     sql: ${val_achat_gbl} ;;
-    filters: [dte_vente_date: "last month"]
+    filters: [typ_vente: "0", dte_vente_date: "last month"]
   }
 
   measure: sum_val_achat_gbl_moisN1 {
@@ -560,7 +669,15 @@ view: tf_vente {
     value_format_name: eur
     type: sum
     sql: ${val_achat_gbl} ;;
-    filters: [dte_vente_date: "13 months ago"]
+    filters: [typ_vente: "0", dte_vente_date: "13 months ago"]
+  }
+
+  measure: sum_val_achat_gbl_moisN2 {
+    label: "val achat gbl mois N-2"
+    value_format_name: eur
+    type: sum
+    sql: ${val_achat_gbl} ;;
+    filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
   }
 
   set: detail {
