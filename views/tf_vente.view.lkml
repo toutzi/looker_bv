@@ -537,6 +537,15 @@ view: tf_vente {
     sql:  ${sum_ca_ht_no}/NULLIF(${magasin.sum_surf_vte},0) ;;
   }
 
+  measure: CA_m {
+    label: "CA au m² au mois N"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_ca_ht_moisN}/NULLIF(${magasin.sum_surf_vte},0) ;;
+  }
+
+
+
   measure: Taux_de_marge {
     label: "Taux de marge Année"
     value_format_name: percent_2
