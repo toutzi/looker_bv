@@ -19,7 +19,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht {
-    label: "Chiffre d'affaires"
+    label: "CA HT"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -27,7 +27,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_N {
-    label: "CA N"
+    label: "CA HT année N"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -45,7 +45,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_N_1 {
-    label: "CA N-1"
+    label: "CA HT année N-1"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -54,7 +54,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_N_2 {
-    label: "CA N-2"
+    label: "CA HT année N-2"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -63,7 +63,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_moisN {
-    label: "CA au mois N"
+    label: "CA mois N"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -72,7 +72,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_moisN1 {
-    label: "CA au mois N-1"
+    label: "CA mois N-1"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -81,7 +81,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_moisN2 {
-    label: "CA au mois N-2"
+    label: "CA mois N-2"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -166,7 +166,7 @@ view: tf_vente {
   }
 
   measure: count_dte_vente {
-    label:"Nombre de jour"
+    label:"Nombre de jours"
     value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.DTE_VENTE ;;
@@ -235,14 +235,14 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket {
-    label: "nbre client"
+    label: "nbre clients"
     value_format_name: decimal_0
     type: sum
     sql: ${TABLE}.NB_TICKET ;;
   }
 
   measure: sum_nb_ticket0 {
-    label: "Nb client"
+    label: "Nb clients"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -250,7 +250,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_N {
-    label: "Nb client N"
+    label: "Nb clients année N"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -258,7 +258,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_N1 {
-    label: "Nb client N-1"
+    label: "Nb clients année N-1"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -266,7 +266,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_N2 {
-    label: "Nb client N-2"
+    label: "Nb clients année N-2"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -274,7 +274,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_moisN {
-    label: "Nb client au mois N"
+    label: "Nb clients mois N"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -282,7 +282,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_moisN1 {
-    label: "Nb client au mois N-1"
+    label: "Nb clients mois N-1"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -290,7 +290,7 @@ view: tf_vente {
   }
 
   measure: sum_nb_ticket_moisN2 {
-    label: "Nb client au mois N-2"
+    label: "Nb clients mois N-2"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_ticket} ;;
@@ -373,8 +373,8 @@ view: tf_vente {
   }
 
   measure: sum_val_achat_gbl_N {
-    value_format_name: eur
     type: sum
+    value_format_name: eur
     sql: ${TABLE}.VAL_ACHAT_GBL ;;
     filters: [typ_vente: "0", dte_vente_date:"this year"]
   }
