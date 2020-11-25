@@ -63,7 +63,7 @@ view: tf_vente {
   }
 
   measure: sum_ca_ht_moisN {
-    label: "CA mois N"
+    label: "CA HT mois N"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
