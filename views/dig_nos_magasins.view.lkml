@@ -119,6 +119,7 @@ view: dig_nos_magasins {
   }
 
   dimension: nom_du_magasin {
+    label: "Magasins"
     type: string
     sql: ${TABLE}.Nom_du_magasin ;;
   }
@@ -139,6 +140,7 @@ view: dig_nos_magasins {
   }
 
   dimension: r__gion {
+    label: "Région"
     type: string
     sql: ${TABLE}.R__gion ;;
   }
@@ -154,6 +156,7 @@ view: dig_nos_magasins {
   }
 
   dimension: type_magasin {
+    label: "Type"
     type: string
     sql: ${TABLE}.Type_magasin ;;
   }

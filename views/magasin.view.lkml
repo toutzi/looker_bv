@@ -87,6 +87,7 @@ view: magasin {
   }
 
   dimension: nom {
+    label: "Magasins"
     type: string
     sql: ${TABLE}.NOM ;;
   }
