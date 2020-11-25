@@ -462,14 +462,14 @@ view: tf_vente {
   }
 
   measure: Prog_CA_mois {
-    label: "Prog CA mois N"
+    label: "Prog CA N/N-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${sum_ca_ht_moisN}-${sum_ca_ht_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
   }
 
   measure: Prog_CA_moisN1 {
-    label: "Prog CA mois N-1"
+    label: "Prog CA N-1/N-2"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${sum_ca_ht_moisN1}-${sum_ca_ht_moisN2})/NULLIF(${sum_ca_ht_moisN2},0);;
@@ -490,7 +490,7 @@ view: tf_vente {
   }
 
   measure: ca_par_jour_mois {
-    label: "CA / jour/ mois"
+    label: "CA/jour moyen"
     value_format_name: eur
     type: number
     sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
@@ -525,7 +525,7 @@ view: tf_vente {
   }
 
   measure: Prog_ca_jour_moisN {
-    label: "Prog CA / jour mois N"
+    label: "Prog CA/jour"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
@@ -559,7 +559,7 @@ view: tf_vente {
   }
 
   measure: Taux_de_marge_moisN {
-    label: "% marge mois N"
+    label: "% marge"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})/NULLIF(${sum_ca_ht_moisN},0);;
@@ -609,7 +609,7 @@ view: tf_vente {
   }
 
   measure: Prog_clients_jour_moisN {
-    label: "Prog Clients/jour mois N"
+    label: "Prog Clients/jour"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_nb_ticket_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
@@ -623,7 +623,7 @@ view: tf_vente {
   }
 
   measure: panier_moyen_moisN {
-    label: "panier moyen mois N"
+    label: "PM"
     value_format_name: decimal_2
     type: number
     sql:  ${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0) ;;
@@ -651,7 +651,7 @@ view: tf_vente {
   }
 
   measure: Prog_PM_moisN {
-    label: "Prog panier moyen N/N-1"
+    label: "Prog PM N/N-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0))${ca_ht};;
