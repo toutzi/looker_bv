@@ -67,7 +67,7 @@ view: magasin {
     sql: ${TABLE}.DATE_OUV ;;
   }
 
-  dimension: anciennete {
+  dimension: diff_date {
     type: number
     sql: DATE_DIFF(CURRENT_DATE(), ${date_ouv_date}, YEAR) ;;
   }
@@ -75,7 +75,7 @@ view: magasin {
   dimension: intervalle_anciennete {
     label: "Ancienneté"
     type: tier
-    sql: ${anciennete};;
+    sql: ${diff_date};;
     tiers: [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70]
     style: relational
   }
@@ -113,6 +113,7 @@ view: magasin {
   }
 
   dimension: typ_mag {
+    label: "Type"
     type: string
     sql: ${TABLE}.TYP_MAG ;;
   }

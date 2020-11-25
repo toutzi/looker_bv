@@ -156,7 +156,6 @@ view: dig_nos_magasins {
   }
 
   dimension: type_magasin {
-    label: "Type"
     type: string
     sql: ${TABLE}.Type_magasin ;;
   }
