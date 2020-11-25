@@ -680,7 +680,7 @@ view: tf_vente {
     label: "Prog Marge/client"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${Marges_client_moisN}-${Marges_client_moisN1})/NULLIF(${Marges_client_moisN1},0));;
+    sql: 1.0 * (${Marges_client_moisN}-${Marges_client_moisN1})/NULLIF(${Marges_client_moisN1},0);;
   }
 
   measure: Marges_N {
