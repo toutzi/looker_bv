@@ -675,6 +675,30 @@ view: tf_vente {
     filters: [typ_vente: "0", dte_vente_date: "26 months ago"]
   }
 
+  parameter: date_filter {
+    type: date
+  }
+
+  measure: spend_year_to_selected_date {
+    type: sum
+    sql:
+      CASE
+        WHEN EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
+        THEN ${ca_ht}
+      END ;;
+  }
+
+
+  measure: spend_month_to_selected_date {
+    type: sum
+    sql:
+      CASE
+        WHEN EXTRACT(MONTH FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(MONTH FROM ${dte_vente_date})
+        AND EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
+        THEN ${ca_ht}
+      END ;;
+  }
+
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]
   }
