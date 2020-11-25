@@ -499,35 +499,35 @@ view: tf_vente {
     label: "Prog.CA N-1"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
+    sql: 1.0 * ((${sum_ca_ht_N}/NUULIF(${Nb_de_jours_N},0))-(${sum_ca_ht_N_1}/NULLIF(${Nb_de_jours_N_1},0)))/(${sum_ca_ht_N_1}/NULLIF(${Nb_de_jours_N_1},0));;
   }
 
   measure: Prog_Clients {
     label: "Prog clients / jour"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_nb_ticket_N}/${Nb_de_jours_N})-(${sum_nb_ticket_N1}/${Nb_de_jours_N_1}))/NULLIF((${sum_nb_ticket_N1}/${Nb_de_jours_N_1}),0);;
+    sql: 1.0 * ((${sum_nb_ticket_N}/NULLIF(${Nb_de_jours_N},0))-(${sum_nb_ticket_N1}/NULLIF(${Nb_de_jours_N_1},0)))/(${sum_nb_ticket_N1}/NULLIF(${Nb_de_jours_N_1}),0));;
   }
 
   measure: Prog_Clients_moisN {
     label: "Prog clients / jour au mois N"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_nb_ticket_moisN}/${Nb_de_jours_moisN})-(${sum_nb_ticket_moisN1}/${Nb_de_jours_mois_N1}))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
+    sql: 1.0 * ((${sum_nb_ticket_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
   }
 
   measure: Prog_ca_jour {
     label: "Prog CA / jour"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${Nb_de_jours_N})-(${sum_ca_ht_N_1}/${Nb_de_jours_N_1}))/NULLIF((${sum_ca_ht_N_1}/${Nb_de_jours_N_1}),0);;
+    sql: 1.0 * ((${sum_ca_ht_N}/NULLIF(${Nb_de_jours_N},0))-(${sum_ca_ht_N_1}/NULLIF(${Nb_de_jours_N_1},0)))/(${sum_ca_ht_N_1}/NULLIF(${Nb_de_jours_N_1}),0));;
   }
 
   measure: Prog_ca_jour_moisN {
     label: "Prog CA / jour au mois N"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_moisN}/${Nb_de_jours_moisN})-(${sum_ca_ht_moisN1}/${Nb_de_jours_mois_N1}))/(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
+    sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
   }
 
   measure: CA_m_carre {
@@ -628,7 +628,7 @@ view: tf_vente {
     label: "Prog panier moyen au mois N"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_moisN}/${sum_nb_ticket_moisN})-(${sum_ca_ht_moisN1}/${sum_nb_ticket_moisN1}))/NULLIF((${sum_ca_ht_moisN1}/${sum_nb_ticket_moisN1}),0);;
+    sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0))${ca_ht};;
   }
 
   measure: Marges {
