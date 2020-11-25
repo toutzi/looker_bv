@@ -654,7 +654,7 @@ view: tf_vente {
     label: "Prog PM N/N-1"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0))${ca_ht};;
+    sql: 1.0 * ((${sum_ca_ht_moisN}/NULLIF(${sum_nb_ticket_moisN},0))-(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0)))/(${sum_ca_ht_moisN1}/NULLIF(${sum_nb_ticket_moisN1},0));;
   }
 
   measure: Marges {
