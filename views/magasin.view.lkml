@@ -69,7 +69,7 @@ view: magasin {
 
   dimension: annciennete {
     type: number
-    sql: DATE_DIFF(${date_ouv_date}, CURRENT_DATE(), YEAR) ;;
+    sql: DATE_DIFF(CURRENT_DATE(), ${date_ouv_date}, YEAR) ;;
   }
 
 
