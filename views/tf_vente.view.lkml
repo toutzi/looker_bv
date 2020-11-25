@@ -621,7 +621,7 @@ view: tf_vente {
     label: "Prog panier moyen"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N})-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/((${sum_ca_ht_N_1}/NULLIF(${sum_nb_ticket_N1}),0));;
+    sql: 1.0 * ((${sum_ca_ht_N}/${sum_nb_ticket_N})-(${sum_ca_ht_N_1}/${sum_nb_ticket_N1}))/(${sum_ca_ht_N_1}/${sum_nb_ticket_N1});;
   }
 
   measure: Prog_PM_moisN {
