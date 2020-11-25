@@ -67,6 +67,14 @@ view: magasin {
     sql: ${TABLE}.DATE_OUV ;;
   }
 
+  dimension: annciennete {
+    type: tier
+    tiers: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
+    sql: diff_years(${date_ouv_date}, now()) ;;
+    style: relational
+  }
+
+
   dimension: id_magasin {
     type: number
     primary_key: yes
