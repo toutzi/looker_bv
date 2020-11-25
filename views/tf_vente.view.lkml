@@ -687,6 +687,7 @@ view: tf_vente {
         WHEN EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
         THEN ${ca_ht}
       END ;;
+    filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
   }
 
 
