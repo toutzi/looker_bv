@@ -682,7 +682,7 @@ view: tf_vente {
   measure: spend_year_to_selected_date {
     type: sum
     value_format_name: eur
-    filters: [typ_vente: "0", dte_vente_date: "2 years ago"]
+    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
     sql:
       CASE
         WHEN EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
