@@ -98,11 +98,6 @@ view: magasin {
     sql: ${TABLE}.SURF_VTE ;;
   }
 
-  measure: sum_surf_vte {
-    type: sum
-    sql: ${surf_vte};;
-  }
-
   dimension: typ_mag {
     type: string
     sql: ${TABLE}.TYP_MAG ;;
