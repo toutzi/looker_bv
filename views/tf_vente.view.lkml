@@ -681,6 +681,7 @@ view: tf_vente {
 
   measure: spend_year_to_selected_date {
     type: sum
+    value_format_name: eur
     sql:
       CASE
         WHEN EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
@@ -691,6 +692,7 @@ view: tf_vente {
 
   measure: spend_month_to_selected_date {
     type: sum
+    value_format_name: eur
     sql:
       CASE
         WHEN EXTRACT(MONTH FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(MONTH FROM ${dte_vente_date})
