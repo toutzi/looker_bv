@@ -76,7 +76,7 @@ view: magasin {
     sql:
       CASE
         WHEN  ${date_ouv_date} BETWEEN '2019-01-01' AND '2019-12-31' THEN "P.comparable"
-        WHEN ${TABLE}.DATE_OUV < CURRENT_DATE() THEN "P. non comparable"
+        WHEN ${date_ouv_date} < CURRENT_DATE() THEN "P. non comparable"
       END
     ;;
   }
