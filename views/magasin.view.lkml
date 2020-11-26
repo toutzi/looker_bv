@@ -75,8 +75,8 @@ view: magasin {
   dimension: Categorie {
     sql:
       CASE
-        WHEN ${date_ouv_date}="2 years ago" THEN "P.comparable"
-        WHEN ${date_ouv_date}<CURRENT_DATE() THEN "P. non comparable"
+        WHEN  ${TABLE}.DATE_OUV = '2 years ago' THEN "P.comparable"
+        WHEN ${TABLE}.DATE_OUV < CURRENT_DATE() THEN "P. non comparable"
       END
     ;;
   }
