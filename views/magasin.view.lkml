@@ -72,15 +72,14 @@ view: magasin {
     sql: DATE_DIFF(CURRENT_DATE(), ${date_ouv_date}, YEAR) ;;
   }
 
-  dimension: P_comparable {
+  dimension: Categorie {
     type: string
-    sql: (SELECT * FROM (SELECT ${cd_magasin} FROM ods.magasin WHERE ${date_ouv_date}<CURRENT_DATE()));;
-  }
-
-  dimension: P_non_comparable {
-    label: "P.non comparable"
-    type: string
-    sql: ${nom};;
+    sql:
+      CASE
+        WHEN ${date_ouv_date}="last year" THEN "P.comparable"
+        WHEN ${date_ouv_date}<CURRENT_DATE THEN "P. non comparable"
+      END
+    ;;
   }
 
   dimension: intervalle_anciennete {
