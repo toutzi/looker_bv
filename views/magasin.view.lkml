@@ -73,7 +73,7 @@ view: magasin {
   }
 
   dimension: Categorie {
-    type: string
+    type: date
     sql:
       CASE
         WHEN ${date_ouv_date}="last year" THEN "P.comparable"
