@@ -74,7 +74,7 @@ view: magasin {
 
   dimension: P_comparable {
     type: string
-    sql: (SELECT ${nom} as P.comparable FROM ods.magasin WHERE ${date_ouv_date} between '2019-01-01' AND '2019-12-31');;
+    sql: (SELECT ${nom} as P.comparable FROM ods.magasin WHERE ${date_ouv_date} between "2019-01-01" AND "2019-12-31");;
   }
 
   dimension: P_non_comparable {
