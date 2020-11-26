@@ -73,10 +73,10 @@ view: magasin {
   }
 
   dimension: Categorie {
-    type: date
+    type: string
     sql:
       CASE
-        WHEN ${date_ouv_date}="last year" THEN "P.comparable"
+        WHEN ${date_ouv_date}="2 years ago" THEN "P.comparable"
         WHEN ${date_ouv_date}<CURRENT_DATE THEN "P. non comparable"
       END
     ;;
