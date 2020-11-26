@@ -725,10 +725,13 @@ view: tf_vente {
     type: date
   }
 
+# filter: date_filtre {
+#    type: date
+#  }
+
   measure: spend_year_to_selected_date {
     type: sum
     value_format_name: eur
-    filters: [typ_vente: "0", dte_vente_year: "2 years ago"]
     sql:
       CASE
         WHEN EXTRACT(YEAR FROM CAST({% parameter date_filter %} AS DATE)) = EXTRACT(YEAR FROM ${dte_vente_date})
@@ -747,6 +750,16 @@ view: tf_vente {
         THEN ${ca_ht}
       END ;;
   }
+
+#  measure: orders_selected_month {
+#    type: sum
+#    sql: case when {% condition ${date_filtre} %} ${dte_vente_date} {% endcondition %} then ${ca_ht} end ;;
+#  }
+
+#  measure: orders_selected_month_ly {
+#    type: sum
+#    sql: case when {% condition ${date_filtre} %} dateadd(year,1,${dte_vente_date}) {% endcondition %} then ${ca_ht} end ;;
+#  }
 
   set: detail {
     fields: [id_tf_vte, id_article, id_magasin]

@@ -72,6 +72,18 @@ view: magasin {
     sql: DATE_DIFF(CURRENT_DATE(), ${date_ouv_date}, YEAR) ;;
   }
 
+  dimension: P_comparable {
+    type: string
+    sql: select ${nom}
+          from magasin
+          where ${date_ouv_date} between "2019-01-01" AND "2019-12-31";;
+  }
+
+  dimension: P_non_comparable {
+    type: string
+    sql: ${nom};;
+  }
+
   dimension: intervalle_anciennete {
     label: "Ancienneté"
     type: tier
