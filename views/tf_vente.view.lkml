@@ -725,9 +725,9 @@ view: tf_vente {
     type: date
   }
 
-# filter: date_filtre {
-#    type: date
-#  }
+ filter: date_filtre {
+    type: date
+  }
 
   measure: spend_year_to_selected_date {
     type: sum
