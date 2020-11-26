@@ -74,7 +74,7 @@ view: magasin {
 
   dimension: P_comparable {
     type: string
-    sql: SELECT * FROM (SELECT ${cd_magasin} FROM ods.magasin WHERE ${date_ouv_date}<CURRENT_DATE());;
+    sql: (SELECT * FROM (SELECT ${cd_magasin} FROM ods.magasin WHERE ${date_ouv_date}<CURRENT_DATE()));;
   }
 
   dimension: P_non_comparable {
