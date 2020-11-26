@@ -753,12 +753,20 @@ view: tf_vente {
 
 #  measure: orders_selected_month {
 #    type: sum
-#    sql: case when {% condition ${date_filtre} %} ${dte_vente_date} {% endcondition %} then ${ca_ht} end ;;
+#    sql:
+#      CASE
+#        WHEN {% condition ${date_filtre}  %} ${dte_vente_date} {% endcondition %}
+#        THEN ${ca_ht}
+#      END ;;
 #  }
 
 #  measure: orders_selected_month_ly {
 #    type: sum
-#    sql: case when {% condition ${date_filtre} %} dateadd(year,1,${dte_vente_date}) {% endcondition %} then ${ca_ht} end ;;
+#    sql:
+#      CASE
+#        WHEN {% condition ${date_filtre} %}  DATE_SUB(${dte_vente_date}, INTERVAL 1 YEAR) {% endcondition %}
+#        THEN ${ca_ht}
+#      END ;;
 #  }
 
   set: detail {
