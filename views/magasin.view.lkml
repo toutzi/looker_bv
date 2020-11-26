@@ -74,9 +74,9 @@ view: magasin {
 
   dimension: P_comparable {
     type: string
-    sql: select ${nom}
-          from magasin
-          where ${date_ouv_date} between "2019-01-01" AND "2019-12-31";;
+    sql: SELECT ${nom}
+          FROM magasin
+          WHERE ${date_ouv_date} between "2019-01-01" AND "2019-12-31";;
   }
 
   dimension: P_non_comparable {
