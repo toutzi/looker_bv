@@ -754,7 +754,7 @@ view: tf_vente {
   measure: CA_selected_month {
     type: sum
     sql: CASE
-          WHEN {% condition date_filter %} ${dte_vente_raw} {% endcondition %}
+          WHEN {% condition date_filter %} ${dte_vente_date} {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
@@ -762,7 +762,7 @@ view: tf_vente {
   measure: CA_selected_month_ly {
     type: sum
     sql: CASE
-          WHEN {% condition date_filter %} DATE_ADD(DATE(${dte_vente_raw}), INTERVAL 1 YEAR) {% endcondition %}
+          WHEN {% condition date_filter %} DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
