@@ -786,7 +786,7 @@ view: tf_vente {
 
   dimension: PM {
     type: number
-    sql: ${ca_ht}/NUULIF(${nb_ticket},0) ;;
+    sql: ${ca_ht}/${nb_ticket} ;;
   }
 
   set: detail {
