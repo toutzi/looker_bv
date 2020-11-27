@@ -775,6 +775,15 @@ view: tf_vente {
         END ;;
   }
 
+  measure: PM_month_ly {
+    type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          THEN ${PM}
+        END ;;
+  }
+
+
   dimension: PM {
     type: number
     sql: ${ca_ht}/${nb_ticket} ;;
