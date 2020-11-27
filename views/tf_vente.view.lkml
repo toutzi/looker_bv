@@ -165,6 +165,13 @@ view: tf_vente {
     sql: ${TABLE}.DTE_VENTE ;;
   }
 
+  dimension: is_last_day_of_month {
+    type: date
+    sql: EXTRACT(YEAR from DATE_ADD(${dte_vente_raw}), INTERVAL 1 YEAR);;
+  }
+
+
+
   measure: count_dte_vente {
     label:"Nombre de jours"
     value_format_name: decimal_0
