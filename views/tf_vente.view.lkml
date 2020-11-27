@@ -754,7 +754,7 @@ view: tf_vente {
   measure: CA_selected_month {
     type: sum
     sql: CASE
-          WHEN CAST({% condition date_filter %} ${dte_vente_date} {% endcondition %} AS DATE)
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS DATE) {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
