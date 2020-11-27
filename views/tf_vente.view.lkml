@@ -165,13 +165,6 @@ view: tf_vente {
     sql: ${TABLE}.DTE_VENTE ;;
   }
 
-  dimension: is_last_day_of_month {
-    type: date
-    sql: EXTRACT(YEAR from DATE_ADD(${dte_vente_raw}), INTERVAL 1 YEAR);;
-  }
-
-
-
   measure: count_dte_vente {
     label:"Nombre de jours"
     value_format_name: decimal_0
@@ -758,6 +751,15 @@ view: tf_vente {
 #      END ;;
 #  }
 
+  measure: orders_selected_month {
+    type: sum
+    sql: CASE WHEN {% condition date_filter %} ${dte_vente_raw} {% endcondition %} then ${ca_ht} end ;;
+  }
+
+  measure: orders_selected_month_ly {
+    type: sum
+    sql: CASE WHEN {% condition date_filter %} DATE_ADD(DATE(${dte_vente_raw}), INTERVAL 1 YEAR) {% endcondition %} then ${ca_ht} end ;;
+  }
 
 
   set: detail {
