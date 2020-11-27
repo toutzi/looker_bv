@@ -758,7 +758,7 @@ view: tf_vente {
 
   measure: orders_selected_month_ly {
     type: sum
-    sql: CASE WHEN {% condition date_filter %} DATE_ADD(${dte_vente_date}, INTERVAL 1 YEAR) {% endcondition %} then ${ca_ht} end ;;
+    sql: CASE WHEN {% condition date_filter %} DATE_ADD(${dte_vente_date}, INTERVAL -1 YEAR) {% endcondition %} then ${ca_ht} end ;;
   }
 
 
