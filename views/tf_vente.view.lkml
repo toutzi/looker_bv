@@ -768,7 +768,7 @@ view: tf_vente {
   }
 
   measure: nb_ticket_selected_month {
-    type: number
+    type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${nb_ticket}
@@ -776,7 +776,7 @@ view: tf_vente {
   }
 
   measure: nb_ticket_month_ly {
-    type: number
+    type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${nb_ticket}
