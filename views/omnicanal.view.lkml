@@ -64,9 +64,21 @@ view: omnicanal {
   }
 
   measure: pct {
-    type: sum
+    type: number
     value_format_name: percent_1
-    sql: ${TABLE}.pct ;;
+    sql: sum(${total_web})/sum(${total_mag}) ;;
+  }
+
+  measure: pct_nb {
+    type: number
+    value_format_name: percent_1
+    sql: ${nb_ventes_web}/${nb_ventes_mag} ;;
+  }
+
+  measure: pct_total {
+    type: number
+    value_format_name: percent_1
+    sql: ${total_web}/${total_mag} ;;
   }
 
   measure: count {
