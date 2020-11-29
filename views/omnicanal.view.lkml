@@ -32,8 +32,9 @@ view: omnicanal {
     sql: ${TABLE}.nom ;;
   }
 
-  dimension: pct {
-    type: number
+  measure: pct {
+    type: sum
+    value_format_name: percent_1
     sql: ${TABLE}.pct ;;
   }
 
@@ -44,11 +45,13 @@ view: omnicanal {
 
   dimension: total_mag {
     type: number
+    value_format_name: eur
     sql: ${TABLE}.total_mag ;;
   }
 
   dimension: total_web {
     type: number
+    value_format_name: eur
     sql: ${TABLE}.total_web ;;
   }
 
