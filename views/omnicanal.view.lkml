@@ -17,13 +17,13 @@ view: omnicanal {
     sql: ${TABLE}.dept ;;
   }
 
-  dimension: nb_ventes_mag {
-    type: number
+  measure: nb_ventes_mag {
+    type: sum
     sql: ${TABLE}.nb_ventes_mag ;;
   }
 
-  dimension: nb_ventes_web {
-    type: number
+  measure: nb_ventes_web {
+    type: sum
     sql: ${TABLE}.nb_ventes_web ;;
   }
 
@@ -32,27 +32,27 @@ view: omnicanal {
     sql: ${TABLE}.nom ;;
   }
 
-  measure: pct {
-    type: sum
-    value_format_name: percent_1
-    sql: ${TABLE}.pct ;;
-  }
-
   dimension: surf_vte {
     type: number
     sql: ${TABLE}.SURF_VTE ;;
   }
 
-  dimension: total_mag {
-    type: number
+  measure: total_mag {
+    type: sum
     value_format_name: eur
     sql: ${TABLE}.total_mag ;;
   }
 
-  dimension: total_web {
-    type: number
+  measure: total_web {
+    type: sum
     value_format_name: eur
     sql: ${TABLE}.total_web ;;
+  }
+
+  measure: pct {
+    type: sum
+    value_format_name: percent_1
+    sql: ${TABLE}.pct ;;
   }
 
   measure: count {
