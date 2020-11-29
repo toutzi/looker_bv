@@ -793,6 +793,22 @@ view: tf_vente {
     sql: ${CA_month_ly}/${nb_ticket_month_ly} ;;
   }
 
+  measure: CA_select_month {
+    type: number
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${CA_selected_month}/${nb_ticket_selected_month}
+        END ;;
+  }
+
+  measure: CA_select_month_ly {
+    type: number
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          THEN ${CA_month_ly}/${nb_ticket_month_ly}
+        END ;;
+  }
+
 
   dimension: PM {
     type: number
