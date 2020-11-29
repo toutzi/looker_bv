@@ -12,25 +12,39 @@ persist_with: bureauvallee_poc_default_datagroup
 
 explore: deriv_table {}
 
-explore: arbo {}
+#explore: arbo {}
 
-explore: article {}
+explore: article {
 
-explore: article_arbo {}
+  join: article_arbo {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
+  }
 
-explore: fournisseur {}
+  join: arbo {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
+  }
+
+}
+
+#explore: article_arbo {}
+
+#explore: fournisseur {}
 
 explore: magasin {}
 
-explore: marque {}
+#explore: marque {}
 
-explore: n1_division {}
+#explore: n1_division {}
 
-explore: n2_famille {}
+#explore: n2_famille {}
 
-explore: n3_ss_famille {}
+#explore: n3_ss_famille {}
 
-explore: n4 {}
+#explore: n4 {}
 
 explore: dig_nos_magasins{}
 
