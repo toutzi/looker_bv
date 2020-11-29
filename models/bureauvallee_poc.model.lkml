@@ -11,6 +11,7 @@ datagroup: bureauvallee_poc_default_datagroup {
 persist_with: bureauvallee_poc_default_datagroup
 
 explore: deriv_table {}
+explore: omnicanal {}
 
 #explore: arbo {}
 
