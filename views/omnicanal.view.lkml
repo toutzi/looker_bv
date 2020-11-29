@@ -12,6 +12,20 @@ view: omnicanal {
     sql: ${TABLE}.CP ;;
   }
 
+  dimension_group: dt_vente {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    datatype: date
+    sql: ${TABLE}.dt_vente ;;
+  }
+
   dimension: dept {
     type: string
     sql: ${TABLE}.dept ;;
