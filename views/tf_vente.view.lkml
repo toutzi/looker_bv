@@ -584,7 +584,7 @@ view: tf_vente {
     label: "prog CA / jr"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_ca_par_jour_mois}-${select_ca_par_jour_moisN1})/NULLIF(${select_Prog_CA_moisN1},0) ;;
+    sql: 1.0 * (${select_ca_par_jour_mois}-${select_ca_par_jour_moisN1})/NULLIF(${select_ca_par_jour_moisN1},0) ;;
   }
 
   measure: CA_m_carre {
