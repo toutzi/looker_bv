@@ -514,7 +514,7 @@ view: tf_vente {
     label: "CA / jour/ Année"
     value_format_name: eur
     type: number
-    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours_N0},0) ;;
+    sql:  ${sum_ca_ht_no}/NULLIF(${Nb_de_jours_N0},0) ;;
   }
 
   measure: ca_par_jour_mois {
@@ -589,7 +589,7 @@ view: tf_vente {
 
   measure: CA_m_carre {
     label: "CA au m²"
-    value_format_name: decimal_2
+    value_format_name: eur
     type: number
     sql:  ${sum_ca_ht_no}/NULLIF(${sum_surf_vte},0) ;;
   }
@@ -602,14 +602,14 @@ view: tf_vente {
 
   measure: CA_carre {
     label: "CA au m² moyen"
-    value_format_name: decimal_2
+    value_format_name: eur
     type: number
     sql:  ${sum_ca_ht_moisN1}/NULLIF(${sum_surf_vte},0) ;;
   }
 
   measure: select_CA_m_carre {
     label: "CA / m²"
-    value_format_name: decimal_2
+    value_format_name: eur
     type: number
     sql:  ${CA_selected_month}/NULLIF(${surf_selected_month},0) ;;
   }
@@ -679,21 +679,21 @@ view: tf_vente {
 
   measure: Nb_moy_client {
     label: "Nb moyen clts"
-    value_format_name: decimal_2
+    value_format_name: decimal_0
     type: number
     sql:  ${sum_nb_ticket0}/NULLIF(${Nb_de_jours},0);;
   }
 
   measure: Nb_moy_client_moisN {
     label: "clients/jour moyen"
-    value_format_name: decimal_2
+    value_format_name: decimal_0
     type: number
     sql:  ${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0);;
   }
 
   measure: select_Nb_moy_client_moisN {
     label: "clts / jr moy"
-    value_format_name: decimal_2
+    value_format_name: decimal_0
     type: number
     sql:  ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0);;
   }
