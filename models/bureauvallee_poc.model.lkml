@@ -18,7 +18,7 @@ explore: dataquality_tf_vente2020 {
   join: magasin {
     type: inner
     relationship: many_to_one
-    sql_on: ${magasin.id_magasin}=${dataquality_tf_vente2020.id_magasin}.id_article} ;;
+    sql_on: ${magasin.id_magasin}=${dataquality_tf_vente2020.id_magasin} ;;
   }
 }
 
