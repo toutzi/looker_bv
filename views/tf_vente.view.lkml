@@ -797,7 +797,7 @@ view: tf_vente {
   measure: select_Marges_client_moisN1 {
     value_format_name: decimal_2
     type: number
-    sql: (${CA_selected_month}-${val_achat_gbl_selected_month})/NULLIF(${nb_ticket_selected_month},0) ;;
+    sql: (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${nb_ticket_month_ly},0) ;;
   }
 
   measure: Prog_Marge_client {
