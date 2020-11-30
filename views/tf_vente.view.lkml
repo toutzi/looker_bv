@@ -469,7 +469,7 @@ view: tf_vente {
   }
 
   measure: select_Prog_CA_mois {
-    label: "Prog CA N/N-1"
+    label: "prog CA n/n-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${CA_selected_month}-${CA_month_ly})/NULLIF(${CA_month_ly},0);;
@@ -483,7 +483,7 @@ view: tf_vente {
   }
 
   measure: select_Prog_CA_moisN1 {
-    label: "Prog CA N-1/N-2"
+    label: "prog CA n-1/n-2"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${CA_month_ly}-${CA_month_ly_2})/NULLIF(${CA_month_ly_2},0);;
@@ -497,14 +497,14 @@ view: tf_vente {
   }
 
   measure: select_client_par_jour {
-    label: "Clients / jour"
+    label: "clts / jr"
     value_format_name: decimal_0
     type: number
     sql: 1.0 ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
   }
 
   measure: select_client_par_jour_N1 {
-    label: "Clients / jour N-1"
+    label: "clts / jr n-1"
     value_format_name: decimal_0
     type: number
     sql: 1.0 ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
@@ -525,14 +525,14 @@ view: tf_vente {
   }
 
   measure: select_ca_par_jour_mois {
-    label: "CA/jour moyen"
+    label: "CA / jr moy"
     value_format_name: eur
     type: number
     sql: 1.0 * ${CA_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
   }
 
   measure: select_ca_par_jour_moisN1 {
-    label: "CA/jour moyen"
+    label: "CA / jr moy n-1"
     value_format_name: eur
     type: number
     sql: 1.0 * ${CA_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
@@ -553,17 +553,17 @@ view: tf_vente {
   }
 
   measure: Prog_Clients_moisN {
-    label: "Prog clts / jr"
+    label: "Prog clients / jourr"
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_nb_ticket_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
   }
 
   measure: select_Prog_Clients_moisN {
-    label: "Prog clts / jr"
+    label: "prog clts / jr"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/${select_client_par_jour_N1};;
+    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0) ;;
   }
 
   measure: Prog_ca_jour {
@@ -581,10 +581,10 @@ view: tf_vente {
   }
 
   measure: select_Prog_ca_jour_moisN {
-    label: "Prog CA / jour"
+    label: "prog CA / jr"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_ca_par_jour_mois}-${select_ca_par_jour_moisN1})/${select_Prog_CA_moisN1};;
+    sql: 1.0 * (${select_ca_par_jour_mois}-${select_ca_par_jour_moisN1})/NULLIF(${select_Prog_CA_moisN1},0) ;;
   }
 
   measure: CA_m_carre {
@@ -601,14 +601,14 @@ view: tf_vente {
   }
 
   measure: CA_carre {
-    label: "CA/m² moyen"
+    label: "CA au m² moyen"
     value_format_name: decimal_2
     type: number
     sql:  ${sum_ca_ht_moisN1}/NULLIF(${sum_surf_vte},0) ;;
   }
 
   measure: select_CA_m_carre {
-    label: "CA au m²"
+    label: "CA / m²"
     value_format_name: decimal_2
     type: number
     sql:  ${CA_selected_month}/NULLIF(${surf_selected_month},0) ;;
@@ -622,7 +622,7 @@ view: tf_vente {
   }
 
   measure: Taux_de_marge_moisN {
-    label: "% marge"
+    label: "% Marge"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})/NULLIF(${sum_ca_ht_moisN},0);;
@@ -651,7 +651,7 @@ view: tf_vente {
   }
 
   measure: select_Taux_de_marge_moisN1 {
-    label: "Tx de marge mois N-1"
+    label: "tx de marge mois n-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${CA_month_ly},0);;
@@ -672,7 +672,7 @@ view: tf_vente {
   }
 
   measure: select_prog_marge_moisN {
-    label: "Prog Marge N/N-1"
+    label: "prog marge n/n-1"
     value_format_name: percent_2
     type: number
     sql:  1.0 * (${select_Taux_de_marge_moisN}-${select_Taux_de_marge_moisN1})/NULLIF(${select_Taux_de_marge_moisN1},0)
@@ -693,7 +693,7 @@ view: tf_vente {
   }
 
   measure: select_Nb_moy_client_moisN {
-    label: "clients/jour moyen"
+    label: "clts / jr moy"
     value_format_name: decimal_2
     type: number
     sql:  ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0);;
@@ -707,7 +707,7 @@ view: tf_vente {
   }
 
   measure: select_Prog_clients_jour_moisN {
-    label: "Prog Clts / jour"
+    label: "prog clts / jr"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0);;
@@ -749,7 +749,7 @@ view: tf_vente {
   }
 
   measure: select_panier_moyen_moisN1 {
-    label: "panier moyen mois N-1"
+    label: "PM mois n-1"
     value_format_name: decimal_2
     type: number
     sql: ${CA_month_ly}/NULLIF(${nb_ticket_month_ly},0);;
@@ -770,7 +770,7 @@ view: tf_vente {
   }
 
   measure: select_Prog_PM_moisN {
-    label: "Prog PM N/N-1"
+    label: "prog PM n/n-1"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${select_panier_moyen_moisN}-${select_panier_moyen_moisN1})/(NULLIF(${select_panier_moyen_moisN1},0));;
@@ -790,7 +790,7 @@ view: tf_vente {
   }
 
   measure: select_Marges_client_moisN {
-    label: "Marge / clts"
+    label: "marge / clts"
     value_format_name: decimal_2
     type: number
     sql: (${CA_selected_month}-${val_achat_gbl_selected_month})/NULLIF(${nb_ticket_selected_month},0) ;;
@@ -816,7 +816,7 @@ view: tf_vente {
   }
 
   measure: select_Prog_Marge_client {
-    label: "Prog Marge/clt"
+    label: "prog marge/clt"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${select_Marges_client_moisN}-${select_Marges_client_moisN1})/NULLIF(${select_Marges_client_moisN1},0);;
@@ -830,7 +830,7 @@ view: tf_vente {
   }
 
   measure: select_Marges_N {
-    label: "Marge mois N"
+    label: "marge mois n"
     value_format_name: decimal_2
     type: number
     sql: ${CA_selected_month}-${val_achat_gbl_selected_month};;
@@ -844,7 +844,7 @@ view: tf_vente {
   }
 
   measure: selectMarges_N1 {
-    label: "Marge mois N-1"
+    label: "marge mois n-1"
     value_format_name: decimal_2
     type: number
     sql: ${CA_month_ly}-${val_achat_gbl_month_ly} ;;
@@ -908,6 +908,7 @@ view: tf_vente {
   measure: CA_selected_month {
     type: sum
     value_format_name: eur
+    label: "CA ht"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
@@ -916,6 +917,7 @@ view: tf_vente {
 
   measure: CA_month_ly {
     type: sum
+    label: "CA ht n-1"
     value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
@@ -933,6 +935,7 @@ view: tf_vente {
   }
 
   measure: nb_ticket_selected_month {
+    label: "Nb clts "
     type: sum
     value_format_name: decimal_0
     sql: CASE
@@ -942,6 +945,7 @@ view: tf_vente {
   }
 
   measure: nb_ticket_month_ly {
+    label: "Nb clts n-1"
     type: sum
     value_format_name: decimal_0
     sql: CASE
@@ -951,6 +955,7 @@ view: tf_vente {
   }
 
   measure: nb_ticket_month_ly2 {
+    label: "Nb clts n-2"
     type: sum
     value_format_name: decimal_0
     sql: CASE
