@@ -13,6 +13,14 @@ persist_with: bureauvallee_poc_default_datagroup
 explore: deriv_table {}
 explore: omnicanal {}
 explore: data_patch {}
+explore: dataquality_tf_vente2020 {
+
+  join: magasin {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${magasin.id_magasin}=${dataquality_tf_vente2020.id_magasin} ;;
+  }
+}
 
 #explore: arbo {}
 
