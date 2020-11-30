@@ -521,7 +521,7 @@ view: tf_vente {
     label: "CA/jour moyen"
     value_format_name: eur
     type: number
-    sql:  ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
+    sql:  ${sum_ca_ht_no}/NULLIF(${Nb_de_jours_N0},0) ;;
   }
 
   measure: select_ca_par_jour_mois {
@@ -703,13 +703,6 @@ view: tf_vente {
     value_format_name: percent_2
     type: number
     sql: 1.0 * ((${sum_nb_ticket_moisN}/NULLIF(${Nb_de_jours_moisN},0))-(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0)))/(${sum_nb_ticket_moisN1}/NULLIF(${Nb_de_jours_mois_N1},0));;
-  }
-
-  measure: select_Prog_clients_jour_moisN {
-    label: "prog clts / jr"
-    value_format_name: percent_2
-    type: number
-    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0);;
   }
 
   measure: panier_moyen {
