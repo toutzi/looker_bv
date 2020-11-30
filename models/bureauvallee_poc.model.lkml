@@ -128,6 +128,17 @@ explore: tf_vente {
   }
 }
 
+explore: v_tf_vente {
+
+  join: magasin {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${v_tf_vente.id_magasin}=${magasin.id_magasin} ;;
+  }
+
+}
+
+
 explore: dig_commandes {
 
  join: dig_clients {
