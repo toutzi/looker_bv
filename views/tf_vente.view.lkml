@@ -710,7 +710,7 @@ view: tf_vente {
     label: "Prog Clts / jour"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0));;
+    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0);;
   }
 
   measure: panier_moyen {
