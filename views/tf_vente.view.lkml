@@ -907,6 +907,7 @@ view: tf_vente {
 
   measure: CA_selected_month {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
@@ -915,6 +916,7 @@ view: tf_vente {
 
   measure: CA_month_ly {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${ca_ht}
@@ -923,6 +925,7 @@ view: tf_vente {
 
   measure: CA_month_ly_2 {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${ca_ht}
@@ -931,6 +934,7 @@ view: tf_vente {
 
   measure: nb_ticket_selected_month {
     type: sum
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${nb_ticket}
@@ -939,6 +943,7 @@ view: tf_vente {
 
   measure: nb_ticket_month_ly {
     type: sum
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${nb_ticket}
@@ -947,6 +952,7 @@ view: tf_vente {
 
   measure: nb_ticket_month_ly2 {
     type: sum
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${nb_ticket}
@@ -955,6 +961,7 @@ view: tf_vente {
 
   measure: nb_jour_selected_month {
     type: count_distinct
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
@@ -963,6 +970,7 @@ view: tf_vente {
 
   measure: nb_jour_month_ly {
     type: count_distinct
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
@@ -971,6 +979,7 @@ view: tf_vente {
 
   measure: nb_jour_month_ly2 {
     type: count_distinct
+    value_format_name: decimal_0
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
@@ -995,6 +1004,7 @@ view: tf_vente {
 
   measure: val_achat_gbl_selected_month {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${val_achat_gbl}
@@ -1003,6 +1013,7 @@ view: tf_vente {
 
   measure: val_achat_gbl_month_ly {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${val_achat_gbl}
@@ -1011,6 +1022,7 @@ view: tf_vente {
 
   measure: val_achat_gbl_month_ly2 {
     type: sum
+    value_format_name: eur
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${val_achat_gbl}
