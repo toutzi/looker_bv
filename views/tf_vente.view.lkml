@@ -987,7 +987,7 @@ view: tf_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}}
+          THEN ${magasin.surf_vte}
         END ;;
   }
 
