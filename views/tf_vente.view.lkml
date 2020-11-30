@@ -493,21 +493,21 @@ view: tf_vente {
     label: "Clients / jour"
     value_format_name: decimal_0
     type: number
-    sql: 1.0 * ${sum_nb_ticket0}/NULLIF(${Nb_de_jours_N0},0) ;;
+    sql: ${sum_nb_ticket0}/NULLIF(${Nb_de_jours_N0},0) ;;
   }
 
   measure: select_client_par_jour {
     label: "clts / jr"
     value_format_name: decimal_0
     type: number
-    sql: 1.0 ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
+    sql: ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
   }
 
   measure: select_client_par_jour_N1 {
     label: "clts / jr n-1"
     value_format_name: decimal_0
     type: number
-    sql: 1.0 ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
+    sql: ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
   }
 
   measure: ca_par_jour_annee {
@@ -521,21 +521,21 @@ view: tf_vente {
     label: "CA/jour moyen"
     value_format_name: eur
     type: number
-    sql: 1.0 * ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
+    sql:  ${sum_ca_ht_no}/NULLIF(${Nb_de_jours},0) ;;
   }
 
   measure: select_ca_par_jour_mois {
     label: "CA / jr moy"
     value_format_name: eur
     type: number
-    sql: 1.0 * ${CA_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
+    sql:  ${CA_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
   }
 
   measure: select_ca_par_jour_moisN1 {
     label: "CA / jr moy n-1"
     value_format_name: eur
     type: number
-    sql: 1.0 * ${CA_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
+    sql:  ${CA_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
   }
 
   measure: Prog_CA_1 {
@@ -660,14 +660,14 @@ view: tf_vente {
     label: "Prog Marge Année N"
     value_format_name: percent_2
     type: number
-    sql:  ((${sum_ca_ht_N}-${sum_val_achat_gbl_N})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
+    sql:  1.0 * ((${sum_ca_ht_N}-${sum_val_achat_gbl_N})-(${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}))/NULLIF((${sum_ca_ht_N_1}-${sum_val_achat_gbl_N1}),0) ;;
   }
 
   measure: prog_marge_moisN {
     label: "Prog Marge N/N-1"
     value_format_name: percent_2
     type: number
-    sql:  ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF((${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
+    sql: 1.0 * ((${sum_ca_ht_moisN}-${sum_val_achat_gbl_moisN})-(${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}))/NULLIF((${sum_ca_ht_moisN1}-${sum_val_achat_gbl_moisN1}),0) ;;
   }
 
   measure: select_prog_marge_moisN {
