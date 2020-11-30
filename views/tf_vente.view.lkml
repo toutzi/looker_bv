@@ -675,7 +675,7 @@ view: tf_vente {
     label: "Prog Marge N/N-1"
     value_format_name: percent_2
     type: number
-    sql:  (${select_Taux_de_marge_moisN}-${select_Taux_de_marge_moisN1})/NULLIF(${select_Taux_de_marge_moisN1},0)
+    sql:  1.0 * (${select_Taux_de_marge_moisN}-${select_Taux_de_marge_moisN1})/NULLIF(${select_Taux_de_marge_moisN1},0)
 
 
   measure: Nb_moy_client {
