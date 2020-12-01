@@ -136,6 +136,12 @@ explore: v_tf_vente {
     sql_on: ${v_tf_vente.id_magasin}=${magasin.id_magasin} ;;
   }
 
+  join: dig_nos_magasins {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
+
 }
 
 
