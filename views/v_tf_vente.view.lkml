@@ -1003,10 +1003,10 @@ view: v_tf_vente {
         END ;;
   }
 
-  dimension: Rang_CA {
+  measure: Rang_CA {
     sql: RANK() OVER (
           PARTITION BY ${id_magasin}
-          ORDER BY CA_selected_month DESC) ;;
+          ORDER BY ${CA_selected_month} DESC) ;;
   }
 
 
