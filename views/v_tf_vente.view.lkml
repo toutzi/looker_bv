@@ -167,6 +167,11 @@ view: v_tf_vente {
     sql: ${TABLE}.DTE_VENTE ;;
   }
 
+  dimension: id_article {
+    type: number
+    sql: ${TABLE}.ID_ARTICLE ;;
+  }
+
   dimension: id_magasin {
     type: number
     sql: ${TABLE}.ID_MAGASIN ;;
