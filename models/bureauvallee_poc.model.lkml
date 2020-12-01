@@ -13,6 +13,10 @@ persist_with: bureauvallee_poc_default_datagroup
 explore: deriv_table {}
 explore: omnicanal {}
 explore: data_patch {}
+explore: dataquality_tf_vente2020_donnees_remontees {
+
+  }
+
 explore: dataquality_tf_vente2020 {
 
   join: magasin {
