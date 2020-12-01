@@ -1005,7 +1005,7 @@ view: v_tf_vente {
 
   dimension: Rang_CA {
     sql: RANK() OVER (
-          PARTITION BY id_magasin
+          PARTITION BY ${id_magasin}
           ORDER BY CA_selected_month DESC) ;;
   }
 
