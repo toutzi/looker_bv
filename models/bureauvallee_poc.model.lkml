@@ -142,23 +142,23 @@ explore: v_tf_vente {
     sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
   }
 
-  join: article {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${v_tf_vente.id_article}=${article.id_article} ;;
-  }
+#  join: article {
+#    type: left_outer
+#    relationship: many_to_one
+#    sql_on: ${v_tf_vente.id_article}=${article.id_article} ;;
+#  }
 
-  join: article_arbo {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
-  }
+#  join: article_arbo {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
+#  }
 
-  join: arbo {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
-  }
+#  join: arbo {
+#    type: left_outer
+#    relationship: many_to_one
+#    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
+#  }
 
 
 }
