@@ -74,6 +74,7 @@ view: patch_abe {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [cd_magasin, date_vente_date, qtite,ca_net,send_patch_date,processing_date, statut]
   }
+
 }
