@@ -34,6 +34,9 @@ explore: n4 {}
 
 explore: dig_nos_magasins{}
 
+explore: dataquality_tf_vente2020 {}
+
+explore: table_patch_test {}
 
 explore: tf_vente {
 
