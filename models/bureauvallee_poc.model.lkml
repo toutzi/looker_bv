@@ -15,6 +15,7 @@ explore: omnicanal {}
 explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
 explore: table_patch_test_abe {}
+explore: patch_abe {}
 
 
 explore: dataquality_tf_vente2020 {
