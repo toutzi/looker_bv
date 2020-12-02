@@ -46,6 +46,11 @@ view: dataquality_tf_vente2020 {
     sql: ${TABLE}.Flag_QTITE_NULL ;;
   }
 
+  dimension: Flag_QTITE_CANET_NULL {
+    type: number
+    sql: ${TABLE}.Flag_QTITE_CANET_NULL ;;
+  }
+
   dimension: flag_qtite_sup1000_canet_inf0_5 {
     type: number
     sql: ${TABLE}.Flag_QTITE_SUP1000_CANET_INF0_5 ;;
