@@ -1,4 +1,4 @@
-connection: "bigquery_demo"
+  connection: "bigquery_demo"
 
 # include all the views
 include: "/views/**/*.view"
@@ -11,32 +11,56 @@ datagroup: bureauvallee_poc_default_datagroup {
 persist_with: bureauvallee_poc_default_datagroup
 
 explore: deriv_table {}
+explore: omnicanal {}
+explore: data_patch {}
+explore: dataquality_tf_vente2020_donnees_remontees {}
+explore: table_patch_test_abe {}
 
-explore: arbo {}
 
-explore: article {}
+explore: dataquality_tf_vente2020 {
 
-explore: article_arbo {}
+  join: magasin {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${magasin.id_magasin}=${dataquality_tf_vente2020.id_magasin} ;;
+  }
+}
 
-explore: fournisseur {}
+#explore: arbo {}
+
+explore: article {
+
+  join: article_arbo {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
+  }
+
+  join: arbo {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
+  }
+
+}
+
+#explore: article_arbo {}
+
+#explore: fournisseur {}
 
 explore: magasin {}
 
-explore: marque {}
+#explore: marque {}
 
-explore: n1_division {}
+#explore: n1_division {}
 
-explore: n2_famille {}
+#explore: n2_famille {}
 
-explore: n3_ss_famille {}
+#explore: n3_ss_famille {}
 
-explore: n4 {}
+#explore: n4 {}
 
-explore: dig_nos_magasins{}
-
-explore: dataquality_tf_vente2020 {}
-
-explore: table_patch_test {}
+explore: dig_nos_magasins {}
 
 explore: tf_vente {
 
@@ -107,19 +131,55 @@ explore: tf_vente {
   }
 }
 
+explore: v_tf_vente {
+
+  join: magasin {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${v_tf_vente.id_magasin}=${magasin.id_magasin} ;;
+  }
+
+  join: dig_nos_magasins {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
+
+#  join: article {
+#    type: left_outer
+#    relationship: many_to_one
+#    sql_on: ${v_tf_vente.id_article}=${article.id_article} ;;
+#  }
+
+#  join: article_arbo {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${article.id_article}=${article_arbo.id_article} ;;
+#  }
+
+#  join: arbo {
+#    type: left_outer
+#    relationship: many_to_one
+#    sql_on: ${article_arbo.id_arbo}=${arbo.id_arbo} ;;
+#  }
+
+
+}
+
+
 explore: dig_commandes {
 
-# join: dig_clients {
-#    type: inner
-#    relationship: one_to_many
-#    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
-#  }
+  join: dig_clients {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
+  }
 
-#  join: dig_nos_magasins {
-#    type: inner
-#    relationship: one_to_many
-#    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
-#  }
+  join: dig_nos_magasins {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
 
 # join: dig_produits_commandes {
 #    type: inner

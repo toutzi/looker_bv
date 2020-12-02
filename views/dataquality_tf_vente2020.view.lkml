@@ -41,22 +41,6 @@ view: dataquality_tf_vente2020 {
     sql: ${TABLE}.Flag_CA_Net_NULL ;;
   }
 
-  dimension: flag_ecart {
-    type: number
-    sql: ${TABLE}.Flag_ecart ;;
-  }
-
-  measure: Nb_ecart {
-    type: sum
-    drill_fields: [id_magasin, id_article, ca_net, qtite, score_anomalie, ratio_median_magglobal]
-      sql: ${TABLE}.Flag_ecart ;;
-  }
-
-  dimension: flag_qtite_canet_null {
-    type: number
-    sql: ${TABLE}.Flag_QTITE_CANET_NULL ;;
-  }
-
   dimension: flag_qtite_null {
     type: number
     sql: ${TABLE}.Flag_QTITE_NULL ;;
@@ -119,8 +103,9 @@ view: dataquality_tf_vente2020 {
     sql: ${TABLE}.score_anomalie ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  measure: Nb_ecart {
+    type: sum
+    drill_fields: [id_magasin, id_article, ca_net, qtite, score_anomalie, ratio_median_magglobal]
+    sql: ${TABLE}.Flag_ecart ;;
   }
 }

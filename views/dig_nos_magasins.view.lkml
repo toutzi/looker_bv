@@ -166,7 +166,8 @@ view: dig_nos_magasins {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql:  ${code_magasin} ;;
     drill_fields: []
   }
 }

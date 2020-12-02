@@ -1,5 +1,5 @@
-view: tf_vente {
-  sql_table_name: `ods.tf_vente`
+view: v_tf_vente {
+  sql_table_name: `ods.v_tf_vente`
     ;;
 
   dimension: an_sem {
@@ -129,11 +129,6 @@ view: tf_vente {
     sql: ${TABLE}.CD_SITE_EXT ;;
   }
 
-  dimension: desc_article {
-    type: string
-    sql: ${TABLE}.DESC_ARTICLE ;;
-  }
-
   dimension_group: dte_creat {
     type: time
     timeframes: [
@@ -172,27 +167,9 @@ view: tf_vente {
     sql: ${TABLE}.DTE_VENTE ;;
   }
 
-  dimension: id_article {
-    type: number
-    sql: ${TABLE}.ID_ARTICLE ;;
-  }
-
   dimension: id_magasin {
     type: number
     sql: ${TABLE}.ID_MAGASIN ;;
-  }
-
-  dimension: id_tf_vte {
-    type: number
-    primary_key: yes
-    sql: ${TABLE}.ID_TF_VTE ;;
-  }
-
-  measure: count_id_tf_vte {
-    label: "Nombre de lignes de vente"
-    value_format_name: decimal_0
-    type: count_distinct
-    sql: ${TABLE}.ID_TF_VTE ;;
   }
 
   dimension: jour {
@@ -871,7 +848,7 @@ view: tf_vente {
 #    type: date
 #  }
 
- filter: date_filter {
+  filter: date_filter {
     type: date
   }
 
@@ -1026,8 +1003,14 @@ view: tf_vente {
         END ;;
   }
 
+  measure: Rang_CA {
+    sql: RANK() OVER (
+          PARTITION BY magasin.id_magasin
+          ORDER BY ${CA_selected_month} DESC) ;;
+  }
+
 
   set: detail {
-    fields: [id_tf_vte, id_article, id_magasin]
+    fields: [id_magasin]
   }
 }
