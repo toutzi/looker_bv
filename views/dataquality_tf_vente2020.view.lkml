@@ -41,14 +41,14 @@ view: dataquality_tf_vente2020 {
     sql: ${TABLE}.Flag_CA_Net_NULL ;;
   }
 
-  dimension: flag_qtite_canet_null {
-    type: number
-    sql: ${TABLE}.Flag_QTITE_CANET_NULL ;;
-  }
-
   dimension: flag_qtite_null {
     type: number
     sql: ${TABLE}.Flag_QTITE_NULL ;;
+  }
+
+  dimension: Flag_QTITE_CANET_NULL {
+    type: number
+    sql: ${TABLE}.Flag_QTITE_CANET_NULL ;;
   }
 
   dimension: flag_qtite_sup1000_canet_inf0_5 {
@@ -96,13 +96,21 @@ view: dataquality_tf_vente2020 {
     sql: ${TABLE}.Ratio_median_magglobal ;;
   }
 
+  dimension: ratio_median_magglobal_tier {
+    type: tier
+    tiers: [0,0.1,0.3,3,10,100,10000000]
+    drill_fields: [id_article,id_magasin, ca_net,qtite]
+    sql: ${TABLE}.Ratio_median_magglobal ;;
+  }
+
   dimension: score_anomalie {
     type: number
     sql: ${TABLE}.score_anomalie ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  measure: Nb_ecart {
+    type: sum
+    drill_fields: [id_magasin, id_article, ca_net, qtite, score_anomalie, ratio_median_magglobal]
+    sql: ${TABLE}.Flag_ecart ;;
   }
 }

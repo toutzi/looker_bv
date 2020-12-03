@@ -1,4 +1,4 @@
-connection: "bigquery_demo"
+  connection: "bigquery_demo"
 
 # include all the views
 include: "/views/**/*.view"
@@ -13,9 +13,10 @@ persist_with: bureauvallee_poc_default_datagroup
 explore: deriv_table {}
 explore: omnicanal {}
 explore: data_patch {}
-explore: dataquality_tf_vente2020_donnees_remontees {
+explore: dataquality_tf_vente2020_donnees_remontees {}
+explore: table_patch_test_abe {}
+explore: patch_abe {}
 
-  }
 
 explore: dataquality_tf_vente2020 {
 
@@ -60,8 +61,7 @@ explore: magasin {}
 
 #explore: n4 {}
 
-explore: dig_nos_magasins{}
-
+explore: dig_nos_magasins {}
 
 explore: tf_vente {
 
@@ -170,11 +170,11 @@ explore: v_tf_vente {
 
 explore: dig_commandes {
 
- join: dig_clients {
+  join: dig_clients {
     type: inner
     relationship: one_to_many
     sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
- }
+  }
 
   join: dig_nos_magasins {
     type: inner
