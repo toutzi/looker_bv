@@ -67,6 +67,14 @@ view: clients {
     sql: ${TABLE}.date_maj_src ;;
   }
 
+  dimension: has_email {
+    type: yesno
+    sql: ifnull(${email},1,0) ;;
+  }
+  dimension: has_mobile {
+    type: yesno
+    sql: ifnull(${tel_port},1,0) ;;
+  }
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
