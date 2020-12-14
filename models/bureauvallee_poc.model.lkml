@@ -16,6 +16,8 @@ explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
 explore: table_patch_test_abe {}
 explore: patch_abe {}
+explore: clients {}
+explore: clients_ca {}
 
 
 explore: dataquality_tf_vente2020 {

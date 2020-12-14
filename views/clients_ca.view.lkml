@@ -74,7 +74,6 @@ view: clients_ca {
 
   measure: count {
     type: count
-    sql:  ${key} ;;
     drill_fields: []
   }
 }
