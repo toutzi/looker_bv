@@ -69,12 +69,14 @@ view: clients {
 
   dimension: has_email {
     type: yesno
-    sql: ifnull(${email},False,True) ;;
+    sql: case when ${email} is null then true else false end;;
   }
+
   dimension: has_mobile {
     type: yesno
-    sql: ifnull(${tel_port},False,True) ;;
+    sql: case when ${tel_port} is null then true else false end;;
   }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
