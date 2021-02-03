@@ -200,6 +200,7 @@ view: dv_vente {
   }
 
   measure: nb_jour_selected_month {
+    hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
@@ -209,6 +210,7 @@ view: dv_vente {
   }
 
   measure: surf_selected_month {
+    hidden: yes
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
@@ -217,6 +219,7 @@ view: dv_vente {
   }
 
   measure: val_achat_gbl_selected_month {
+    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -293,6 +296,7 @@ view: dv_vente {
   }
 
   measure: nb_jour_month_ly {
+    hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
@@ -302,6 +306,7 @@ view: dv_vente {
   }
 
   measure: surf_month_ly {
+    hidden: yes
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
@@ -310,6 +315,7 @@ view: dv_vente {
   }
 
   measure: val_achat_gbl_month_ly {
+    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -359,6 +365,7 @@ view: dv_vente {
   }
 
   measure: CA_month_ly_2 {
+    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -378,6 +385,7 @@ view: dv_vente {
   }
 
   measure: nb_jour_month_ly2 {
+    hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
@@ -387,6 +395,7 @@ view: dv_vente {
   }
 
   measure: surf_month_ly2 {
+    hidden: yes
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
@@ -395,6 +404,7 @@ view: dv_vente {
   }
 
   measure: val_achat_gbl_month_ly2 {
+    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
