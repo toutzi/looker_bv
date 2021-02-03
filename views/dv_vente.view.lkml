@@ -37,6 +37,11 @@ view: dv_vente {
       sql: ${TABLE}.id_magasin ;;
     }
 
+    dimension: typ_vente {
+    type: number
+    sql: ${TABLE}.typ_vente ;;
+    }
+
     dimension_group: dte_vente {
       type: time
       timeframes: [date, week, month, year, raw]
@@ -528,15 +533,15 @@ view: dv_vente {
   }
 
   set: detail {
-      fields: [
-        id_tf_vte,
-        id_article,
-        id_magasin,
-        couts,
-        qtite,
-        ca_ht,
-        marge_brute,
-        nb_clts
-      ]
-    }
+    fields: [
+      id_tf_vte,
+      id_article,
+      id_magasin,
+      couts,
+      qtite,
+      ca_ht,
+      marge_brute,
+      nb_clts
+    ]
   }
+}
