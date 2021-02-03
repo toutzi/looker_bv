@@ -19,6 +19,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht {
+    hidden: yes
     label: "CA HT"
     type: sum
     value_format_name: eur
@@ -27,6 +28,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_N {
+    hidden: yes
     label: "CA HT année N"
     type: sum
     value_format_name: eur
@@ -36,6 +38,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_no {
+    hidden: yes
     label: "CA"
     type: sum
     value_format_name: eur
@@ -45,6 +48,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_N_1 {
+    hidden: yes
     label: "CA HT année N-1"
     type: sum
     value_format_name: eur
@@ -54,6 +58,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_N_2 {
+    hidden: yes
     label: "CA HT année N-2"
     type: sum
     value_format_name: eur
@@ -63,6 +68,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_moisN {
+    hidden: yes
     label: "CA HT mois N"
     type: sum
     value_format_name: eur
@@ -72,6 +78,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_moisN1 {
+    hidden: yes
     label: "CA mois N-1"
     type: sum
     value_format_name: eur
@@ -81,6 +88,7 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_moisN2 {
+    hidden: yes
     label: "CA mois N-2"
     type: sum
     value_format_name: eur
@@ -188,6 +196,7 @@ view: v_tf_vente {
   }
 
   measure: tot_tx_marge_brute {
+    hidden: yes
     label: "Tx Marge brute"
     type:  number
     value_format_name: percent_2
@@ -195,6 +204,7 @@ view: v_tf_vente {
   }
 
   measure: sum_marge_brute {
+    hidden: yes
     label: "Marge brute"
     value_format_name: decimal_2
     type: sum
@@ -212,6 +222,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket {
+    hidden: yes
     label: "nbre clients"
     value_format_name: decimal_0
     type: sum
@@ -219,6 +230,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket0 {
+    hidden: yes
     label: "Nb clients"
     value_format_name: decimal_0
     type: sum
@@ -227,6 +239,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_N {
+    hidden: yes
     label: "Nb clients année N"
     value_format_name: decimal_0
     type: sum
@@ -235,6 +248,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_N1 {
+    hidden: yes
     label: "Nb clients année N-1"
     value_format_name: decimal_0
     type: sum
@@ -243,6 +257,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_N2 {
+    hidden: yes
     label: "Nb clients année N-2"
     value_format_name: decimal_0
     type: sum
@@ -251,6 +266,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_moisN {
+    hidden: yes
     label: "Nb clients mois N"
     value_format_name: decimal_0
     type: sum
@@ -259,6 +275,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_moisN1 {
+    hidden: yes
     label: "Nb clients mois N-1"
     value_format_name: decimal_0
     type: sum
@@ -267,6 +284,7 @@ view: v_tf_vente {
   }
 
   measure: sum_nb_ticket_moisN2 {
+    hidden: yes
     label: "Nb clients mois N-2"
     value_format_name: decimal_0
     type: sum
@@ -300,6 +318,7 @@ view: v_tf_vente {
   }
 
   measure: sum_qtite {
+    hidden: yes
     label: "Qtés"
     value_format_name: decimal_0
     type: sum
@@ -336,6 +355,7 @@ view: v_tf_vente {
   }
 
   measure: sum_val_achat_gbl {
+    hidden: yes
     label: "coûts"
     value_format_name: eur
     type: sum
@@ -369,6 +389,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_N0 {
+    hidden: yes
     label: "Nb de jours N"
     type: count_distinct
     value_format_name: decimal_0
@@ -384,6 +405,7 @@ view: v_tf_vente {
 
 
   measure: Nb_de_jours_N {
+    hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     label: "Nb de jours année N"
@@ -392,6 +414,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_N_1 {
+    hidden: yes
     label: "Nb de jours année N-1"
     value_format_name: decimal_0
     type: count_distinct
@@ -400,6 +423,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_N_2 {
+    hidden: yes
     label: "Nb de jours année N-2"
     value_format_name: decimal_0
     type: count_distinct
@@ -408,6 +432,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_moisN {
+    hidden: yes
     type: count_distinct
     label: "Nb de jours mois N"
     value_format_name: decimal_0
@@ -416,6 +441,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_mois_N1 {
+    hidden: yes
     label: "Nb de jours mois N-1"
     value_format_name: decimal_0
     type: count_distinct
@@ -424,6 +450,7 @@ view: v_tf_vente {
   }
 
   measure: Nb_de_jours_mois_N2 {
+    hidden: yes
     label: "Nb de jours mois N-2"
     value_format_name: decimal_0
     type: count_distinct
@@ -432,6 +459,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_CA {
+    hidden: yes
     label: "Prog CA année N"
     value_format_name: percent_2
     type: number
@@ -439,6 +467,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_CA_mois {
+    hidden: yes
     label: "Prog CA N/N-1"
     value_format_name: percent_2
     type: number
@@ -453,6 +482,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_CA_moisN1 {
+    hidden: yes
     label: "Prog CA N-1/N-2"
     value_format_name: percent_2
     type: number
@@ -467,6 +497,7 @@ view: v_tf_vente {
   }
 
   measure: client_par_jour {
+    hidden: yes
     label: "Clients / jour"
     value_format_name: decimal_0
     type: number
@@ -488,6 +519,7 @@ view: v_tf_vente {
   }
 
   measure: ca_par_jour_annee {
+    hidden: yes
     label: "CA / jour/ Année"
     value_format_name: eur
     type: number
@@ -516,6 +548,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_CA_1 {
+    hidden: yes
     label: "Prog.CA N-1"
     value_format_name: percent_2
     type: number
@@ -523,6 +556,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_Clients {
+    hidden: yes
     label: "Prog clts / jour année N"
     value_format_name: percent_2
     type: number
@@ -544,6 +578,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_ca_jour {
+    hidden: yes
     label: "Prog CA / jour année N"
     value_format_name: percent_2
     type: number
@@ -551,6 +586,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_ca_jour_moisN {
+    hidden: yes
     label: "Prog CA / jour"
     value_format_name: percent_2
     type: number
@@ -578,6 +614,7 @@ view: v_tf_vente {
   }
 
   measure: CA_carre {
+    hidden: yes
     label: "CA au m² moyen"
     value_format_name: eur
     type: number
@@ -613,6 +650,7 @@ view: v_tf_vente {
   }
 
   measure: Taux_de_marge_N1 {
+    hidden: yes
     label: "Taux de marge Année N-1"
     value_format_name: percent_2
     type: number
@@ -634,6 +672,7 @@ view: v_tf_vente {
   }
 
   measure: prog_marge {
+    hidden: yes
     label: "Prog Marge Année N"
     value_format_name: percent_2
     type: number
@@ -676,6 +715,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_clients_jour_moisN {
+    hidden: yes
     label: "Prog Clts / jour"
     value_format_name: percent_2
     type: number
@@ -683,6 +723,7 @@ view: v_tf_vente {
   }
 
   measure: panier_moyen {
+    hidden: yes
     label: "panier moyen"
     value_format_name: decimal_2
     type: number
@@ -704,6 +745,7 @@ view: v_tf_vente {
   }
 
   measure: panier_moyen_N1 {
+    hidden: yes
     label: "panier moyen année N-1"
     value_format_name: decimal_2
     type: number
@@ -711,6 +753,7 @@ view: v_tf_vente {
   }
 
   measure: panier_moyen_moisN1 {
+    hidden: yes
     label: "panier moyen mois N-1"
     value_format_name: decimal_2
     type: number
@@ -725,6 +768,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_PM {
+    hidden: yes
     label: "Prog panier moyen année N"
     value_format_name: percent_2
     type: number
@@ -732,6 +776,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_PM_moisN {
+    hidden: yes
     label: "Prog PM N/N-1"
     value_format_name: percent_2
     type: number
@@ -752,6 +797,7 @@ view: v_tf_vente {
   }
 
   measure: Marges_client_moisN {
+    hidden: yes
     label: "Marge / clts"
     value_format_name: decimal_2
     type: number
@@ -778,6 +824,7 @@ view: v_tf_vente {
   }
 
   measure: Prog_Marge_client {
+    hidden: yes
     label: "Prog Marge/clt"
     value_format_name: percent_2
     type: number
@@ -792,6 +839,7 @@ view: v_tf_vente {
   }
 
   measure: Marges_N {
+    hidden: yes
     label: "Marge mois N"
     value_format_name: decimal_2
     type: number
@@ -806,6 +854,7 @@ view: v_tf_vente {
   }
 
   measure: Marges_N1 {
+    hidden: yes
     label: "Marge mois N-1"
     value_format_name: decimal_2
     type: number
@@ -821,6 +870,7 @@ view: v_tf_vente {
 
 
   measure: sum_val_achat_gbl_moisN {
+    hidden: yes
     label: "val achat gbl mois N"
     value_format_name: eur
     type: sum
@@ -829,6 +879,7 @@ view: v_tf_vente {
   }
 
   measure: sum_val_achat_gbl_moisN1 {
+    hidden: yes
     label: "val achat gbl mois N-1"
     value_format_name: eur
     type: sum
@@ -837,6 +888,7 @@ view: v_tf_vente {
   }
 
   measure: sum_val_achat_gbl_moisN2 {
+    hidden: yes
     label: "val achat gbl mois N-2"
     value_format_name: eur
     type: sum

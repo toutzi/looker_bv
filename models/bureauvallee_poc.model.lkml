@@ -10,7 +10,19 @@ datagroup: bureauvallee_poc_default_datagroup {
 
 persist_with: bureauvallee_poc_default_datagroup
 
-explore: deriv_table {}
+explore: dv_vente {
+  join: magasin {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${dv_vente.id_magasin}=${magasin.id_magasin} ;;
+  }
+
+  join: dig_nos_magasins {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
+}
 explore: omnicanal {}
 explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
