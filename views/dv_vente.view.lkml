@@ -80,6 +80,7 @@ view: dv_vente {
     ########################## Calcul global des KPIs ################################
 
   measure: sum_ca_ht {
+    hidden: yes
     label: "CA HT"
     type: sum
     value_format_name: eur
@@ -88,6 +89,7 @@ view: dv_vente {
   }
 
   measure: count_dte_vente {
+    hidden: yes
     label:"Nb de jrs"
     value_format_name: decimal_0
     type: count_distinct
@@ -95,6 +97,7 @@ view: dv_vente {
   }
 
   measure: tot_tx_marge_brute {
+    hidden: yes
     label: "Tx Marge brute"
     type:  number
     value_format_name: percent_2
@@ -102,6 +105,7 @@ view: dv_vente {
   }
 
   measure: sum_marge_brute {
+    hidden: yes
     label: "Marge brute"
     value_format_name: decimal_2
     type: sum
@@ -109,6 +113,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_ticket {
+    hidden: yes
     label: "Nb clts"
     value_format_name: decimal_0
     type: sum
@@ -116,6 +121,7 @@ view: dv_vente {
   }
 
   measure: sum_qtite {
+    hidden: yes
     label: "Qtés"
     value_format_name: decimal_0
     type: sum
@@ -123,6 +129,7 @@ view: dv_vente {
   }
 
   measure: sum_val_achat_gbl {
+    hidden: yes
     label: "coûts"
     value_format_name: eur
     type: sum
@@ -136,6 +143,7 @@ view: dv_vente {
     ######################### calcul des indicateurs du mois N année N  #####################
 
   measure: sum_ca_ht_moisN {
+    hidden: yes
     label: "CA HT mois N"
     type: sum
     value_format_name: eur
@@ -145,6 +153,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_ticket_moisN {
+    hidden: yes
     label: "Nb clients mois N"
     value_format_name: decimal_0
     type: sum
@@ -153,6 +162,7 @@ view: dv_vente {
   }
 
   measure: Nb_de_jours_moisN {
+    hidden: yes
     type: count_distinct
     label: "Nb de jours mois N"
     value_format_name: decimal_0
@@ -161,6 +171,7 @@ view: dv_vente {
   }
 
   measure: sum_val_achat_gbl_moisN {
+    hidden: yes
     label: "val achat gbl mois N"
     value_format_name: eur
     type: sum
@@ -218,6 +229,7 @@ view: dv_vente {
    ############################# calcul des indicateurs du mois N année N-1  ########################
 
   measure: sum_ca_ht_moisN1 {
+    hidden: yes
     label: "CA mois N-1"
     type: sum
     value_format_name: eur
@@ -227,6 +239,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_ticket_moisN1 {
+    hidden: yes
     label: "Nb clients mois N-1"
     value_format_name: decimal_0
     type: sum
@@ -235,6 +248,7 @@ view: dv_vente {
   }
 
   measure: Nb_de_jours_mois_N1 {
+    hidden: yes
     label: "Nb de jours mois N-1"
     value_format_name: decimal_0
     type: count_distinct
@@ -243,6 +257,7 @@ view: dv_vente {
   }
 
   measure: sum_val_achat_gbl_moisN1 {
+    hidden: yes
     label: "val achat gbl mois N-1"
     value_format_name: eur
     type: sum
@@ -251,6 +266,7 @@ view: dv_vente {
   }
 
   measure: sum_surf_vte {
+    hidden: yes
     type: sum
     sql: ${magasin.surf_vte};;
     filters:  [dte_vente_date:"13 months ago"]
@@ -306,6 +322,7 @@ view: dv_vente {
    ######################### calcul des indicateurs du mois N année N-2  ##########################
 
   measure: sum_ca_ht_moisN2 {
+    hidden: yes
     label: "CA mois N-2"
     type: sum
     value_format_name: eur
@@ -315,6 +332,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_ticket_moisN2 {
+    hidden: yes
     label: "Nb clients mois N-2"
     value_format_name: decimal_0
     type: sum
@@ -323,6 +341,7 @@ view: dv_vente {
   }
 
   measure: Nb_de_jours_mois_N2 {
+    hidden: yes
     label: "Nb de jours mois N-2"
     value_format_name: decimal_0
     type: count_distinct
@@ -331,6 +350,7 @@ view: dv_vente {
   }
 
   measure: sum_val_achat_gbl_moisN2 {
+    hidden: yes
     label: "val achat gbl mois N-2"
     value_format_name: eur
     type: sum
@@ -436,25 +456,12 @@ view: dv_vente {
     sql: (${CA_selected_month}-${val_achat_gbl_selected_month})/NULLIF(${nb_ticket_selected_month},0) ;;
   }
 
-  measure: select_client_par_jour_N1 {
-    label: "clts / jr n-1"
-    value_format_name: decimal_0
-    type: number
-    sql: ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
-  }
 
   measure: select_Marges_N {
     label: "marge mois n"
     value_format_name: decimal_2
     type: number
     sql: ${CA_selected_month}-${val_achat_gbl_selected_month};;
-  }
-
-  measure: selectMarges_N1 {
-    label: "marge mois n-1"
-    value_format_name: decimal_2
-    type: number
-    sql: ${CA_month_ly}-${val_achat_gbl_month_ly} ;;
   }
 
 
@@ -520,9 +527,17 @@ view: dv_vente {
   }
 
   measure: select_Marges_client_moisN1 {
+    hidden: yes
     value_format_name: decimal_2
     type: number
     sql: (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${nb_ticket_month_ly},0) ;;
+  }
+
+  measure: selectMarges_N1 {
+    label: "marge mois n-1"
+    value_format_name: decimal_2
+    type: number
+    sql: ${CA_month_ly}-${val_achat_gbl_month_ly} ;;
   }
 
   measure: select_ca_par_jour_moisN1 {
@@ -538,6 +553,14 @@ view: dv_vente {
     type: number
     sql: 1.0 * (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${CA_month_ly},0);;
   }
+
+  measure: select_client_par_jour_N1 {
+    label: "clts / jr n-1"
+    value_format_name: decimal_0
+    type: number
+    sql: ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
+  }
+
 
   set: detail {
     fields: [
