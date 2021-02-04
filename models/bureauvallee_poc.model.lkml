@@ -15,14 +15,14 @@ explore: dv_vente {
     type: left_outer
     relationship: many_to_one
     sql_on: ${dv_vente.id_magasin}=${magasin.id_magasin} ;;
-    fields: [magasin.cd_magasin, magasin.cd_pays, magasin.date_ferm_raw, magasin.date_ouv_raw, magasin.nom, magasin.surf_vte]
+    fields: [magasin.nom, magasin.date_ferm_raw, magasin.date_ouv_raw, magasin.typ_mag, magasin.Categorie, magasin.count_cd_magasin, magasin.intervalle_anciennete]
   }
 
   join: dig_nos_magasins {
     type: inner
     relationship: many_to_one
     sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
-    fields: [dig_nos_magasins.code_magasin, dig_nos_magasins.date_ouverture_raw, dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
+    fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
   }
 }
 explore: omnicanal {}
