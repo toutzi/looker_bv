@@ -2,7 +2,6 @@ view: dv_vente {
     derived_table: {
       sql: select
         id_tf_vte,
-        id_article,
         id_magasin,
         typ_vente,
         min(DATE(dte_vente)) as dte_vente,
@@ -12,7 +11,7 @@ view: dv_vente {
         sum(marge_brute) as marge_brute,
         sum(nb_ticket) as nb_clts
       from ods.tf_vente
-      group by id_tf_vte, id_article, id_magasin, typ_vente
+      group by id_tf_vte, id_magasin, typ_vente
        ;;
     }
 
@@ -25,11 +24,6 @@ view: dv_vente {
       type: number
       primary_key: yes
       sql: ${TABLE}.id_tf_vte ;;
-    }
-
-    dimension: id_article {
-      type: number
-      sql: ${TABLE}.id_article ;;
     }
 
     dimension: id_magasin {
@@ -575,7 +569,6 @@ view: dv_vente {
   set: detail {
     fields: [
       id_tf_vte,
-      id_article,
       id_magasin,
       couts,
       qtite,
