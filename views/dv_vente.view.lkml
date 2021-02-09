@@ -75,7 +75,6 @@ view: dv_vente {
 
   measure: sum_ca_ht {
     hidden: yes
-    label: "CA HT"
     type: sum
     value_format_name: eur
     drill_fields: [detail*]
@@ -84,7 +83,6 @@ view: dv_vente {
 
   measure: count_dte_vente {
     hidden: yes
-    label:"Nb de jrs"
     value_format_name: decimal_0
     type: count_distinct
     sql: ${TABLE}.dte_vente ;;
@@ -92,7 +90,6 @@ view: dv_vente {
 
   measure: tot_tx_marge_brute {
     hidden: yes
-    label: "Tx Marge brute"
     type:  number
     value_format_name: percent_2
     sql:  1.0 * ${sum_marge_brute}/NULLIF(${sum_ca_ht},0) ;;
@@ -100,7 +97,6 @@ view: dv_vente {
 
   measure: sum_marge_brute {
     hidden: yes
-    label: "Marge brute"
     value_format_name: decimal_2
     type: sum
     sql: ${marge_brute} ;;
@@ -108,7 +104,6 @@ view: dv_vente {
 
   measure: sum_nb_ticket {
     hidden: yes
-    label: "Nb clts"
     value_format_name: decimal_0
     type: sum
     sql: ${nb_clts} ;;
@@ -116,7 +111,6 @@ view: dv_vente {
 
   measure: sum_qtite {
     hidden: yes
-    label: "Qtés"
     value_format_name: decimal_0
     type: sum
     sql: ${qtite};;
@@ -124,67 +118,42 @@ view: dv_vente {
 
   measure: sum_val_achat_gbl {
     hidden: yes
-    label: "coûts"
     value_format_name: eur
     type: sum
     sql: ${couts} ;;
   }
 
-  filter: date_filter {                 ### Pour filtrer sur la date qu'on souhaite obtenir les résultats###
+  filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
     type: date
   }
 
-    ######################### calcul des indicateurs du mois N année N  #####################
 
-  measure: sum_ca_ht_moisN {
-    hidden: yes
-    label: "CA HT mois N"
+
+    ############## calcul des KPIs à la période sélectionnée au niveau du filtre  ############
+
+  measure: sum_CA_select_mois {
     type: sum
     value_format_name: eur
-    drill_fields: [detail*]
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "last month"]
-  }
-
-  measure: sum_nb_ticket_moisN {
-    hidden: yes
-    label: "Nb clients mois N"
-    value_format_name: decimal_0
-    type: sum
-    sql: ${nb_clts} ;;
-    filters: [ dte_vente_date: "last month"]
-  }
-
-  measure: Nb_de_jours_moisN {
-    hidden: yes
-    type: count_distinct
-    label: "Nb de jours mois N"
-    value_format_name: decimal_0
-    sql: ${TABLE}.dte_vente  ;;
-    filters: [dte_vente_date: "last month"]
-  }
-
-  measure: sum_val_achat_gbl_moisN {
-    hidden: yes
-    label: "val achat gbl mois N"
-    value_format_name: eur
-    type: sum
-    sql: ${couts} ;;
-    filters: [dte_vente_date: "last month"]
-  }
-
-  measure: CA_selected_month {
-    type: sum
-    value_format_name: eur
-    label: "CA ht"
+    label: "CA HT"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
 
-  measure: nb_ticket_selected_month {
-    label: "Nb clts "
+  measure: sum_marge_select_mois {
+    label: "Marge"
+    hidden: yes
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${marge_brute}
+        END ;;
+  }
+
+  measure: sum_nb_ticket_select_mois {
+    label: "Nb clts"
     type: sum
     value_format_name: decimal_0
     sql: CASE
@@ -193,7 +162,7 @@ view: dv_vente {
         END ;;
   }
 
-  measure: nb_jour_selected_month {
+  measure: sum_nb_jour_select_mois {
     hidden: yes
     type: count_distinct
     value_format_name: decimal_0
@@ -203,16 +172,7 @@ view: dv_vente {
         END ;;
   }
 
-  measure: surf_selected_month {
-    hidden: yes
-    type: sum
-    sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
-
-  measure: val_achat_gbl_selected_month {
+  measure: sum_val_achat_gbl_select_mois {
     hidden: yes
     type: sum
     value_format_name: eur
@@ -222,348 +182,327 @@ view: dv_vente {
         END ;;
   }
 
-
-   ############################# calcul des indicateurs du mois N année N-1  ########################
-
-  measure: sum_ca_ht_moisN1 {
+  measure: sum_surf_select_mois {
     hidden: yes
-    label: "CA mois N-1"
     type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
+
+  measure: sum_CA_drive_select_mois {
     value_format_name: eur
-    drill_fields: [detail*]
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "13 months ago"]
-  }
-
-  measure: sum_nb_ticket_moisN1 {
-    hidden: yes
-    label: "Nb clients mois N-1"
-    value_format_name: decimal_0
+    label: "CA Drive"
     type: sum
-    sql: ${nb_clts} ;;
-    filters: [dte_vente_date: "13 months ago"]
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${dig_commandes.total_ht}
+        END ;;
   }
 
-  measure: Nb_de_jours_mois_N1 {
-    hidden: yes
-    label: "Nb de jours mois N-1"
-    value_format_name: decimal_0
-    type: count_distinct
-    sql: ${TABLE}.dte_vente  ;;
-    filters: [dte_vente_date:"13 months ago"]
-  }
 
-  measure: sum_val_achat_gbl_moisN1 {
-    hidden: yes
-    label: "val achat gbl mois N-1"
-    value_format_name: eur
+     ############ calcul des KPIs à n-1 de la période sélectionnée au niveau du filtre ###############
+
+
+
+  measure: sum_CA_select_mois_N1 {
+    label: "CA HT n-1"
     type: sum
-    sql: ${couts} ;;
-    filters: [dte_vente_date: "13 months ago"]
-  }
-
-  measure: sum_surf_vte {
-    hidden: yes
-    type: sum
-    sql: ${magasin.surf_vte};;
-    filters:  [dte_vente_date:"13 months ago"]
-  }
-
-  measure: CA_month_ly {
-    type: sum
-    label: "CA ht n-1"
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
 
-  measure: nb_ticket_month_ly {
+  measure: sum_marge_select_mois_N1 {
+    label: "Marge n-1"
+    hidden: yes
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
+          THEN ${marge_brute}
+        END ;;
+  }
+
+  measure: sum_nb_ticket_select_mois_N1 {
     label: "Nb clts n-1"
     type: sum
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
           THEN ${nb_clts}
         END ;;
   }
 
-  measure: nb_jour_month_ly {
+  measure: sum_nb_jour_select_mois_N1 {
     hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
         END ;;
   }
 
-  measure: surf_month_ly {
-    hidden: yes
-    type: sum
-    sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
-
-  measure: val_achat_gbl_month_ly {
+  measure: sum_val_achat_gbl_select_mois_N1 {
     hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
           THEN ${couts}
         END ;;
   }
 
-
-   ######################### calcul des indicateurs du mois N année N-2  ##########################
-
-  measure: sum_ca_ht_moisN2 {
+  measure: sum_surf_select_mois_N1 {
     hidden: yes
-    label: "CA mois N-2"
     type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
+
+  measure: sum_CA_drive_select_mois_N1 {
     value_format_name: eur
-    drill_fields: [detail*]
-    sql: ${ca_ht} ;;
-    filters: [dte_vente_date: "26 months ago"]
-  }
-
-  measure: sum_nb_ticket_moisN2 {
-    hidden: yes
-    label: "Nb clients mois N-2"
-    value_format_name: decimal_0
+    label: "CA Drive n-1"
     type: sum
-    sql: ${nb_clts} ;;
-    filters: [dte_vente_date: "26 months ago"]
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR)  {% endcondition %}
+          THEN ${dig_commandes.total_ht}
+        END ;;
   }
 
-  measure: Nb_de_jours_mois_N2 {
-    hidden: yes
-    label: "Nb de jours mois N-2"
-    value_format_name: decimal_0
-    type: count_distinct
-    sql: ${TABLE}.dte_vente  ;;
-    filters: [dte_vente_date: "26 months ago"]
-  }
 
-  measure: sum_val_achat_gbl_moisN2 {
-    hidden: yes
-    label: "val achat gbl mois N-2"
-    value_format_name: eur
-    type: sum
-    sql: ${couts} ;;
-    filters: [dte_vente_date: "26 months ago"]
-  }
 
-  measure: CA_month_ly_2 {
-    hidden: yes
+   ############## calcul des KPIs à n-2 de la période sélectionnée au niveau du filtre ##############
+
+
+  measure: sum_CA_select_mois_N2 {
+    label: "CA HT n-2"
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
 
-  measure: nb_ticket_month_ly2 {
+  measure: sum_marge_select_mois_N2 {
+    label: "Marge n-2"
+    hidden: yes
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
+          THEN ${marge_brute}
+        END ;;
+  }
+
+  measure: sum_nb_ticket_select_mois_N2 {
     label: "Nb clts n-2"
     type: sum
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
           THEN ${nb_clts}
         END ;;
   }
 
-  measure: nb_jour_month_ly2 {
+  measure: sum_nb_jour_select_mois_N2 {
     hidden: yes
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
         END ;;
   }
 
-  measure: surf_month_ly2 {
-    hidden: yes
-    type: sum
-    sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
-
-  measure: val_achat_gbl_month_ly2 {
+  measure: sum_val_achat_gbl_select_mois_N2 {
     hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
           THEN ${couts}
         END ;;
   }
 
+  measure: sum_surf_select_mois_N2 {
+    hidden: yes
+    type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
 
-  ############################## KPIs en fonction de la date du filtre ################################
+  measure: sum_CA_drive_select_mois_N2 {
+    hidden: yes
+    value_format_name: eur
+    label: "CA Drive n-2"
+    type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR)  {% endcondition %}
+          THEN ${dig_commandes.total_ht}
+        END ;;
+  }
 
 
-  measure: select_client_par_jour {
-    label: "clts / jr"
+
+  ######### calcul des rapports entre les KPIs à la période sélectionnée au niveau du filtre  ##########
+
+
+  measure: client_par_jour_select_mois {
+    label: "clts / jour"
     value_format_name: decimal_0
     type: number
-    sql: ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
+    sql: ${sum_nb_ticket_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
   }
 
-  measure: select_ca_par_jour_mois {
-    label: "CA / jr moy"
+  measure: client_par_jour_select_mois_N1 {
+    label: "clts/jr n-1"
+    value_format_name: decimal_0
+    type: number
+    sql: ${sum_nb_ticket_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
+  }
+
+  measure: ca_par_jour_select_mois {
+    label: "CA / jour"
     value_format_name: eur
     type: number
-    sql:  ${CA_selected_month}/NULLIF(${nb_jour_selected_month},0) ;;
+    sql:  ${sum_CA_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
   }
 
-  measure: select_CA_m_carre {
+  measure: ca_par_jour_select_mois_N1 {
+    label: "CA/jr n-1"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
+  }
+
+  measure: ca_par_m_carre_select_mois {
     label: "CA / m²"
     value_format_name: eur
     type: number
-    sql:  ${CA_selected_month}/NULLIF(${surf_selected_month},0) ;;
+    sql:  ${sum_CA_select_mois}/NULLIF(${sum_surf_select_mois},0) ;;
   }
 
-  measure: select_Taux_de_marge_moisN {
+  measure: taux_de_marge_select_mois {
     label: "% marge"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${CA_selected_month}-${val_achat_gbl_selected_month})/NULLIF(${CA_selected_month},0);;
+    sql: 1.0 * ${sum_marge_select_mois}/NULLIF(${sum_CA_select_mois},0);;
   }
 
-  measure: select_Nb_moy_client_moisN {
-    label: "clts / jr moy"
-    value_format_name: decimal_0
-    type: number
-    sql:  ${nb_ticket_selected_month}/NULLIF(${nb_jour_selected_month},0);;
-  }
-
-  measure: select_panier_moyen_moisN {
+  measure: panier_moyen_select_mois {
     label: "PM"
     value_format_name: decimal_2
     type: number
-    sql:  ${CA_selected_month}/NULLIF(${nb_ticket_selected_month},0) ;;
+    sql:  ${sum_CA_select_mois}/NULLIF(${sum_nb_ticket_select_mois},0) ;;
   }
 
-  measure: select_Marges_client_moisN {
+  measure: panier_moyen_drive_select_mois {
+    label: "PM Drive"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_drive_select_mois}/NULLIF(${sum_nb_ticket_select_mois},0) ;;
+  }
+
+  measure: panier_moyen_select_mois_N1 {
+    label: "PM n-1"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
+  }
+
+  measure: panier_moyen_select_mois_N2 {
+    label: "PM n-2"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_ticket_select_mois_N2},0) ;;
+  }
+
+  measure: marge_par_client_select_mois {
     label: "marge / clts"
     value_format_name: decimal_2
     type: number
-    sql: (${CA_selected_month}-${val_achat_gbl_selected_month})/NULLIF(${nb_ticket_selected_month},0) ;;
+    sql: ${sum_marge_select_mois}/NULLIF(${sum_nb_ticket_select_mois},0) ;;
   }
 
-
-  measure: select_Marges_N {
-    label: "marge mois n"
+  measure: marge_par_client_select_mois_N1 {
+    label: "marge/clts n-1"
     value_format_name: decimal_2
     type: number
-    sql: ${CA_selected_month}-${val_achat_gbl_selected_month};;
+    sql: ${sum_marge_select_mois_N1}/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
   }
 
 
-  ############# Mois N année N vs Mois N Année N-1 en fonction de la date du filtre ####################
+  ########### Calcul des progressions n / n-1 à la péridode sélectionée au niveau du filtre ###########
 
 
-  measure: select_Prog_CA_mois {
-    label: "prog CA n/n-1"
+  measure: prog_CA_select_mois {
+    label: "prog CA"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${CA_selected_month}-${CA_month_ly})/NULLIF(${CA_month_ly},0);;
+    sql: 1.0 * (${sum_CA_select_mois}-${sum_CA_select_mois_N1})/NULLIF(${sum_CA_select_mois_N1},0);;
   }
 
-  measure: select_prog_marge_moisN {
-    label: "prog marge n/n-1"
+  measure: prog_CA_drive_select_mois {
+    label: "prog CA Drive"
     value_format_name: percent_2
     type: number
-    sql:  1.0 * (${select_Taux_de_marge_moisN}-${select_Taux_de_marge_moisN1})/NULLIF(${select_Taux_de_marge_moisN1},0);;
+    sql: 1.0 * (${sum_CA_drive_select_mois}-${sum_CA_drive_select_mois_N1})/NULLIF(${sum_CA_drive_select_mois_N1},0);;
   }
 
-  measure: select_Prog_Clients_moisN {
+  measure: prog_marge_select_mois {
+    label: "prog marge"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${sum_marge_select_mois}-${sum_marge_select_mois_N1})/NULLIF(${sum_marge_select_mois_N1},0);;
+  }
+
+  measure: prog_Clients_select_mois {
     label: "prog clts / jr"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_client_par_jour}-${select_client_par_jour_N1})/NULLIF(${select_client_par_jour_N1},0) ;;
+    sql: 1.0 * (${client_par_jour_select_mois}-${client_par_jour_select_mois_N1})/NULLIF(${client_par_jour_select_mois_N1},0) ;;
   }
 
-  measure: select_Prog_ca_jour_moisN {
+  measure: prog_ca_jour_select_mois {
     label: "prog CA / jr"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_ca_par_jour_mois}-${select_ca_par_jour_moisN1})/NULLIF(${select_ca_par_jour_moisN1},0) ;;
+    sql: 1.0 * (${ca_par_jour_select_mois}-${ca_par_jour_select_mois_N1})/NULLIF(${ca_par_jour_select_mois_N1},0) ;;
   }
 
-  measure: select_Prog_PM_moisN {
-    label: "prog PM n/n-1"
+  measure: prog_PM_select_mois {
+    label: "prog PM"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_panier_moyen_moisN}-${select_panier_moyen_moisN1})/(NULLIF(${select_panier_moyen_moisN1},0));;
+    sql: 1.0 * (${panier_moyen_select_mois}-${panier_moyen_select_mois_N1})/(NULLIF(${panier_moyen_select_mois_N1},0));;
   }
 
-  measure: select_Prog_Marge_client {
+  measure: prog_marge_client_select_mois {
     label: "prog marge/clt"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${select_Marges_client_moisN}-${select_Marges_client_moisN1})/NULLIF(${select_Marges_client_moisN1},0);;
+    sql: 1.0 * (${marge_par_client_select_mois}-${marge_par_client_select_mois_N1})/NULLIF(${marge_par_client_select_mois_N1},0);;
   }
 
-  ################# Mois N année N-1 vs Mois N Année N-2 en fonction de la date du filtre #################
+  ######### Calcul des progressions n-1 / n-2 à la péridode sélectionée au niveau du filtre #########
 
   measure: select_Prog_CA_moisN1 {
     label: "prog CA n-1/n-2"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${CA_month_ly}-${CA_month_ly_2})/NULLIF(${CA_month_ly_2},0);;
+    sql: 1.0 * (${sum_CA_select_mois_N1}-${sum_CA_select_mois_N2})/NULLIF(${sum_CA_select_mois_N2},0);;
   }
 
-  measure: select_panier_moyen_moisN1 {
-    label: "PM mois n-1"
-    value_format_name: decimal_2
-    type: number
-    sql: ${CA_month_ly}/NULLIF(${nb_ticket_month_ly},0);;
-  }
-
-  measure: select_Marges_client_moisN1 {
-    hidden: yes
-    value_format_name: decimal_2
-    type: number
-    sql: (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${nb_ticket_month_ly},0) ;;
-  }
-
-  measure: selectMarges_N1 {
-    label: "marge mois n-1"
-    value_format_name: decimal_2
-    type: number
-    sql: ${CA_month_ly}-${val_achat_gbl_month_ly} ;;
-  }
-
-  measure: select_ca_par_jour_moisN1 {
-    label: "CA / jr moy n-1"
-    value_format_name: eur
-    type: number
-    sql:  ${CA_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
-  }
-
-  measure: select_Taux_de_marge_moisN1 {
-    label: "tx de marge mois n-1"
-    value_format_name: percent_2
-    type: number
-    sql: 1.0 * (${CA_month_ly}-${val_achat_gbl_month_ly})/NULLIF(${CA_month_ly},0);;
-  }
-
-  measure: select_client_par_jour_N1 {
-    label: "clts / jr n-1"
-    value_format_name: decimal_0
-    type: number
-    sql: ${nb_ticket_month_ly}/NULLIF(${nb_jour_month_ly},0) ;;
-  }
 
 
   set: detail {

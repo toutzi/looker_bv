@@ -20,9 +20,16 @@ explore: dv_vente {
 
   join: dig_nos_magasins {
     type: inner
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
     fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
+  }
+
+  join: dig_commandes {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${dig_nos_magasins.code_magasin}=${dig_commandes.code_magasin} ;;
+    fields: []
   }
 }
 explore: omnicanal {}
