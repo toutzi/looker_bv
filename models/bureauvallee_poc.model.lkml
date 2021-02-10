@@ -28,7 +28,7 @@ explore: dv_vente {
   join: dv_commandes {
     type: inner
     relationship: one_to_many
-    sql_on: ${magasin.cd_magasin}=${dv_commandes.code_magasin} ;;
+    sql_on: ${dig_nos_magasins.code_magasin}=${dv_commandes.code_magasin} ;;
   }
 }
 explore: omnicanal {}
