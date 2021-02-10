@@ -90,7 +90,7 @@ view: dv_vente {
     datatype: date
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dte_vente_raw}
+          THEN ${dte_vente_date}
         END ;;
   }
 
