@@ -29,7 +29,6 @@ explore: dv_vente {
     type: inner
     relationship: one_to_many
     sql_on: ${magasin.cd_magasin}=${dv_commandes.code_commande} ;;
-    fields: []
   }
 }
 explore: omnicanal {}
