@@ -89,8 +89,8 @@ view: dv_vente {
     timeframes: [date, week, month, year, raw]
     datatype: date
     sql: CASE
-          WHEN {% condition date_filter %} ${dte_vente_date}  {% endcondition %}
-          THEN ${dte_vente_date}
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${dte_vente_raw}
         END ;;
   }
 
