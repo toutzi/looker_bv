@@ -78,7 +78,7 @@ view: dv_vente {
     sql:
       CASE
         WHEN  ${ecarts_jour_select_mois} <= -5 AND ${ecarts_jour_select_mois} >= 5 THEN "P. non comparable"
-        ELSE THEN "P. Comparable"
+        ELSE "P. Comparable"
       END
     ;;
   }
