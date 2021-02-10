@@ -77,8 +77,9 @@ view: dv_vente {
     label: "Catégorie"
     sql:
       CASE
-        WHEN  ${ecarts_jour_select_mois} IN (-5, 5) THEN "P. comparable"
-        ELSE THEN "P. non comparable"
+        WHEN  ${ecarts_jour_select_mois} < -5 THEN "P. non comparable"
+        WHEN  ${ecarts_jour_select_mois} >= -5 THEN "P. comparable"
+        WHEN  ${ecarts_jour_select_mois} > 5 THEN "P.non comparable"
       END
     ;;
   }
