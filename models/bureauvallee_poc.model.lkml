@@ -18,17 +18,17 @@ explore: dv_vente {
     fields: [magasin.nom, magasin.date_ferm_date, magasin.date_ouv_date, magasin.typ_mag, magasin.Categorie, magasin.count_cd_magasin, magasin.intervalle_anciennete]
   }
 
-  join: dig_nos_magasins {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
-    fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
-  }
+ # join: dig_nos_magasins {
+ #  type: inner
+ #   relationship: one_to_one
+ #    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
+ #   fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
+ #}
 
   join: dv_commandes {
     type: inner
     relationship: one_to_many
-    sql_on: ${dig_nos_magasins.code_magasin}=${dv_commandes.code_magasin} ;;
+    sql_on: ${magasin.cd_magasin}=${dv_commandes.code_magasin} ;;
   }
 }
 explore: omnicanal {}
