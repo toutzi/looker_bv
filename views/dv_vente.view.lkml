@@ -206,7 +206,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_jour_select_mois {
-    hidden: yes
+    label: "Nb jr"
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
@@ -281,7 +281,7 @@ view: dv_vente {
   }
 
   measure: sum_nb_jour_select_mois_N1 {
-    hidden: yes
+    label: "Nb jr n-1"
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
