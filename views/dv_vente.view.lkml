@@ -76,12 +76,20 @@ view: dv_vente {
   dimension: anciennete {
     sql:
       CASE
-        WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
-        WHEN  ${diff_date} < 2 AND >= 5 THEN "2 ans<A≤ 5 ans"
-        WHEN  ${diff_date} < 5 AND >= 10 THEN "5 ans<A≤10 ans "
-        WHEN  ${diff_date} > 10 THEN "A>10 ans "
+        WHEN  ${diff} <= 2 THEN "A≤2 ans"
+        WHEN  ${diff} < 2 AND >= 5 THEN "2 ans<A≤ 5 ans"
+        WHEN  ${diff} < 5 AND >= 10 THEN "5 ans<A≤10 ans"
+        WHEN  ${diff} > 10 THEN "A>10 ans"
       END
     ;;
+  }
+
+  dimension: diff {
+    type: number
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN DATE_DIFF(${date_filter}, ${magasin.date_ouv_date}, YEAR)
+        END ;;
   }
 
 
