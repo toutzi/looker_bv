@@ -68,6 +68,22 @@ view: dv_vente {
       sql: ${TABLE}.nb_clts ;;
     }
 
+  dimension: diff_date {
+    type: number
+    sql: DATE_DIFF(${date_filter}, ${magasin.date_ouv_date}, YEAR) ;;
+  }
+
+  dimension: anciennete {
+    sql:
+      CASE
+        WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
+        WHEN  ${diff_date} < 2 AND >= 5 THEN "2 ans<A≤ 5 ans"
+        WHEN  ${diff_date} < 5 AND >= 10 THEN "5 ans<A≤10 ans "
+        WHEN  ${diff_date} > 10 THEN "A>10 ans "
+      END
+    ;;
+  }
+
 
 
 

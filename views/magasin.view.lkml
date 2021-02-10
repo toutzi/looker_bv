@@ -68,11 +68,13 @@ view: magasin {
   }
 
   dimension: diff_date {
+    hidden: yes
     type: number
     sql: DATE_DIFF(CURRENT_DATE(), ${date_ouv_date}, YEAR) ;;
   }
 
   dimension: Categorie {
+    hidden: yes
     sql:
       CASE
         WHEN  ${date_ouv_date} BETWEEN '2019-01-01' AND '2019-12-31' THEN "P.comparable"
@@ -82,6 +84,7 @@ view: magasin {
   }
 
   dimension: intervalle_anciennete {
+    hidden: yes
     label: "Ancienneté"
     type: tier
     sql: ${diff_date};;
