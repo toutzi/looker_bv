@@ -10,12 +10,12 @@ view: dv_commandes {
   dimension: code_commande {
     type: number
     primary_key: yes
-    sql: ${TABLE}.Code_commande ;;
+    sql: ${TABLE}.code_commande ;;
   }
 
   dimension: code_magasin {
     type: string
-    sql: ${TABLE}.Code_magasin ;;
+    sql: ${TABLE}.code_magasin ;;
   }
 
   dimension: sum_total_ht {
