@@ -94,6 +94,25 @@ view: dv_vente {
         END ;;
   }
 
+  measure: max_filter_date {
+    type:  date
+    sql:  max(${filter_date_raw}) ;;
+    convert_tz: no
+  }
+
+  measure: min_date_ouv_date {
+    type:  date
+    sql:  max(${magasin.date_ouv_date}) ;;
+    convert_tz: no
+  }
+
+  measure: diff_date_1 {
+    type: number
+    sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
+  }
+
+
+
 
     ########################## Calcul global des KPIs ################################
 
