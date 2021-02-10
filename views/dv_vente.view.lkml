@@ -68,12 +68,12 @@ view: dv_vente {
       sql: ${TABLE}.nb_clts ;;
     }
 
-  #dimension: diff_date {
-  #  type: number
-  #  sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
-  #}
+  dimension: diff_date {
+    type: number
+    sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
+  }
 
-  measure: anciennete {
+  dimension: anciennete {
     sql:
       CASE
         WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
@@ -106,10 +106,10 @@ view: dv_vente {
     convert_tz: no
   }
 
-  measure: diff_date {
-    type: number
-    sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
-  }
+  #measure: diff_date {
+  #  type: number
+  #  sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
+  #}
 
 
 
