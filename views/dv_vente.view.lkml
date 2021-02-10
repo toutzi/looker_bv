@@ -70,7 +70,7 @@ view: dv_vente {
 
   dimension: diff_date {
     type: number
-    sql: DATE_DIFF(${dte_vente_date}, ${magasin.date_ouv_date}, YEAR) ;;
+    sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
   }
 
   dimension: anciennete {
@@ -82,6 +82,16 @@ view: dv_vente {
         WHEN  ${diff_date} > 10 THEN "A>10 ans"
       END
     ;;
+  }
+
+  dimension_group: filter_date {
+    type: time
+    timeframes: [date, week, month, year, raw]
+    datatype: date
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${dte_vente_date}
+        END ;;
   }
 
 
