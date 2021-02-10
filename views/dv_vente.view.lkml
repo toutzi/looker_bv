@@ -70,7 +70,7 @@ view: dv_vente {
 
   dimension: diff_date {
     type: number
-    sql: DATE_DIFF(${filter_date_raw}, ${magasin.date_ouv_raw}, YEAR) ;;
+    sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
   }
 
   dimension: anciennete {
