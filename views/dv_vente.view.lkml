@@ -77,8 +77,8 @@ view: dv_vente {
     sql:
       CASE
         WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
-        WHEN  ${diff_date} <= 5 AND > 2 THEN "2 ans<A≤ 5 ans"
-        WHEN  ${diff_date} <= 10 AND > 5 THEN "5 ans<A≤10 ans"
+        WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
+        WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
         WHEN  ${diff_date} > 10 THEN "A>10 ans"
       END
     ;;
