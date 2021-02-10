@@ -73,7 +73,18 @@ view: dv_vente {
   #  sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
   #}
 
+  measure: categorie {
+    label: "Catégorie"
+    sql:
+      CASE
+        WHEN  ${ecarts_jour_select_mois} <= -5 AND ${ecarts_jour_select_mois} >= 5 THEN "P. non comparable"
+        ELSE THEN "P. Comparable"
+      END
+    ;;
+  }
+
   measure: anciennete {
+    label: "Ancienneté"
     sql:
       CASE
         WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
@@ -242,6 +253,12 @@ view: dv_vente {
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${dv_commandes.sum_total_ht}
         END ;;
+  }
+
+  measure: ecarts_jour_select_mois {
+    label: "écart jr"
+    type: number
+    sql:  ${sum_nb_jour_select_mois}-${sum_nb_jour_select_mois_N1} ;;
   }
 
 
