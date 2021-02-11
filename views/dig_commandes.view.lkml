@@ -72,9 +72,19 @@ view: dig_commandes {
     sql: ${TABLE}.Total_HT ;;
   }
 
+  measure: sum_total_ht {
+    type: sum
+    sql: ${TABLE}.Total_HT ;;
+  }
+
   dimension: total_tt {
     type: number
     sql: ${TABLE}.Total_TT ;;
+  }
+
+  measure: sum_total_tt {
+    type: sum
+    sql: ${total_tt} ;;
   }
 
   dimension: type_de_livraison {
