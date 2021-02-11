@@ -25,19 +25,19 @@ explore: dv_vente {
  #   fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
  #}
 
-  join: dig_commandes {
+  join: dv_web {
     type: left_outer
-    relationship: one_to_many
-    sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
+    relationship: one_to_one
+    sql_on: ${dv_vente.id_magasin}=${dv_web.id_magasin} ;;
   }
 }
 
-explore: magasin  {
-  join: dv_vente {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${magasin.id_magasin}=${dv_vente.id_magasin} ;;
-  }
+#explore: magasin  {
+#  join: dv_vente {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${magasin.id_magasin}=${dv_vente.id_magasin} ;;
+#  }
 
   # join: dig_nos_magasins {
   #  type: inner
@@ -46,14 +46,14 @@ explore: magasin  {
   #   fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
   #}
 
-  join: dig_commandes {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
-  }
-}
+#  join: dig_commandes {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
+#  }
+#}
 
-#explore: dv_web {}
+explore: dv_web {}
 
 explore: omnicanal {}
 explore: data_patch {}

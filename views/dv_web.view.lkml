@@ -53,6 +53,7 @@ view: dv_web {
 
   dimension_group: date_ouv {
     type: time
+    timeframes: [date, week, month, year, raw]
     datatype: datetime
     sql: ${TABLE}.date_ouv ;;
   }
@@ -70,7 +71,6 @@ view: dv_web {
       magasin,
       surface,
       type,
-      date_ouv_time,
       total_ht
     ]
   }

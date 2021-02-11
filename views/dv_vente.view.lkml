@@ -251,8 +251,8 @@ view: dv_vente {
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dig_commandes.date_de_commande_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dig_commandes.total_ht}
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 
@@ -333,7 +333,7 @@ view: dv_vente {
     label: "CA Drive n-1"
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
-          THEN ${dig_commandes.total_ht}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 
@@ -409,7 +409,7 @@ view: dv_vente {
     label: "CA Drive n-2"
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
-          THEN ${dig_commandes.total_ht}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 
