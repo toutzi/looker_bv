@@ -252,7 +252,7 @@ view: dv_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_commandes.sum_total_ht}
+          THEN ${dig_commandes.total_ht}
         END ;;
   }
 
@@ -333,7 +333,7 @@ view: dv_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_commandes.sum_total_ht}
+          THEN ${dig_commandes.total_ht}
         END ;;
   }
 
@@ -409,7 +409,7 @@ view: dv_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
-          THEN ${dv_commandes.sum_total_ht}
+          THEN ${dig_commandes.total_ht}
         END ;;
   }
 
