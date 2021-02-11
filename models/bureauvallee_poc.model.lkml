@@ -53,7 +53,7 @@ explore: magasin  {
   }
 }
 
-
+#explore: dv_web {}
 
 explore: omnicanal {}
 explore: data_patch {}
@@ -94,10 +94,6 @@ explore: dataquality_tf_vente2020 {
 #explore: article_arbo {}
 
 #explore: fournisseur {}
-
-
-
-explore: dig_commandes {}
 
 #explore: marque {}
 
@@ -216,19 +212,19 @@ explore: v_tf_vente {
 }
 
 
-#explore: dig_commandes {
-#
-#  join: dig_clients {
-#    type: inner
-#    relationship: many_to_one
-#    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
-#  }
+explore: dig_commandes {
 
-#  join: dig_nos_magasins {
-#    type: inner
-#    relationship: many_to_one
-#    sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
-#  }
+  join: dig_clients {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
+  }
+
+  join: dig_nos_magasins {
+     type: inner
+     relationship: many_to_one
+     sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
+  }
 
 # join: dig_produits_commandes {
 #    type: inner
@@ -248,4 +244,4 @@ explore: v_tf_vente {
 #    sql_on: ${dig_commandes.code_magasin} = ${magasin.cd_magasin}  ;;
 #  }
 
-#}
+}
