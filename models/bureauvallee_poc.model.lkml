@@ -31,6 +31,30 @@ explore: dv_vente {
     sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
   }
 }
+
+explore: magasin  {
+  join: dv_vente {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${magasin.id_magasin}=${dv_vente.id_magasin} ;;
+  }
+
+  # join: dig_nos_magasins {
+  #  type: inner
+  #   relationship: one_to_one
+  #    sql_on: ${magasin.cd_magasin} = ${dig_nos_magasins.code_magasin};;
+  #   fields: [dig_nos_magasins.r__gion, dig_nos_magasins.nom_du_magasin]
+  #}
+
+  join: dig_commandes {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
+  }
+}
+
+
+
 explore: omnicanal {}
 explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
@@ -71,7 +95,7 @@ explore: dataquality_tf_vente2020 {
 
 #explore: fournisseur {}
 
-explore: magasin {}
+
 
 explore: dig_commandes {}
 
