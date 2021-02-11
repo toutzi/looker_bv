@@ -26,8 +26,8 @@ explore: dv_vente {
  #}
 
   join: dig_commandes {
-    type: inner
-    relationship: one_to_one
+    type: left_outer
+    relationship: one_to_many
     sql_on: ${magasin.cd_magasin}=${dig_commandes.code_magasin} ;;
   }
 }
