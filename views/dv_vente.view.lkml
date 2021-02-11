@@ -247,9 +247,9 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
+    type: sum
     value_format_name: eur
     label: "CA Drive"
-    type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${dig_commandes.total_ht}
@@ -328,9 +328,9 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois_N1 {
+    type: sum
     value_format_name: eur
     label: "CA Drive n-1"
-    type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
           THEN ${dig_commandes.total_ht}
@@ -403,10 +403,10 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois_N2 {
+    type: sum
     hidden: yes
     value_format_name: eur
     label: "CA Drive n-2"
-    type: sum
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${dig_commandes.total_ht}
