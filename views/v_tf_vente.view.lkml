@@ -19,7 +19,6 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht {
-    hidden: yes
     label: "CA HT"
     type: sum
     value_format_name: eur
@@ -467,7 +466,6 @@ view: v_tf_vente {
   }
 
   measure: Prog_CA_mois {
-    hidden: yes
     label: "Prog CA N/N-1"
     value_format_name: percent_2
     type: number
