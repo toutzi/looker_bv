@@ -465,7 +465,7 @@ view: tf_vente {
     label: "Prog CA N/N-1"
     value_format_name: percent_2
     type: number
-    sql: 1.0 * (${sum_ca_ht_moisN}-${sum_ca_ht_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
+    sql: 1.0 * (${sum_ca_ht}-${sum_ca_ht_moisN1})/NULLIF(${sum_ca_ht_moisN1},0);;
   }
 
   measure: select_Prog_CA_mois {
