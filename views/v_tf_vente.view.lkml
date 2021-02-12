@@ -67,7 +67,6 @@ view: v_tf_vente {
   }
 
   measure: sum_ca_ht_moisN {
-    hidden: yes
     label: "CA HT mois N"
     type: sum
     value_format_name: eur
