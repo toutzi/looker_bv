@@ -280,7 +280,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter_1 %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
@@ -355,7 +355,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter_2 %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
