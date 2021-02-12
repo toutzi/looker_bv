@@ -190,6 +190,10 @@ view: dv_vente {
     type: date
   }
 
+  filter: date_filter_3 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    type: date
+  }
+
 
 
     ############## calcul des KPIs à la période sélectionnée au niveau du filtre  ############
@@ -422,6 +426,80 @@ view: dv_vente {
   }
 
 
+############ calcul des KPIs à n-3 de la période sélectionnée au niveau du filtre ###############
+
+
+  measure: sum_CA_select_mois_N3 {
+    label: "CA HT n-1"
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${ca_ht}
+        END ;;
+  }
+
+  measure: sum_marge_select_mois_N3 {
+    label: "Marge n-2"
+    hidden: yes
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${marge_brute}
+        END ;;
+  }
+
+  measure: sum_nb_ticket_select_mois_N3 {
+    label: "Nb clts n-2"
+    type: sum
+    value_format_name: decimal_0
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${nb_clts}
+        END ;;
+  }
+
+  measure: sum_nb_jour_select_mois_N3 {
+    hidden: yes
+    type: count_distinct
+    value_format_name: decimal_0
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${TABLE}.DTE_VENTE
+        END ;;
+  }
+
+  measure: sum_val_achat_gbl_select_mois_N3 {
+    hidden: yes
+    type: sum
+    value_format_name: eur
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${couts}
+        END ;;
+  }
+
+  measure: sum_surf_select_mois_N3 {
+    hidden: yes
+    type: sum
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
+
+  measure: sum_CA_drive_select_mois_N3 {
+    type: sum
+    hidden: yes
+    value_format_name: eur
+    label: "CA Drive n-2"
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP) {% endcondition %}
+          THEN ${dv_web.total_ht}
+        END ;;
+  }
+
 
   ######### calcul des rapports entre les KPIs à la période sélectionnée au niveau du filtre  ##########
 
@@ -511,7 +589,7 @@ view: dv_vente {
   }
 
 
-  ########### Calcul des progressions n / n-1 à la péridode sélectionée au niveau du filtre ###########
+  ########### Calcul des progressions n vs n-1 à la péridode sélectionée au niveau du filtre ###########
 
 
   measure: prog_CA_select_mois {
@@ -563,7 +641,7 @@ view: dv_vente {
     sql: 1.0 * (${marge_par_client_select_mois}-${marge_par_client_select_mois_N1})/NULLIF(${marge_par_client_select_mois_N1},0);;
   }
 
-  ######### Calcul des progressions n-1 / n-2 à la péridode sélectionée au niveau du filtre #########
+  ######### Calcul des progressions n-1 vs n-2 à la péridode sélectionée au niveau du filtre #########
 
   measure: select_Prog_CA_moisN1 {
     label: "prog CA n-1/n-2"
@@ -571,6 +649,9 @@ view: dv_vente {
     type: number
     sql: 1.0 * (${sum_CA_select_mois_N1}-${sum_CA_select_mois_N2})/NULLIF(${sum_CA_select_mois_N2},0);;
   }
+
+
+
 
 
 
