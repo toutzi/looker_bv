@@ -151,6 +151,7 @@ view: dv_vente {
   }
 
   measure: sum_marge_brute {
+    hidden: yes
     label: "marge brute"
     value_format_name: decimal_2
     type: sum
@@ -210,7 +211,6 @@ view: dv_vente {
 
   measure: sum_marge_select_mois {
     label: "Marge"
-    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -295,7 +295,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${marge_brute}
         END ;;
   }
@@ -305,7 +305,7 @@ view: dv_vente {
     type: sum
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${nb_clts}
         END ;;
   }
@@ -315,7 +315,7 @@ view: dv_vente {
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
         END ;;
   }
@@ -325,7 +325,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${couts}
         END ;;
   }
@@ -334,7 +334,7 @@ view: dv_vente {
     hidden: yes
     type: sum
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
         END ;;
   }
@@ -344,7 +344,7 @@ view: dv_vente {
     value_format_name: eur
     label: "CA Drive n-1"
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${dv_web.total_ht}
         END ;;
   }
@@ -370,7 +370,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${marge_brute}
         END ;;
   }
@@ -380,7 +380,7 @@ view: dv_vente {
     type: sum
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+         WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${nb_clts}
         END ;;
   }
@@ -390,7 +390,7 @@ view: dv_vente {
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
         END ;;
   }
@@ -400,7 +400,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${couts}
         END ;;
   }
@@ -409,7 +409,7 @@ view: dv_vente {
     hidden: yes
     type: sum
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
         END ;;
   }
@@ -420,7 +420,7 @@ view: dv_vente {
     value_format_name: eur
     label: "CA Drive n-2"
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${dv_web.total_ht}
         END ;;
   }
@@ -430,7 +430,7 @@ view: dv_vente {
 
 
   measure: sum_CA_select_mois_N3 {
-    label: "CA HT n-1"
+    label: "CA HT n-3"
     type: sum
     value_format_name: eur
     sql: CASE
@@ -440,7 +440,7 @@ view: dv_vente {
   }
 
   measure: sum_marge_select_mois_N3 {
-    label: "Marge n-2"
+    label: "Marge n-3"
     hidden: yes
     type: sum
     value_format_name: eur
@@ -451,11 +451,11 @@ view: dv_vente {
   }
 
   measure: sum_nb_ticket_select_mois_N3 {
-    label: "Nb clts n-2"
+    label: "Nb clts n-3"
     type: sum
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${nb_clts}
         END ;;
   }
@@ -465,7 +465,7 @@ view: dv_vente {
     type: count_distinct
     value_format_name: decimal_0
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${TABLE}.DTE_VENTE
         END ;;
   }
@@ -475,7 +475,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${couts}
         END ;;
   }
@@ -484,7 +484,7 @@ view: dv_vente {
     hidden: yes
     type: sum
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
         END ;;
   }
@@ -493,9 +493,9 @@ view: dv_vente {
     type: sum
     hidden: yes
     value_format_name: eur
-    label: "CA Drive n-2"
+    label: "CA Drive n-3"
     sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP) {% endcondition %}
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${dv_web.total_ht}
         END ;;
   }
