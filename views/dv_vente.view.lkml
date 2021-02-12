@@ -38,7 +38,7 @@ view: dv_vente {
 
     dimension_group: dte_vente {
       type: time
-      timeframes: [date, week, month, year, raw]
+      timeframes: [date, week, week_of_year ,month, month_name , year, raw]
       datatype: date
       sql: ${TABLE}.dte_vente ;;
     }
