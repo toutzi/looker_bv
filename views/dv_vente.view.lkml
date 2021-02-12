@@ -182,6 +182,14 @@ view: dv_vente {
     type: date
   }
 
+  filter: date_filter_1 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    type: date
+  }
+
+  filter: date_filter_2 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    type: date
+  }
+
 
 
     ############## calcul des KPIs à la période sélectionnée au niveau du filtre  ############
@@ -272,7 +280,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_1 %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
@@ -347,7 +355,7 @@ view: dv_vente {
     type: sum
     value_format_name: eur
     sql: CASE
-          WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
+          WHEN {% condition date_filter_2 %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 2 YEAR) AS TIMESTAMP)  {% endcondition %}
           THEN ${ca_ht}
         END ;;
   }
