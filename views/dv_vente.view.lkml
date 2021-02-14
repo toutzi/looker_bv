@@ -180,18 +180,22 @@ view: dv_vente {
   }
 
   filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n"
     type: date
   }
 
   filter: date_filter_1 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "n-1"
     type: date
   }
 
   filter: date_filter_2 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "n-2"
     type: date
   }
 
   filter: date_filter_3 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "n-3"
     type: date
   }
 
@@ -501,7 +505,7 @@ view: dv_vente {
   }
 
 
-  ######### calcul des rapports entre les KPIs à la période sélectionnée au niveau du filtre  ##########
+  ######### calcul des rapports entre les KPIs à la période n sélectionnée au niveau du filtre  ##########
 
 
   measure: client_par_jour_select_mois {
@@ -511,53 +515,11 @@ view: dv_vente {
     sql: ${sum_nb_ticket_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
   }
 
-  measure: client_par_jour_select_mois_N1 {
-    label: "clts/jr n-1"
-    value_format_name: decimal_0
-    type: number
-    sql: ${sum_nb_ticket_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
-  }
-
-  measure: client_par_jour_select_mois_N2 {
-    label: "clts/jr n-2"
-    value_format_name: decimal_0
-    type: number
-    sql: ${sum_nb_ticket_select_mois_N2}/NULLIF(${sum_nb_jour_select_mois_N2},0) ;;
-  }
-
-  measure: client_par_jour_select_mois_N3 {
-    label: "clts/jr n-3"
-    value_format_name: decimal_0
-    type: number
-    sql: ${sum_nb_ticket_select_mois_N3}/NULLIF(${sum_nb_jour_select_mois_N3},0) ;;
-  }
-
   measure: ca_par_jour_select_mois {
     label: "CA / jour"
     value_format_name: eur
     type: number
     sql:  ${sum_CA_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
-  }
-
-  measure: ca_par_jour_select_mois_N1 {
-    label: "CA/jr n-1"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
-  }
-
-  measure: ca_par_jour_select_mois_N2 {
-    label: "CA/jr n-2"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_jour_select_mois_N2},0) ;;
-  }
-
-  measure: ca_par_jour_select_mois_N3 {
-    label: "CA/jr n-3"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_nb_jour_select_mois_N3},0) ;;
   }
 
   measure: ca_par_m_carre_select_mois {
@@ -588,32 +550,49 @@ view: dv_vente {
     sql:  ${sum_CA_drive_select_mois}/NULLIF(${sum_nb_ticket_select_mois},0) ;;
   }
 
-  measure: panier_moyen_select_mois_N1 {
-    label: "PM n-1"
-    value_format_name: decimal_2
-    type: number
-    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
-  }
-
-  measure: panier_moyen_select_mois_N2 {
-    label: "PM n-2"
-    value_format_name: decimal_2
-    type: number
-    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_ticket_select_mois_N2},0) ;;
-  }
-
-  measure: panier_moyen_select_mois_N3 {
-    label: "PM n-3"
-    value_format_name: decimal_2
-    type: number
-    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_nb_ticket_select_mois_N3},0) ;;
-  }
-
   measure: marge_par_client_select_mois {
     label: "marge / clts"
     value_format_name: decimal_2
     type: number
     sql: ${sum_marge_select_mois}/NULLIF(${sum_nb_ticket_select_mois},0) ;;
+  }
+
+
+  ######### calcul des rapports entre les KPIs à la période n-1 sélectionnée au niveau du filtre  ##########
+
+  measure: client_par_jour_select_mois_N1 {
+    label: "clts/jr n-1"
+    value_format_name: decimal_0
+    type: number
+    sql: ${sum_nb_ticket_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
+  }
+
+  measure: ca_par_jour_select_mois_N1 {
+    label: "CA/jr n-1"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
+  }
+
+  measure: ca_par_m_carre_select_mois_N1 {
+    label: "CA/m² n-1"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_surf_select_mois_N1},0) ;;
+  }
+
+  measure: taux_de_marge_select_mois_N1 {
+    label: "% marge n-1"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ${sum_marge_select_mois_N1}/NULLIF(${sum_CA_select_mois_N1},0);;
+  }
+
+  measure: panier_moyen_select_mois_N1 {
+    label: "PM n-1"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
   }
 
   measure: marge_par_client_select_mois_N1 {
@@ -623,11 +602,91 @@ view: dv_vente {
     sql: ${sum_marge_select_mois_N1}/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
   }
 
+
+
+  ######### calcul des rapports entre les KPIs à la période n-2 sélectionnée au niveau du filtre  ##########
+
+
+  measure: client_par_jour_select_mois_N2 {
+    label: "clts/jr n-2"
+    value_format_name: decimal_0
+    type: number
+    sql: ${sum_nb_ticket_select_mois_N2}/NULLIF(${sum_nb_jour_select_mois_N2},0) ;;
+  }
+
+  measure: ca_par_jour_select_mois_N2 {
+    label: "CA/jr n-2"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_jour_select_mois_N2},0) ;;
+  }
+
+  measure: ca_par_m_carre_select_mois_N2 {
+    label: "CA/m² n-2"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_surf_select_mois_N2},0) ;;
+  }
+
+  measure: taux_de_marge_select_mois_N2 {
+    label: "% marge n-2"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ${sum_marge_select_mois_N2}/NULLIF(${sum_CA_select_mois_N2},0);;
+  }
+
+  measure: panier_moyen_select_mois_N2 {
+    label: "PM n-2"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_ticket_select_mois_N2},0) ;;
+  }
+
   measure: marge_par_client_select_mois_N2 {
     label: "marge/clts n-2"
     value_format_name: decimal_2
     type: number
     sql: ${sum_marge_select_mois_N2}/NULLIF(${sum_nb_ticket_select_mois_N2},0) ;;
+  }
+
+
+
+######### calcul des rapports entre les KPIs à la période n-3 sélectionnée au niveau du filtre  ##########
+
+
+  measure: client_par_jour_select_mois_N3 {
+    label: "clts/jr n-3"
+    value_format_name: decimal_0
+    type: number
+    sql: ${sum_nb_ticket_select_mois_N3}/NULLIF(${sum_nb_jour_select_mois_N3},0) ;;
+  }
+
+  measure: ca_par_jour_select_mois_N3 {
+    label: "CA/jr n-3"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_nb_jour_select_mois_N3},0) ;;
+  }
+
+  measure: ca_par_m_carre_select_mois_N3 {
+    label: "CA/m² n-3"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_surf_select_mois_N3},0) ;;
+  }
+
+  measure: taux_de_marge_select_mois_N3 {
+    label: "% marge n-3"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * ${sum_marge_select_mois_N3}/NULLIF(${sum_CA_select_mois_N3},0);;
+  }
+
+  measure: panier_moyen_select_mois_N3 {
+    label: "PM n-3"
+    value_format_name: decimal_2
+    type: number
+    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_nb_ticket_select_mois_N3},0) ;;
   }
 
   measure: marge_par_client_select_mois_N3 {
@@ -636,7 +695,6 @@ view: dv_vente {
     type: number
     sql: ${sum_marge_select_mois_N3}/NULLIF(${sum_nb_ticket_select_mois_N3},0) ;;
   }
-
 
 
   ########### Calcul des progressions n vs n-1 à la péridode sélectionée au niveau du filtre ###########
@@ -663,8 +721,22 @@ view: dv_vente {
     sql:  1.0 * (${sum_marge_select_mois}-${sum_marge_select_mois_N1})/NULLIF(${sum_marge_select_mois_N1},0);;
   }
 
+  measure: prog_taux_marge_select_mois {
+    label: "prog %marge"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${taux_de_marge_select_mois}-${taux_de_marge_select_mois_N1})/NULLIF(${taux_de_marge_select_mois_N1},0);;
+  }
+
+  measure: prog_ca_par_m_carre_select_mois {
+    label: "prog CA/m²"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${ca_par_m_carre_select_mois}-${ca_par_m_carre_select_mois_N1})/NULLIF(${ca_par_m_carre_select_mois_N1},0);;
+  }
+
   measure: prog_Clients_select_mois {
-    label: "prog clts / jr"
+    label: "prog clts/jr"
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${client_par_jour_select_mois}-${client_par_jour_select_mois_N1})/NULLIF(${client_par_jour_select_mois_N1},0) ;;
@@ -714,6 +786,20 @@ view: dv_vente {
     value_format_name: percent_2
     type: number
     sql:  1.0 * (${sum_marge_select_mois_N1}-${sum_marge_select_mois_N2})/NULLIF(${sum_marge_select_mois_N2},0);;
+  }
+
+  measure: prog_ca_par_m_carre_select_mois_N1 {
+    label: "prog CA/m² n-1"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${ca_par_m_carre_select_mois_N1}-${ca_par_m_carre_select_mois_N2})/NULLIF(${ca_par_m_carre_select_mois_N2},0);;
+  }
+
+  measure: prog_taux_marge_select_mois_N1 {
+    label: "prog %marge n-1"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${taux_de_marge_select_mois_N1}-${taux_de_marge_select_mois_N2})/NULLIF(${taux_de_marge_select_mois_N2},0);;
   }
 
   measure: prog_Clients_select_mois_N1 {
@@ -768,6 +854,20 @@ view: dv_vente {
     sql:  1.0 * (${sum_marge_select_mois_N2}-${sum_marge_select_mois_N3})/NULLIF(${sum_marge_select_mois_N3},0);;
   }
 
+  measure: prog_ca_par_m_carre_select_mois_N2 {
+    label: "prog CA/m² n-2"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${ca_par_m_carre_select_mois_N2}-${ca_par_m_carre_select_mois_N3})/NULLIF(${ca_par_m_carre_select_mois_N3},0);;
+  }
+
+  measure: prog_taux_marge_select_mois_N2 {
+    label: "prog %marge n-2"
+    value_format_name: percent_2
+    type: number
+    sql:  1.0 * (${taux_de_marge_select_mois_N2}-${taux_de_marge_select_mois_N3})/NULLIF(${taux_de_marge_select_mois_N3},0);;
+  }
+
   measure: prog_Clients_select_mois_N2 {
     label: "prog clts/jr n-2"
     value_format_name: percent_2
@@ -795,10 +895,6 @@ view: dv_vente {
     type: number
     sql: 1.0 * (${marge_par_client_select_mois_N2}-${marge_par_client_select_mois_N3})/NULLIF(${marge_par_client_select_mois_N3},0);;
   }
-
-
-
-
 
 
   set: detail {
