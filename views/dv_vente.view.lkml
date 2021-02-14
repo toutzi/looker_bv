@@ -152,8 +152,6 @@ view: dv_vente {
 
   measure: sum_marge_brute {
     hidden: yes
-    label: "marge brute"
-    value_format_name: decimal_2
     type: sum
     sql: ${marge_brute} ;;
   }
@@ -184,17 +182,17 @@ view: dv_vente {
     type: date
   }
 
-  filter: date_filter_1 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+  filter: date_filter_1 {               ### Choisir la période qu'on souhaite obtenir les résultats###
     label: "n-1"
     type: date
   }
 
-  filter: date_filter_2 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+  filter: date_filter_2 {               ### Choisir la période qu'on souhaite obtenir les résultats###
     label: "n-2"
     type: date
   }
 
-  filter: date_filter_3 {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+  filter: date_filter_3 {               ### Choisir la période qu'on souhaite obtenir les résultats###
     label: "n-3"
     type: date
   }
@@ -295,7 +293,6 @@ view: dv_vente {
 
   measure: sum_marge_select_mois_N1 {
     label: "Marge n-1"
-    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -370,7 +367,6 @@ view: dv_vente {
 
   measure: sum_marge_select_mois_N2 {
     label: "Marge n-2"
-    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
@@ -445,7 +441,6 @@ view: dv_vente {
 
   measure: sum_marge_select_mois_N3 {
     label: "Marge n-3"
-    hidden: yes
     type: sum
     value_format_name: eur
     sql: CASE
