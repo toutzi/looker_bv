@@ -737,6 +737,13 @@ view: dv_vente {
     sql: 1.0 * (${client_par_jour_select_mois}-${client_par_jour_select_mois_N1})/NULLIF(${client_par_jour_select_mois_N1},0) ;;
   }
 
+  measure: prog_nb_Clients_select_mois {
+    label: "prog nb clts"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_nb_ticket_select_mois}-${sum_nb_ticket_select_mois_N1})/NULLIF(${sum_nb_ticket_select_mois_N1},0) ;;
+  }
+
   measure: prog_ca_jour_select_mois {
     label: "prog CA / jr"
     value_format_name: percent_2
@@ -788,6 +795,13 @@ view: dv_vente {
     value_format_name: percent_2
     type: number
     sql:  1.0 * (${ca_par_m_carre_select_mois_N1}-${ca_par_m_carre_select_mois_N2})/NULLIF(${ca_par_m_carre_select_mois_N2},0);;
+  }
+
+  measure: prog_nb_Clients_select_mois_N1 {
+    label: "prog nb clts n-1"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_nb_ticket_select_mois_N1}-${sum_nb_ticket_select_mois_N2})/NULLIF(${sum_nb_ticket_select_mois_N2},0) ;;
   }
 
   measure: prog_taux_marge_select_mois_N1 {
@@ -868,6 +882,13 @@ view: dv_vente {
     value_format_name: percent_2
     type: number
     sql: 1.0 * (${client_par_jour_select_mois_N2}-${client_par_jour_select_mois_N3})/NULLIF(${client_par_jour_select_mois_N3},0) ;;
+  }
+
+  measure: prog_nb_Clients_select_mois_N3 {
+    label: "prog nb clts n-2"
+    value_format_name: percent_2
+    type: number
+    sql: 1.0 * (${sum_nb_ticket_select_mois_N2}-${sum_nb_ticket_select_mois_N3})/NULLIF(${sum_nb_ticket_select_mois_N3},0) ;;
   }
 
   measure: prog_ca_jour_select_mois_N2 {
