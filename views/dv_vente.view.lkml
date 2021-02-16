@@ -261,7 +261,6 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
-    type: number
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
