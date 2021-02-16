@@ -183,17 +183,17 @@ view: dv_vente {
   }
 
   filter: date_filter_1 {               ### Choisir la période qu'on souhaite obtenir les résultats###
-    label: "n-1"
+    label: "Période n-1"
     type: date
   }
 
   filter: date_filter_2 {               ### Choisir la période qu'on souhaite obtenir les résultats###
-    label: "n-2"
+    label: "Période n-2"
     type: date
   }
 
   filter: date_filter_3 {               ### Choisir la période qu'on souhaite obtenir les résultats###
-    label: "n-3"
+    label: "Période n-3"
     type: date
   }
 
@@ -261,7 +261,7 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
-    type: number
+    type: sum
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
