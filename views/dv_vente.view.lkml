@@ -1,7 +1,6 @@
 view: dv_vente {
     derived_table: {
       sql: select
-        id_tf_vte,
         id_magasin,
         typ_vente,
         min(DATE(dte_vente)) as dte_vente,
@@ -11,7 +10,7 @@ view: dv_vente {
         sum(marge_brute) as marge_brute,
         sum(nb_ticket) as nb_clts
       from ods.tf_vente
-      group by id_tf_vte, id_magasin, typ_vente
+      group by id_magasin, typ_vente
        ;;
     }
 
@@ -20,13 +19,14 @@ view: dv_vente {
       drill_fields: [detail*]
     }
 
-    dimension: id_tf_vte {
-      type: number
-      primary_key: yes
-      sql: ${TABLE}.id_tf_vte ;;
-    }
+    #dimension: id_tf_vte {
+    #  type: number
+    #  primary_key: yes
+    #  sql: ${TABLE}.id_tf_vte ;;
+    #}
 
     dimension: id_magasin {
+      primary_key: yes
       type: number
       sql: ${TABLE}.id_magasin ;;
     }
@@ -261,11 +261,12 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
+    type: sum
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.sum_total_ht}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 
@@ -914,7 +915,6 @@ view: dv_vente {
 
   set: detail {
     fields: [
-      id_tf_vte,
       id_magasin,
       couts,
       qtite,
