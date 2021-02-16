@@ -1,7 +1,6 @@
 view: dv_web {
   derived_table: {
     sql: select
-        m.id_magasin,
         m.cd_magasin as code,
         m.cd_pays,
         m.nom as magasin,
@@ -12,7 +11,7 @@ view: dv_web {
       from `bureauvallee.ods.magasin` as m
       left join `bureauvallee.ods.dig_commandes` as d
       on m.cd_magasin = d.code_magasin
-      group by 1,2,3,4,5,6,7
+      group by 1,2,3,4,5
        ;;
   }
 
@@ -21,13 +20,14 @@ view: dv_web {
     drill_fields: [detail*]
   }
 
-  dimension: id_magasin {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.id_magasin ;;
-  }
+  # dimension: id_magasin {
+  #   primary_key: yes
+  #   type: number
+  #   sql: ${TABLE}.id_magasin ;;
+  # }
 
   dimension: code {
+    primary_key: yes
     type: string
     sql: ${TABLE}.code ;;
   }
@@ -66,7 +66,6 @@ view: dv_web {
 
   set: detail {
     fields: [
-      id_magasin,
       code,
       cd_pays,
       magasin,
