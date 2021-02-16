@@ -1,6 +1,7 @@
 view: dv_vente {
     derived_table: {
       sql: select
+        id_tf_vte,
         id_magasin,
         typ_vente,
         dte_vente as dte_vente,
@@ -10,7 +11,7 @@ view: dv_vente {
         sum(marge_brute) as marge_brute,
         sum(nb_ticket) as nb_clts
       from ods.tf_vente
-      group by id_magasin, typ_vente, dte_vente
+      group by id_tf_vte, id_magasin, typ_vente, dte_vente
        ;;
     }
 
