@@ -1,7 +1,7 @@
 view: dv_web {
   derived_table: {
     sql: select
-        m.id_magasin
+        m.id_magasin,
         m.cd_magasin as code,
         m.cd_pays,
         m.nom as magasin,
