@@ -69,6 +69,7 @@ view: dv_web {
     sql: ${total_ht} ;;
   }
 
+
   set: detail {
     fields: [
       code,
