@@ -8,8 +8,8 @@ view: dv_web {
         m.typ_mag as type,
         min(m.date_ouv) as date_ouv,
         sum(d.total_ht) as total_ht
-      from `bureauvallee.ods.magasin` as m
-      left join `bureauvallee.ods.dig_commandes` as d
+      from  `bureauvallee.ods.dig_commandes` as d
+      left join `bureauvallee.ods.magasin` as m
       on m.cd_magasin = d.code_magasin
       group by 1,2,3,4,5
        ;;
