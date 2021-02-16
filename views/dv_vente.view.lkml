@@ -10,7 +10,7 @@ view: dv_vente {
         sum(marge_brute) as marge_brute,
         sum(nb_ticket) as nb_clts
       from ods.tf_vente
-      group by id_magasin, typ_vente
+      group by id_magasin, typ_vente, dte_vente
        ;;
     }
 
