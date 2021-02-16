@@ -7,7 +7,7 @@ view: dv_web {
         m.nom as magasin,
         m.surf_vte as surface,
         m.typ_mag as type,
-        date_ouv as date_ouv,
+        m.date_ouv as date_ouv,
         sum(d.total_ht) as total_ht
       from  `bureauvallee.ods.dig_commandes` as d
       left join `bureauvallee.ods.magasin` as m
