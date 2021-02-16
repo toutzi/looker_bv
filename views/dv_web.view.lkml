@@ -11,7 +11,7 @@ view: dv_web {
       from  `bureauvallee.ods.dig_commandes` as d
       left join `bureauvallee.ods.magasin` as m
       on m.cd_magasin = d.code_magasin
-      group by 1,2,3,4,5
+      group by 1,2,3,4,5,6
        ;;
   }
 
