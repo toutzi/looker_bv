@@ -3,7 +3,7 @@ view: dv_vente {
       sql: select
         id_magasin,
         typ_vente,
-        min(DATE(dte_vente)) as dte_vente,
+        dte_vente as dte_vente,
         sum(val_achat_gbl) as couts,
         sum(qtite) as qtite,
         sum(ca_ht) as ca_ht,
@@ -19,14 +19,13 @@ view: dv_vente {
       drill_fields: [detail*]
     }
 
-    #dimension: id_tf_vte {
-    #  type: number
-    #  primary_key: yes
-    #  sql: ${TABLE}.id_tf_vte ;;
-    #}
+    dimension: id_tf_vte {
+      type: number
+     primary_key: yes
+     sql: ${TABLE}.id_tf_vte ;;
+    }
 
     dimension: id_magasin {
-      primary_key: yes
       type: number
       sql: ${TABLE}.id_magasin ;;
     }
