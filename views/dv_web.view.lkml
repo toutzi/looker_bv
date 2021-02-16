@@ -1,6 +1,7 @@
 view: dv_web {
   derived_table: {
     sql: select
+        m.id_magasin
         m.cd_magasin as code,
         m.cd_pays,
         m.nom as magasin,
@@ -20,11 +21,10 @@ view: dv_web {
     drill_fields: [detail*]
   }
 
-  # dimension: id_magasin {
-  #   primary_key: yes
-  #   type: number
-  #   sql: ${TABLE}.id_magasin ;;
-  # }
+  dimension: id_magasin {
+     type: number
+     sql: ${TABLE}.id_magasin ;;
+  }
 
   dimension: code {
     primary_key: yes
