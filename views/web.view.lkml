@@ -3,7 +3,7 @@ view: web {
     sql: select
         Code_magasin,
         Date_de_commande,
-        total_HT as total_ht
+        sum(total_HT) as total_ht
       from ods.dig_commandes
       group by 1,2,3
  ;;
@@ -45,6 +45,11 @@ view: web {
           WHEN {% condition date_filter %} CAST(${date_de_commande_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${total_ht}
         END ;;
+  }
+
+  measure: sum_CA_drive {
+    type: sum
+    value_format_name: eur
   }
 
   set: detail {
