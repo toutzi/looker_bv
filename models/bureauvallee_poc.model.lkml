@@ -2,7 +2,7 @@
 
 # include all the views
 include: "/views/**/*.view"
-fiscal_month_offset: -8
+fiscal_month_offset: 3
 
 datagroup: bureauvallee_poc_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -10,7 +10,6 @@ datagroup: bureauvallee_poc_default_datagroup {
 }
 
 persist_with: bureauvallee_poc_default_datagroup
-fiscal_month_offset: -8
 explore: dv_vente {
   join: magasin {
     type: left_outer
