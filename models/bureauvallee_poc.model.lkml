@@ -10,7 +10,7 @@ datagroup: bureauvallee_poc_default_datagroup {
 }
 
 persist_with: bureauvallee_poc_default_datagroup
-
+fiscal_month_offset: -8
 explore: dv_vente {
   join: magasin {
     type: left_outer
