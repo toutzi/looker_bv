@@ -38,10 +38,17 @@ view: dv_vente {
 
     dimension_group: dte_vente {
       type: time
-      timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
+      timeframes: [date, week, week_of_year ,month, month_name , year, raw]
       datatype: date
       sql: ${TABLE}.dte_vente ;;
     }
+
+  dimension_group: fiscal_month {
+    type: time
+    timeframes: [fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
+    datatype: date
+    sql: ${TABLE}.dte_vente ;;
+  }
 
     dimension: couts {
       type: number
