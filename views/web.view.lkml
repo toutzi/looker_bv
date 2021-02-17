@@ -39,6 +39,7 @@ view: web {
   measure: sum_CA_drive {
     type: sum
     value_format_name: eur
+    sql: ${total_ht} ;;
   }
 
   set: detail {
