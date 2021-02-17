@@ -37,8 +37,7 @@ view: web {
     type: date
   }
 
-  measure: sum_CA_drive_select_mois {
-    type: sum
+ dimension: sum_CA_drive_select_mois {
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
