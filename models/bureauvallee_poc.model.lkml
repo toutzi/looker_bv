@@ -66,6 +66,8 @@ explore: ventes_magasins {
 }
 explore: web {}
 
+#explore: tf_vente {}
+
 explore: omnicanal {}
 explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
