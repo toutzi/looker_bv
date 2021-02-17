@@ -56,6 +56,16 @@ explore: dv_vente {
 
 explore: dv_web {}
 
+explore: ventes_magasins {
+  join: web {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${ventes_magasins.cd_magasin}=${web.code_magasin} ;;
+  }
+
+}
+explore: web {}
+
 explore: omnicanal {}
 explore: data_patch {}
 explore: dataquality_tf_vente2020_donnees_remontees {}
