@@ -2,7 +2,7 @@
 
 # include all the views
 include: "/views/**/*.view"
-fiscal_month_offset: 3
+fiscal_month_offset: -8
 
 datagroup: bureauvallee_poc_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
