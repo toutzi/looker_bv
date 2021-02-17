@@ -32,6 +32,21 @@ view: web {
     sql: ${TABLE}.total_ht ;;
   }
 
+  filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n"
+    type: date
+  }
+
+  measure: sum_CA_drive_select_mois {
+    type: sum
+    value_format_name: eur
+    label: "CA Drive"
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${date_de_commande_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${total_ht}
+        END ;;
+  }
+
   set: detail {
     fields: [code_magasin, total_ht]
   }
