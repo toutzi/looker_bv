@@ -1,6 +1,7 @@
 view: ventes_magasins {
     derived_table: {
       sql: select
+        m.id_magasin,
         m.cd_magasin,
         m.cd_pays,
         m.nom,
@@ -17,7 +18,7 @@ view: ventes_magasins {
       from ods.tf_vente v
       left join magasin m
       on v.ID_MAGASIN = m.ID_MAGASIN
-      group by 1,2,3,4,5,6,7,8
+      group by 1,2,3,4,5,6,7,8,9
  ;;
     }
 
@@ -52,6 +53,12 @@ view: ventes_magasins {
       datatype: date
       sql: ${TABLE}.date_ouv ;;
     }
+
+  dimension: id_magasin {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.id_magasin ;;
+  }
 
     dimension: type {
       type: string

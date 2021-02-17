@@ -14,6 +14,7 @@ view: web {
   }
 
   dimension: code_magasin {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Code_magasin ;;
   }
