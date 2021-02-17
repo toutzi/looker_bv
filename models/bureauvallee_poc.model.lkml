@@ -59,7 +59,7 @@ explore: dv_web {}
 explore: ventes_magasins {
   join: web {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${ventes_magasins.cd_magasin}=${web.code_magasin} ;;
   }
 
