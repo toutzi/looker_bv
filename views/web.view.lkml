@@ -5,7 +5,7 @@ view: web {
         Date_de_commande,
         total_HT as total_ht
       from ods.dig_commandes
-      group by 1,2
+      group by 1,2,3
  ;;
   }
 
