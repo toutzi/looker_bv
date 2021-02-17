@@ -3,7 +3,7 @@ view: web {
     sql: select
         Code_magasin,
         Date_de_commande,
-        sum(total_HT) as total_ht
+        total_HT as total_ht
       from ods.dig_commandes
       group by 1,2
  ;;
@@ -37,7 +37,8 @@ view: web {
     type: date
   }
 
- dimension: sum_CA_drive_select_mois {
+ measure: sum_CA_drive_select_mois {
+    type: sum
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
