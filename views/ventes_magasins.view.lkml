@@ -27,7 +27,6 @@ view: ventes_magasins {
     }
 
     dimension: cd_magasin {
-      primary_key: yes
       type: string
       sql: ${TABLE}.cd_magasin ;;
     }
