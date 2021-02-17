@@ -46,7 +46,7 @@ view: dv_vente {
   dimension_group: fiscal_month {
     type: time
     timeframes: [fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
-    sql: ${TABLE}.dte_vente_raw ;;
+    sql: ${TABLE}.dte_vente ;;
   }
 
     dimension: couts {
