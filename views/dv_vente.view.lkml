@@ -154,6 +154,7 @@ view: dv_vente {
   }
 
   measure: sum_marge_brute {
+    value_format_name: eur
     type: sum
     sql: ${marge_brute} ;;
   }
