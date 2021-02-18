@@ -65,7 +65,7 @@ explore: ventes_magasins {
 }
 explore: web {}
 
-#explore: tf_vente {}
+# explore: tf_vente {}
 
 explore: omnicanal {}
 explore: data_patch {}
@@ -119,7 +119,7 @@ explore: dataquality_tf_vente2020 {
 
 explore: dig_nos_magasins {}
 
-#explore: tf_vente {
+# explore: tf_vente {
 #
 #  join: article {
 #    type: left_outer
