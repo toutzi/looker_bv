@@ -15,7 +15,6 @@ explore: dv_vente {
     type: left_outer
     relationship: many_to_one
     sql_on: ${dv_vente.id_magasin}=${magasin.id_magasin} ;;
-    fields: [magasin.nom, magasin.date_ferm_date, magasin.date_ouv_date, magasin.typ_mag, magasin.Categorie, magasin.count_cd_magasin, magasin.intervalle_anciennete]
   }
 
  # join: dig_nos_magasins {
@@ -27,7 +26,7 @@ explore: dv_vente {
 
   join: dv_web {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${dv_vente.id_magasin}=${dv_web.id_magasin} ;;
   }
 }
