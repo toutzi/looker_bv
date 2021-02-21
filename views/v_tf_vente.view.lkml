@@ -605,7 +605,7 @@ view: v_tf_vente {
   }
 
   measure: sum_surf_vte {
-    type: sum
+    type: average
     sql: ${magasin.surf_vte};;
     filters:  [typ_vente: "0", dte_vente_date:"13 months ago"]
   }
@@ -1010,7 +1010,7 @@ view: v_tf_vente {
   }
 
   measure: surf_selected_month {
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
@@ -1018,7 +1018,7 @@ view: v_tf_vente {
   }
 
   measure: surf_month_ly {
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter %} CAST(DATE_ADD(DATE(${dte_vente_date}), INTERVAL 1 YEAR) AS TIMESTAMP) {% endcondition %}
           THEN ${magasin.surf_vte}
