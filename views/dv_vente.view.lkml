@@ -259,8 +259,7 @@ view: dv_vente {
   }
 
   measure: sum_surf_select_mois {
-    hidden: yes
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
@@ -340,7 +339,7 @@ view: dv_vente {
 
   measure: sum_surf_select_mois_N1 {
     hidden: yes
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
@@ -414,7 +413,7 @@ view: dv_vente {
 
   measure: sum_surf_select_mois_N2 {
     hidden: yes
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
