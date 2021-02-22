@@ -114,7 +114,7 @@ view: dv_vente {
 
   measure: min_date_ouv_date {
     type:  date
-    sql:  max(${dv_web.date_ouv_date}) ;;
+    sql:  max(${magasin.date_ouv_date}) ;;
     convert_tz: no
   }
 
@@ -256,7 +256,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.surf_vte}
+          THEN ${magasin.surf_vte}
         END ;;
   }
 
@@ -336,7 +336,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.surf_vte}
+          THEN ${magasin.surf_vte}
         END ;;
   }
 
@@ -410,7 +410,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.surf_vte}
+          THEN ${magasin.surf_vte}
         END ;;
   }
 
@@ -484,7 +484,7 @@ view: dv_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.surf_vte}
+          THEN ${magasin.surf_vte}
         END ;;
   }
 
