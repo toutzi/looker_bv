@@ -54,6 +54,8 @@ explore: dv_vente {
 
 explore: dv_web {}
 
+explore: ventes_devise {}
+
 explore: ventes_magasins {
   join: web {
     type: left_outer
