@@ -26,7 +26,7 @@ explore: dv_vente {
 
   join: dv_web {
     type: inner
-    relationship: one_to_many
+    relationship: one_to_one
     sql_on: ${magasin.cd_magasin}=${dv_web.code_magasin} ;;
   }
 }
