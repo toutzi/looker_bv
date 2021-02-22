@@ -3,12 +3,12 @@ view: dv_web {
     sql: select
         m.id_magasin,
         d.code_magasin,
-        min(DATE(d.date_de_commande)) as date_de_commande,
+        d.date_de_commande,
         sum(d.total_ht) as total_ht
         from  ods.dig_commandes d
         left join ods.magasin m
         on d.code_magasin = m.cd_magasin
-        group by 1,2
+        group by 1,2,3
  ;;
   }
 
