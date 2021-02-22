@@ -22,11 +22,11 @@ view: dv_vente {
 
     dimension: id_tf_vte {
       type: number
-     primary_key: yes
      sql: ${TABLE}.id_tf_vte ;;
     }
 
     dimension: id_magasin {
+      primary_key: yes
       type: number
       sql: ${TABLE}.id_magasin ;;
     }
