@@ -267,12 +267,12 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
-    type: average
+    type: number
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.total_ht}
+          THEN ${dv_web.sum_total_ht}
         END ;;
   }
 
