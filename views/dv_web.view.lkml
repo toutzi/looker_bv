@@ -2,7 +2,7 @@ view: dv_web {
   derived_table: {
     sql: select
         m.id_magasin,
-        d.cd_magasin,
+        d.code_magasin,
         d.date_de_commande,
         sum(d.total_ht) as total_ht
         from  ods.dig_commandes d
@@ -21,10 +21,10 @@ view: dv_web {
     sql: ${TABLE}.id_magasin ;;
   }
 
-  dimension: cd_magasin {
+  dimension: code_magasin {
     primary_key: yes
     type: string
-    sql: ${TABLE}.cd_magasin ;;
+    sql: ${TABLE}.code_magasin ;;
   }
   dimension_group: date_de_commande {
     type: time
