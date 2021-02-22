@@ -84,17 +84,17 @@ view: dv_vente {
     ;;
   }
 
-  measure: anciennete {
-    label: "Ancienneté"
-    sql:
-      CASE
-        WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
-        WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
-        WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
-        WHEN  ${diff_date} > 10 THEN "A>10 ans"
-      END
-    ;;
-  }
+  #measure: anciennete {
+  #  label: "Ancienneté"
+  #  sql:
+  #    CASE
+  #      WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
+  #      WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
+  #      WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
+  #      WHEN  ${diff_date} > 10 THEN "A>10 ans"
+  #    END
+  #  ;;
+  #}
 
   dimension_group: filter_date {
     type: time
@@ -106,22 +106,22 @@ view: dv_vente {
         END ;;
   }
 
-  measure: max_filter_date {
-    type:  date
-    sql:  max(${filter_date_raw}) ;;
-    convert_tz: no
-  }
+  #measure: max_filter_date {
+  #  type:  date
+  #  sql:  max(${filter_date_raw}) ;;
+  #  convert_tz: no
+  #}
 
-  measure: min_date_ouv_date {
-    type:  date
-    sql:  max(${magasin.date_ouv_date}) ;;
-    convert_tz: no
-  }
+  #measure: min_date_ouv_date {
+  #  type:  date
+  #  sql:  max(${magasin.date_ouv_date}) ;;
+  #  convert_tz: no
+  #}
 
-  measure: diff_date {
-    type: number
-    sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
-  }
+  #measure: diff_date {
+  #  type: number
+  #  sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
+  #}
 
 
 
@@ -252,13 +252,13 @@ view: dv_vente {
         END ;;
   }
 
-  measure: sum_surf_select_mois {
-    type: average
-    sql: CASE
-          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
+  #measure: sum_surf_select_mois {
+  #  type: average
+  #  sql: CASE
+  #        WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+  #        THEN ${magasin.surf_vte}
+  #      END ;;
+  #}
 
   measure: sum_CA_drive_select_mois {
     type: sum
@@ -331,14 +331,14 @@ view: dv_vente {
         END ;;
   }
 
-  measure: sum_surf_select_mois_N1 {
-    hidden: yes
-    type: average
-    sql: CASE
-          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
+  #measure: sum_surf_select_mois_N1 {
+  #  hidden: yes
+  #  type: average
+  #  sql: CASE
+  #        WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+  #        THEN ${magasin.surf_vte}
+  #      END ;;
+  #}
 
   measure: sum_CA_drive_select_mois_N1 {
     type: sum
@@ -405,14 +405,14 @@ view: dv_vente {
         END ;;
   }
 
-  measure: sum_surf_select_mois_N2 {
-    hidden: yes
-    type: average
-    sql: CASE
-          WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
+  #measure: sum_surf_select_mois_N2 {
+  #  hidden: yes
+  #  type: average
+  #  sql: CASE
+  #        WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+  #        THEN ${magasin.surf_vte}
+  #      END ;;
+  #}
 
   measure: sum_CA_drive_select_mois_N2 {
     type: sum
@@ -479,14 +479,14 @@ view: dv_vente {
         END ;;
   }
 
-  measure: sum_surf_select_mois_N3 {
-    hidden: yes
-    type: average
-    sql: CASE
-          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
-        END ;;
-  }
+  #measure: sum_surf_select_mois_N3 {
+  #  hidden: yes
+  #  type: average
+  #  sql: CASE
+  #        WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+  #        THEN ${magasin.surf_vte}
+  #      END ;;
+  #}
 
   measure: sum_CA_drive_select_mois_N3 {
     type: sum
@@ -517,12 +517,12 @@ view: dv_vente {
     sql:  ${sum_CA_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
   }
 
-  measure: ca_par_m_carre_select_mois {
-    label: "CA / m²"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois}/NULLIF(${sum_surf_select_mois},0) ;;
-  }
+  #measure: ca_par_m_carre_select_mois {
+  #  label: "CA / m²"
+  #  value_format_name: eur
+  #  type: number
+  #  sql:  ${sum_CA_select_mois}/NULLIF(${sum_surf_select_mois},0) ;;
+  #}
 
   measure: taux_de_marge_select_mois {
     label: "% marge"
@@ -569,12 +569,12 @@ view: dv_vente {
     sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_nb_jour_select_mois_N1},0) ;;
   }
 
-  measure: ca_par_m_carre_select_mois_N1 {
-    label: "CA/m² n-1"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_surf_select_mois_N1},0) ;;
-  }
+  #measure: ca_par_m_carre_select_mois_N1 {
+  #  label: "CA/m² n-1"
+  #  value_format_name: eur
+  #  type: number
+  #  sql:  ${sum_CA_select_mois_N1}/NULLIF(${sum_surf_select_mois_N1},0) ;;
+  #}
 
   measure: taux_de_marge_select_mois_N1 {
     label: "% marge n-1"
@@ -616,12 +616,12 @@ view: dv_vente {
     sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_nb_jour_select_mois_N2},0) ;;
   }
 
-  measure: ca_par_m_carre_select_mois_N2 {
-    label: "CA/m² n-2"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_surf_select_mois_N2},0) ;;
-  }
+  #measure: ca_par_m_carre_select_mois_N2 {
+  #  label: "CA/m² n-2"
+  #  value_format_name: eur
+  #  type: number
+  #   sql:  ${sum_CA_select_mois_N2}/NULLIF(${sum_surf_select_mois_N2},0) ;;
+  #}
 
   measure: taux_de_marge_select_mois_N2 {
     label: "% marge n-2"
@@ -663,12 +663,12 @@ view: dv_vente {
     sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_nb_jour_select_mois_N3},0) ;;
   }
 
-  measure: ca_par_m_carre_select_mois_N3 {
-    label: "CA/m² n-3"
-    value_format_name: eur
-    type: number
-    sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_surf_select_mois_N3},0) ;;
-  }
+  #measure: ca_par_m_carre_select_mois_N3 {
+  #  label: "CA/m² n-3"
+  #  value_format_name: eur
+  #  type: number
+  #  sql:  ${sum_CA_select_mois_N3}/NULLIF(${sum_surf_select_mois_N3},0) ;;
+  #}
 
   measure: taux_de_marge_select_mois_N3 {
     label: "% marge n-3"
@@ -723,12 +723,12 @@ view: dv_vente {
     sql:  1.0 * (${taux_de_marge_select_mois}-${taux_de_marge_select_mois_N1})/NULLIF(${taux_de_marge_select_mois_N1},0);;
   }
 
-  measure: prog_ca_par_m_carre_select_mois {
-    label: "prog CA/m²"
-    value_format_name: percent_2
-    type: number
-    sql:  1.0 * (${ca_par_m_carre_select_mois}-${ca_par_m_carre_select_mois_N1})/NULLIF(${ca_par_m_carre_select_mois_N1},0);;
-  }
+  #measure: prog_ca_par_m_carre_select_mois {
+  #  label: "prog CA/m²"
+  #  value_format_name: percent_2
+  #  type: number
+  #  sql:  1.0 * (${ca_par_m_carre_select_mois}-${ca_par_m_carre_select_mois_N1})/NULLIF(${ca_par_m_carre_select_mois_N1},0);;
+  #}
 
   measure: prog_Clients_select_mois {
     label: "prog clts/jr"
@@ -790,12 +790,12 @@ view: dv_vente {
     sql:  1.0 * (${sum_marge_select_mois_N1}-${sum_marge_select_mois_N2})/NULLIF(${sum_marge_select_mois_N2},0);;
   }
 
-  measure: prog_ca_par_m_carre_select_mois_N1 {
-    label: "prog CA/m² n-1"
-    value_format_name: percent_2
-    type: number
-    sql:  1.0 * (${ca_par_m_carre_select_mois_N1}-${ca_par_m_carre_select_mois_N2})/NULLIF(${ca_par_m_carre_select_mois_N2},0);;
-  }
+  #measure: prog_ca_par_m_carre_select_mois_N1 {
+  #  label: "prog CA/m² n-1"
+  #  value_format_name: percent_2
+  #  type: number
+  #  sql:  1.0 * (${ca_par_m_carre_select_mois_N1}-${ca_par_m_carre_select_mois_N2})/NULLIF(${ca_par_m_carre_select_mois_N2},0);;
+  #}
 
   measure: prog_nb_Clients_select_mois_N1 {
     label: "prog nb clts n-1"
@@ -863,12 +863,12 @@ view: dv_vente {
     sql:  1.0 * (${sum_marge_select_mois_N2}-${sum_marge_select_mois_N3})/NULLIF(${sum_marge_select_mois_N3},0);;
   }
 
-  measure: prog_ca_par_m_carre_select_mois_N2 {
-    label: "prog CA/m² n-2"
-    value_format_name: percent_2
-    type: number
-    sql:  1.0 * (${ca_par_m_carre_select_mois_N2}-${ca_par_m_carre_select_mois_N3})/NULLIF(${ca_par_m_carre_select_mois_N3},0);;
-  }
+  #measure: prog_ca_par_m_carre_select_mois_N2 {
+  #  label: "prog CA/m² n-2"
+  #  value_format_name: percent_2
+  #  type: number
+  #  sql:  1.0 * (${ca_par_m_carre_select_mois_N2}-${ca_par_m_carre_select_mois_N3})/NULLIF(${ca_par_m_carre_select_mois_N3},0);;
+  #}
 
   measure: prog_taux_marge_select_mois_N2 {
     label: "prog %marge n-2"
