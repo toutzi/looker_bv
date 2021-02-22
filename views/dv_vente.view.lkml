@@ -26,11 +26,6 @@ view: dv_vente {
      sql: ${TABLE}.id_tf_vte ;;
     }
 
-  dimension: total_ht {
-    type: number
-    sql: ${TABLE}.dv_web.total_ht ;;
-  }
-
     dimension: id_magasin {
       type: number
       sql: ${TABLE}.id_magasin ;;
@@ -189,11 +184,6 @@ view: dv_vente {
     sql: ${couts} ;;
   }
 
-  measure: sum_total_ht {
-    type: sum
-    sql: ${dv_web.total_ht} ;;
-  }
-
   filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
     label: "Période n"
     type: date
@@ -282,7 +272,7 @@ view: dv_vente {
     label: "CA Drive"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${total_ht}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 
