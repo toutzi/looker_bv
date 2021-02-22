@@ -184,6 +184,11 @@ view: dv_vente {
     sql: ${couts} ;;
   }
 
+  measure: sum_total_ht {
+    type: sum
+    sql: ${dv_web.total_ht} ;;
+  }
+
   filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
     label: "Période n"
     type: date
@@ -267,12 +272,12 @@ view: dv_vente {
   }
 
   measure: sum_CA_drive_select_mois {
-    type: number
+    type: sum
     value_format_name: eur
     label: "CA Drive"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.sum_total_ht}
+          THEN ${dv_web.total_ht}
         END ;;
   }
 

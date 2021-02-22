@@ -64,10 +64,7 @@ view: dv_web {
     sql: ${TABLE}.total_ht ;;
   }
 
-  measure: sum_total_ht {
-    type: sum
-    sql: ${total_ht} ;;
-  }
+
 
 
   set: detail {
