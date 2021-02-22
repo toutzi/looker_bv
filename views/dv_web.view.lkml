@@ -8,7 +8,7 @@ view: dv_web {
         from ods.magasin m
         left join ods.dig_commandes d
         on   m.cd_magasin = d.code_magasin
-      group by 1,2,3,4,5,6,7,8
+      group by 1,2,3
  ;;
   }
 
