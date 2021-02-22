@@ -8,6 +8,7 @@ view: magasin {
   }
 
   dimension: cd_magasin {
+    primary_key: yes
     type: string
     sql: ${TABLE}.CD_MAGASIN ;;
   }
@@ -94,7 +95,6 @@ view: magasin {
 
   dimension: id_magasin {
     type: number
-    primary_key: yes
     sql: ${TABLE}.ID_MAGASIN ;;
   }
 
