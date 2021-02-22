@@ -442,7 +442,7 @@ measure: sum_qte_select_filter_N1 {
     description: "pour les magasins en dévises"
     value_format_name: decimal_2
     type: number
-    sql:  ${sum_montant_select_filter_N1}_select_mois}/NULLIF(${sum_nb_ticket_select_filter_N1},0) ;;
+    sql:  ${sum_montant_select_filter_N1}NULLIF(${sum_nb_ticket_select_filter_N1},0) ;;
   }
 
   measure: marge_par_client_select_filter_N1 {
