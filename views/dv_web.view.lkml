@@ -2,9 +2,9 @@ view: dv_web {
   derived_table: {
     sql: select
         code_magasin,
-        sum(total_ht) as total_ht
+        total_ht
         from  ods.dig_commandes
-        group by 1
+        group by 1,2
  ;;
   }
 
