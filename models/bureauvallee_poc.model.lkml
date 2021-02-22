@@ -11,11 +11,11 @@ datagroup: bureauvallee_poc_default_datagroup {
 
 persist_with: bureauvallee_poc_default_datagroup
 explore: dv_vente {
-  #join: magasin {
-  #  type: left_outer
-  #  relationship: many_to_one
-  #  sql_on: ${dv_vente.id_magasin}=${magasin.id_magasin} ;;
-  #}
+  join: magasin {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${dv_vente.id_magasin}=${magasin.id_magasin} ;;
+  }
 
  # join: dig_nos_magasins {
  #  type: inner
@@ -27,7 +27,7 @@ explore: dv_vente {
   join: dv_web {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${dv_vente.id_magasin}=${dv_web.id_magasin} ;;
+    sql_on: ${magasin.cd_magasin}=${dv_web.code_magasin} ;;
   }
 }
 
