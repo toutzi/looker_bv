@@ -481,7 +481,7 @@ view: dv_vente {
 
   measure: sum_surf_select_mois_N3 {
     hidden: yes
-    type: sum
+    type: average
     sql: CASE
           WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
           THEN ${magasin.surf_vte}
