@@ -10,9 +10,9 @@ view: dv_web {
         m.typ_mag as Type,
         d.date_de_commande,
         sum(d.total_ht) as total_ht
-        from ods.dig_commandes d
-        left join ods.magasin m
-        on d.code_magasin = m.CD_MAGASIN
+        from ods.magasin m
+        left join ods.dig_commandes d
+        on   m.cd_magasin = d.code_magasin
       group by 1,2,3,4,5,6,7,8
  ;;
   }
