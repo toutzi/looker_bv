@@ -14,6 +14,7 @@ view: dv_web {
   }
 
   dimension: code_magasin {
+    primary_key: yes
     type: string
     sql: ${TABLE}.code_magasin ;;
   }
