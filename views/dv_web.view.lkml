@@ -2,13 +2,14 @@ view: dv_web {
   derived_table: {
     sql: select
         m.id_magasin,
+        m.nom,
         d.code_magasin,
         d.date_de_commande,
         sum(d.total_ht) as total_ht
-        from  ods.dig_commandes d
-        left join ods.magasin m
-        on d.code_magasin = m.cd_magasin
-        group by 1,2,3
+        from  ods.magasin m
+        left join ods.dig_commandes d
+        on  m.cd_magasin = d.code_magasin
+        group by 1,2,3,4
  ;;
   }
 
@@ -19,6 +20,11 @@ view: dv_web {
   dimension: id_magasin {
     type: number
     sql: ${TABLE}.id_magasin ;;
+  }
+
+  dimension: magasin {
+    type: number
+    sql: ${TABLE}.nom ;;
   }
 
   dimension: code_magasin {

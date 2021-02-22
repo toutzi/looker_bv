@@ -21,7 +21,7 @@ view: dv_vente {
     }
 
     dimension: id_tf_vte {
-      primary_key: yes
+    #  primary_key: yes
       type: number
      sql: ${TABLE}.id_tf_vte ;;
     }
