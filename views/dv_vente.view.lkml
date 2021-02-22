@@ -26,6 +26,11 @@ view: dv_vente {
      sql: ${TABLE}.id_tf_vte ;;
     }
 
+  dimension: total_ht {
+    type: number
+    sql: ${TABLE}.dv_web.total_ht ;;
+  }
+
     dimension: id_magasin {
       type: number
       sql: ${TABLE}.id_magasin ;;
@@ -277,7 +282,7 @@ view: dv_vente {
     label: "CA Drive"
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${dv_web.total_ht}
+          THEN ${total_ht}
         END ;;
   }
 
