@@ -2,7 +2,8 @@ view: dv_web {
   derived_table: {
     sql: select
         code_magasin,
-        total_ht
+        min(DATE(date_de_commande)) as date_de_commande,
+        sum(total_ht)
         from  ods.dig_commandes
         group by 1,2
  ;;
