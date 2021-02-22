@@ -27,6 +27,7 @@ view: dv_vente {
     }
 
     dimension: id_magasin {
+      primary_key: yes
       type: number
       sql: ${TABLE}.id_magasin ;;
     }
