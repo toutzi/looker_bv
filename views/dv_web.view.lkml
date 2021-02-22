@@ -5,9 +5,9 @@ view: dv_web {
         d.code_magasin,
         sum(d.total_ht) as total_ht
         from ods.magasin m
-        left join ods.dig_commandes
-        on    m.cd_magasin = d.code_magasin
-      group by 1,2
+        left join ods.dig_commandes d
+        on m.cd_magasin = d.code_magasin
+        group by 1,2
  ;;
   }
 
