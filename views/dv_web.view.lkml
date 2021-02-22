@@ -3,6 +3,7 @@ view: dv_web {
     sql: select
         m.id_magasin,
         d.code_magasin,
+        min(DATE(d.date_de_commande)) as date_de_commande,
         sum(d.total_ht) as total_ht
         from  ods.dig_commandes d
         left join ods.magasin m
@@ -21,15 +22,15 @@ view: dv_web {
   }
 
   dimension: code_magasin {
-    primary_key: yes
+    #primary_key: yes
     type: string
     sql: ${TABLE}.code_magasin ;;
   }
-  #dimension_group: date_de_commande {
-  #  type: time
-  #  timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
-  #  sql: ${TABLE}.date_de_commande ;;
-  #}
+  dimension_group: date_de_commande {
+    type: time
+    timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
+    sql: ${TABLE}.date_de_commande ;;
+  }
 
   dimension: total_ht {
     type: number
