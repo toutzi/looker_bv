@@ -43,12 +43,6 @@ view: dv_vente {
       sql: ${TABLE}.dte_vente ;;
     }
 
-  dimension_group: fiscal_month {
-    type: time
-    timeframes: [fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
-    sql: ${TABLE}.dte_vente ;;
-  }
-
     dimension: couts {
       type: number
       sql: ${TABLE}.couts ;;
@@ -120,7 +114,7 @@ view: dv_vente {
 
   measure: min_date_ouv_date {
     type:  date
-    sql:  max(${magasin.date_ouv_date}) ;;
+    sql:  max(${dv_web.date_ouv_date}) ;;
     convert_tz: no
   }
 
@@ -262,7 +256,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
+          THEN ${dv_web.surf_vte}
         END ;;
   }
 
@@ -342,7 +336,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
+          THEN ${dv_web.surf_vte}
         END ;;
   }
 
@@ -416,7 +410,7 @@ view: dv_vente {
     type: average
     sql: CASE
           WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
+          THEN ${dv_web.surf_vte}
         END ;;
   }
 
@@ -490,7 +484,7 @@ view: dv_vente {
     type: sum
     sql: CASE
           WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-          THEN ${magasin.surf_vte}
+          THEN ${dv_web.surf_vte}
         END ;;
   }
 
