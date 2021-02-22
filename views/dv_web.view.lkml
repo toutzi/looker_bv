@@ -7,7 +7,7 @@ view: dv_web {
         sum(d.total_ht) as total_ht
         from  ods.dig_commandes d
         left join ods.magasin m
-        on  d.code_magasin = m.cd_magasi
+        on  d.code_magasin = m.cd_magasin
       group by 1,2,3
  ;;
   }

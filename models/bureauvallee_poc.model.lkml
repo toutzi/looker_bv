@@ -56,15 +56,6 @@ explore: dv_web {}
 
 explore: ventes_devise {}
 
-explore: ventes_magasins {
-  join: web {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${ventes_magasins.cd_magasin}=${web.code_magasin} ;;
-  }
-
-}
-explore: web {}
 
 # explore: tf_vente {}
 
