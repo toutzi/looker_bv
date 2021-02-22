@@ -23,6 +23,7 @@ view: dv_web {
   }
 
   dimension: id_magasin {
+    primary_key: yes
     type: number
     sql: ${TABLE}.id_magasin ;;
   }
