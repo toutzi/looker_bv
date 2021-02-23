@@ -6,7 +6,9 @@ view: dv_web {
       column: date_de_commande_date {}
     }
   }
-  dimension: code_magasin {}
+  dimension: code_magasin {
+    primary_key: yes
+  }
   dimension: total_ht {
     type: number
   }
