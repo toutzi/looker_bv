@@ -219,13 +219,13 @@ explore: v_tf_vente {
 explore: dig_commandes {
 
   join: dig_clients {
-    type: inner
+    type: left_outer
     relationship: many_to_one
     sql_on: ${dig_commandes.code_client} = cast(${dig_clients.code_client} as string);;
   }
 
   join: dig_nos_magasins {
-     type: inner
+     type: left_outer
      relationship: many_to_one
      sql_on: ${dig_commandes.code_magasin} = ${dig_nos_magasins.code_magasin};;
   }
