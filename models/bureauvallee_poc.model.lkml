@@ -111,6 +111,8 @@ explore: dataquality_tf_vente2020 {
 
 explore: tf_vente_corr {}
 
+explore: tf_vente_update {}
+
 explore: dig_nos_magasins {}
 
 # explore: tf_vente {
