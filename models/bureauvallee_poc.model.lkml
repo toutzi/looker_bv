@@ -56,6 +56,10 @@ explore: dv_web {}
 
 explore: ventes_devise {}
 
+explore: update {}
+
+explore: brute {}
+
 
 # explore: tf_vente {}
 
