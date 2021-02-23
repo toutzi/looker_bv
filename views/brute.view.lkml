@@ -3,7 +3,7 @@ view: brute {
     ;;
 
   dimension: ca_ht {
-    type: string
+    type: number
     sql: ${TABLE}.ca_ht ;;
   }
 
@@ -28,17 +28,17 @@ view: brute {
   }
 
   dimension: date_ouv {
-    type: string
+    type: date
     sql: ${TABLE}.DATE_OUV ;;
   }
 
   dimension: ecart_ca {
-    type: string
+    type: number
     sql: ${TABLE}.Ecart_CA ;;
   }
 
   dimension: ecart_jours {
-    type: string
+    type: number
     sql: ${TABLE}.Ecart_jours ;;
   }
 
@@ -48,7 +48,7 @@ view: brute {
   }
 
   dimension: marge_brute {
-    type: string
+    type: number
     sql: ${TABLE}.marge_brute ;;
   }
 
@@ -73,7 +73,7 @@ view: brute {
   }
 
   dimension: nb_clts {
-    type: string
+    type: number
     sql: ${TABLE}.nb_clts ;;
   }
 
