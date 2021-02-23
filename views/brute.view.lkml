@@ -118,7 +118,7 @@ view: brute {
   }
 
   dimension: qtite {
-    type: string
+    type: number
     sql: ${TABLE}.qtite ;;
   }
 
