@@ -3,7 +3,7 @@ view: dv_web {
     sql: select
         code_magasin,
         min(DATE(date_de_commande)) as date_de_commande,
-        sum(total_ht)
+        sum(total_ht) as total_ht
         from  ods.dig_commandes
         group by 1
  ;;
