@@ -28,6 +28,7 @@ view: vte_mag {
   }
 
   dimension: cd_magasin {
+    primary_key: yes
     type: string
     sql: ${TABLE}.CD_MAGASIN ;;
   }
