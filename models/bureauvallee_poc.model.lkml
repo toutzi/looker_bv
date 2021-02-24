@@ -60,6 +60,8 @@ explore: update {}
 
 explore: brute {}
 
+explore: vte_mag {}
+
 
 # explore: tf_vente {}
 
