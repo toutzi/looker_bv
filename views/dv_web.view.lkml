@@ -32,7 +32,7 @@ view: dv_web {
   dimension_group: date_de_commande {
     type: time
     timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
-  #  datatype: datetime
+    datatype: timestamp
     sql: ${TABLE}.date_de_commande ;;
   }
 
