@@ -63,7 +63,7 @@ explore: brute {}
 explore: vte_mag {
   join: dv_web {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_many
     sql_on: ${vte_mag.cd_magasin}=${dv_web.code_magasin} ;;
   }
 }
