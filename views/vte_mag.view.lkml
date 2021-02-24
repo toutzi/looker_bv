@@ -58,8 +58,9 @@ view: vte_mag {
     sql: ${TABLE}.CD_PAYS ;;
   }
 
-  dimension: dte_vente {
-    type: date
+  dimension_group: DTE_VENTE {
+    type: time
+    timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
     datatype: date
     sql: ${TABLE}.DTE_VENTE ;;
   }
@@ -107,7 +108,6 @@ view: vte_mag {
       date_ouv_time,
       surf_vte,
       cd_pays,
-      dte_vente,
       typ_vente,
       statut_article,
       ca_ht,
