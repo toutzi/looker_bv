@@ -60,7 +60,13 @@ explore: update {}
 
 explore: brute {}
 
-explore: vte_mag {}
+explore: vte_mag {
+  join: dv_web {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${vte_mag.cd_magasin}=${dv_web.code_magasin} ;;
+  }
+}
 
 
 # explore: tf_vente {}
