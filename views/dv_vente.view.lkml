@@ -85,17 +85,17 @@ view: dv_vente {
     ;;
   }
 
-  #measure: anciennete {
-  #  label: "Ancienneté"
-  #  sql:
-  #    CASE
-  #      WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
-  #      WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
-  #      WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
-  #      WHEN  ${diff_date} > 10 THEN "A>10 ans"
-  #    END
-  #  ;;
-  #}
+  measure: anciennete {
+    label: "Ancienneté"
+    sql:
+      CASE
+        WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
+        WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
+        WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
+        WHEN  ${diff_date} > 10 THEN "A>10 ans"
+      END
+    ;;
+  }
 
   dimension_group: filter_date {
     type: time
@@ -107,22 +107,22 @@ view: dv_vente {
         END ;;
   }
 
-  #measure: max_filter_date {
-  #  type:  date
-  #  sql:  max(${filter_date_raw}) ;;
-  #  convert_tz: no
-  #}
+  measure: max_filter_date {
+    type:  date
+    sql:  max(${filter_date_raw}) ;;
+    convert_tz: no
+  }
 
-  #measure: min_date_ouv_date {
-  #  type:  date
-  #  sql:  max(${magasin.date_ouv_date}) ;;
-  #  convert_tz: no
-  #}
+  measure: min_date_ouv_date {
+    type:  date
+    sql:  max(${magasin.date_ouv_date}) ;;
+    convert_tz: no
+  }
 
-  #measure: diff_date {
-  #  type: number
-  #  sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
-  #}
+  measure: diff_date {
+    type: number
+    sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
+  }
 
 
 
@@ -332,14 +332,14 @@ view: dv_vente {
         END ;;
   }
 
-  #measure: sum_surf_select_mois_N1 {
-  #  hidden: yes
-  #  type: average
-  #  sql: CASE
-  #        WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-  #        THEN ${magasin.surf_vte}
-  #      END ;;
-  #}
+  measure: sum_surf_select_mois_N1 {
+    hidden: yes
+    type: average
+    sql: CASE
+          WHEN {% condition date_filter_1 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
 
   measure: sum_CA_drive_select_mois_N1 {
     type: sum
@@ -406,14 +406,14 @@ view: dv_vente {
         END ;;
   }
 
-  #measure: sum_surf_select_mois_N2 {
-  #  hidden: yes
-  #  type: average
-  #  sql: CASE
-  #        WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-  #        THEN ${magasin.surf_vte}
-  #      END ;;
-  #}
+  measure: sum_surf_select_mois_N2 {
+    hidden: yes
+    type: average
+    sql: CASE
+         WHEN {% condition date_filter_2 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+         THEN ${magasin.surf_vte}
+        END ;;
+  }
 
   measure: sum_CA_drive_select_mois_N2 {
     type: sum
