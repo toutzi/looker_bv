@@ -57,7 +57,6 @@ explore: dv_web {}
 explore: ventes_devise {}
 
 
-
 explore: vte_mag {
   join: dv_web {
     type: left_outer
