@@ -253,13 +253,13 @@ view: dv_vente {
         END ;;
   }
 
-  #measure: sum_surf_select_mois {
-  #  type: average
-  #  sql: CASE
-  #        WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-  #        THEN ${magasin.surf_vte}
-  #      END ;;
-  #}
+  measure: sum_surf_select_mois {
+    type: average
+    sql: CASE
+          WHEN {% condition date_filter %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
 
   measure: sum_CA_drive_select_mois {
     type: sum
@@ -480,14 +480,14 @@ view: dv_vente {
         END ;;
   }
 
-  #measure: sum_surf_select_mois_N3 {
-  #  hidden: yes
-  #  type: average
-  #  sql: CASE
-  #        WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
-  #        THEN ${magasin.surf_vte}
-  #      END ;;
-  #}
+  measure: sum_surf_select_mois_N3 {
+    hidden: yes
+    type: average
+    sql: CASE
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${magasin.surf_vte}
+        END ;;
+  }
 
   measure: sum_CA_drive_select_mois_N3 {
     type: sum
@@ -518,12 +518,12 @@ view: dv_vente {
     sql:  ${sum_CA_select_mois}/NULLIF(${sum_nb_jour_select_mois},0) ;;
   }
 
-  #measure: ca_par_m_carre_select_mois {
-  #  label: "CA / m²"
-  #  value_format_name: eur
-  #  type: number
-  #  sql:  ${sum_CA_select_mois}/NULLIF(${sum_surf_select_mois},0) ;;
-  #}
+  measure: ca_par_m_carre_select_mois {
+    label: "CA / m²"
+    value_format_name: eur
+    type: number
+    sql:  ${sum_CA_select_mois}/NULLIF(${sum_surf_select_mois},0) ;;
+  }
 
   measure: taux_de_marge_select_mois {
     label: "% marge"
