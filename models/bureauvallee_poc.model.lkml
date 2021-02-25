@@ -56,9 +56,7 @@ explore: dv_web {}
 
 explore: ventes_devise {}
 
-explore: update {}
 
-explore: brute {}
 
 explore: vte_mag {
   join: dv_web {
@@ -121,9 +119,7 @@ explore: dataquality_tf_vente2020 {
 
 #explore: n4 {}
 
-explore: tf_vente_corr {}
 
-explore: tf_vente_update {}
 
 explore: dig_nos_magasins {}
 
