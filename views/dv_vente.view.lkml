@@ -107,13 +107,13 @@ view: dv_vente {
         END ;;
   }
 
-  measure: max_filter_date {
+  dimension: max_filter_date {
     type:  date
     sql:  max(${filter_date_raw}) ;;
     convert_tz: no
   }
 
-  measure: min_filter_date {
+  dimension: min_filter_date {
     type:  date
     sql:  min(${filter_date_raw}) ;;
     convert_tz: no
