@@ -113,9 +113,15 @@ view: dv_vente {
     convert_tz: no
   }
 
+  measure: min_filter_date {
+    type:  date
+    sql:  min(${filter_date_raw}) ;;
+    convert_tz: no
+  }
+
   measure: min_date_ouv_date {
     type:  date
-    sql:  max(${magasin.date_ouv_date}) ;;
+    sql:  min(${magasin.date_ouv_date}) ;;
     convert_tz: no
   }
 
@@ -123,6 +129,16 @@ view: dv_vente {
     type: number
     sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
   }
+
+  #dimension: Categorie {
+  #  hidden: yes
+  #  sql:
+  #    CASE
+  #      WHEN  ${date_ouv_date} BETWEEN '2019-01-01' AND '2019-12-31' THEN "P.comparable"
+  #      WHEN ${date_ouv_date} <= CURRENT_DATE() THEN "P. non comparable"
+  #    END
+  #  ;;
+  #}
 
 
 
@@ -198,6 +214,32 @@ view: dv_vente {
     label: "Période n-3"
     type: date
   }
+
+  dimension: max_date_filter {
+    type:  date
+    sql:  max(${date_filter}) ;;
+    convert_tz: no
+  }
+
+  dimension: max_date_filter_1 {
+    type:  date
+    sql:  max(${date_filter_1}) ;;
+    convert_tz: no
+  }
+
+  dimension: max_date_filter_2 {
+    type:  date
+    sql:  max(${date_filter_2}) ;;
+    convert_tz: no
+  }
+
+  dimension: max_date_filter_3 {
+    type:  date
+    sql:  max(${date_filter_3}) ;;
+    convert_tz: no
+  }
+
+
 
 
 
