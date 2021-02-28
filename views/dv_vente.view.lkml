@@ -78,9 +78,8 @@ view: dv_vente {
     label: "Catégorie"
     sql:
       CASE
-        WHEN  ${ecarts_jour_select_mois} < -5 THEN "P. non comparable"
-        WHEN  ${ecarts_jour_select_mois} >= -5 AND ${ecarts_jour_select_mois} <= 5 THEN "P. comparable"
-        WHEN  ${ecarts_jour_select_mois} > 5 THEN "P.non comparable"
+        WHEN  ${min_date_ouv_date} <= ${min_filter_date_3} AND ${max_dte_vente} >= ${max_filter_date} THEN "P. comparable"
+        ELSE THEN "P.non comparable"
       END
     ;;
   }
@@ -107,15 +106,31 @@ view: dv_vente {
         END ;;
   }
 
-  dimension: max_filter_date {
+  dimension_group: filter_date_3 {
+    type: time
+    timeframes: [date, week, month, year, raw]
+    datatype: date
+    sql: CASE
+          WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+          THEN ${dte_vente_date}
+        END ;;
+  }
+
+  measure: max_filter_date {
     type:  date
     sql:  max(${filter_date_raw}) ;;
     convert_tz: no
   }
 
-  dimension: min_filter_date {
+  measure: max_dte_vente {
     type:  date
-    sql:  min(${filter_date_raw}) ;;
+    sql:  max(${dte_vente_raw}) ;;
+    convert_tz: no
+  }
+
+  measure: min_filter_date_3 {
+    type:  date
+    sql:  min(${filter_date_3_raw}) ;;
     convert_tz: no
   }
 
@@ -214,33 +229,6 @@ view: dv_vente {
     label: "Période n-3"
     type: date
   }
-
-  measure: max_date_filter {
-    type:  date
-    sql:  max(${date_filter}) ;;
-    convert_tz: no
-  }
-
-  measure: max_date_filter_1 {
-    type:  date
-    sql:  max(${date_filter_1}) ;;
-    convert_tz: no
-  }
-
-  measure: max_date_filter_2 {
-    type:  date
-    sql:  max(${date_filter_2}) ;;
-    convert_tz: no
-  }
-
-  measure: max_date_filter_3 {
-    type:  date
-    sql:  max(${date_filter_3}) ;;
-    convert_tz: no
-  }
-
-
-
 
 
     ############## calcul des KPIs à la période sélectionnée au niveau du filtre  ############
