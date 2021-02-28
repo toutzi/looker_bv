@@ -79,7 +79,7 @@ view: dv_vente {
     sql:
       CASE
         WHEN  ${min_date_ouv_date} <= ${min_filter_date_3} AND ${max_dte_vente} >= ${max_filter_date} THEN "P. comparable"
-        ELSE THEN "P.non comparable"
+        ELSE "P.non comparable"
       END
     ;;
   }
