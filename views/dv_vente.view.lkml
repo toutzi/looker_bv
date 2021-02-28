@@ -215,25 +215,25 @@ view: dv_vente {
     type: date
   }
 
-  dimension: max_date_filter {
+  measure: max_date_filter {
     type:  date
     sql:  max(${date_filter}) ;;
     convert_tz: no
   }
 
-  dimension: max_date_filter_1 {
+  measure: max_date_filter_1 {
     type:  date
     sql:  max(${date_filter_1}) ;;
     convert_tz: no
   }
 
-  dimension: max_date_filter_2 {
+  measure: max_date_filter_2 {
     type:  date
     sql:  max(${date_filter_2}) ;;
     convert_tz: no
   }
 
-  dimension: max_date_filter_3 {
+  measure: max_date_filter_3 {
     type:  date
     sql:  max(${date_filter_3}) ;;
     convert_tz: no
