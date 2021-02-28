@@ -16,6 +16,7 @@ view: dv_vente {
     }
 
     measure: count {
+      hidden: yes
       type: count
       drill_fields: [detail*]
     }
@@ -45,26 +46,31 @@ view: dv_vente {
     }
 
     dimension: couts {
+      hidden: yes
       type: number
       sql: ${TABLE}.couts ;;
     }
 
     dimension: qtite {
+      hidden: yes
       type: number
       sql: ${TABLE}.qtite ;;
     }
 
     dimension: ca_ht {
+      hidden: yes
       type: number
       sql: ${TABLE}.ca_ht ;;
     }
 
     dimension: marge_brute {
+      hidden: yes
       type: number
       sql: ${TABLE}.marge_brute ;;
     }
 
     dimension: nb_clts {
+      hidden: yes
       type: number
       sql: ${TABLE}.nb_clts ;;
     }
@@ -97,6 +103,7 @@ view: dv_vente {
   }
 
   dimension_group: filter_date {
+    hidden: yes
     type: time
     timeframes: [date, week, month, year, raw]
     datatype: date
@@ -107,6 +114,7 @@ view: dv_vente {
   }
 
   dimension_group: filter_date_3 {
+    hidden: yes
     type: time
     timeframes: [date, week, month, year, raw]
     datatype: date
@@ -117,24 +125,28 @@ view: dv_vente {
   }
 
   measure: max_filter_date {
+    hidden: yes
     type:  date
     sql:  max(${filter_date_raw}) ;;
     convert_tz: no
   }
 
   measure: max_dte_vente {
+    hidden: yes
     type:  date
     sql:  max(${dte_vente_raw}) ;;
     convert_tz: no
   }
 
   measure: min_filter_date_3 {
+    hidden: yes
     type:  date
     sql:  min(${filter_date_3_raw}) ;;
     convert_tz: no
   }
 
   measure: min_date_ouv_date {
+    hidden: yes
     type:  date
     sql:  min(${magasin.date_ouv_date}) ;;
     convert_tz: no
