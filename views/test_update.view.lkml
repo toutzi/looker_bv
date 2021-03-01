@@ -74,13 +74,15 @@ view: test_update {
 
     measure: sum_ca_ht  {
       type: sum
-      drill_fields: []
+      drill_fields: [details*]
+      value_format_name: eur
       sql: ${ca_ht} ;;
     }
 
     measure: count {
       type: count
-      drill_fields: []
+      value_format_name: decimal_0
+      drill_fields: [details*]
     }
 
     set: details {
