@@ -58,6 +58,8 @@ explore: ventes_devise {}
 
 explore: table_update {}
 
+explore: test_update {}
+
 explore: vte_mag {
   join: dv_web {
     type: left_outer
