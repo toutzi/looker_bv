@@ -61,10 +61,10 @@ explore: table_update {}
 explore: test_update {}
 
 explore: vte_mag {
-  join: dv_web {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${vte_mag.cd_magasin}=${dv_web.code_magasin} ;;
+  join: test_update {
+    type: full_outer
+    relationship: one_to_one
+    sql_on: ${vte_mag.cd_magasin}=${test_update.cd_magasin} ;;
   }
 }
 
