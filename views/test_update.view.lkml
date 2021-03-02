@@ -89,7 +89,7 @@ view: test_update {
       fields: [
         cd_magasin,
         nom,
-        cd_magasin
+        ca_ht
       ]
     }
   }
