@@ -4,7 +4,7 @@ view: dv_web {
         code_magasin,
         sum(total_ht) as total_ht
         from  ods.dig_commandes
-        group by 1,2
+        group by 1
  ;;
   }
 
