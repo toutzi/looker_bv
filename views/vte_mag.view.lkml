@@ -1,6 +1,7 @@
 view: vte_mag {
   derived_table: {
     sql: select
+      v.id_tf_vte,
       m.CD_MAGASIN,
       m.NOM as magasin,
       m.TYP_MAG,
@@ -18,7 +19,7 @@ view: vte_mag {
       from ods.tf_vente v
       left join magasin m
       on v.ID_MAGASIN = m.ID_MAGASIN
-      group by 1,2,3,4,5,6,7,8,9
+      group by 1,2,3,4,5,6,7,8,9,10
  ;;
   }
 
@@ -27,8 +28,13 @@ view: vte_mag {
     drill_fields: [detail*]
   }
 
-  dimension: cd_magasin {
+  dimension: id_tf_vte {
     primary_key: yes
+    type: number
+    sql: ${TABLE}.id_tf_vte ;;
+  }
+
+  dimension: cd_magasin {
     type: string
     sql: ${TABLE}.CD_MAGASIN ;;
   }
