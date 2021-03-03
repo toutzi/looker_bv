@@ -22,6 +22,9 @@ select * from `bureauvallee.ods.test_update`
  ;;
   }
 
+
+
+
   measure: count {
     type: count
     drill_fields: [detail*]

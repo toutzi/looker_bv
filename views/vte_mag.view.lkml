@@ -65,7 +65,7 @@ view: vte_mag {
     sql: ${TABLE}.CD_PAYS ;;
   }
 
-  dimension_group: DTE_VENTE {
+  dimension_group: dte_vente {
     type: time
     timeframes: [date, week, week_of_year ,month, month_name , year, raw, fiscal_month_num, fiscal_quarter, fiscal_quarter_of_year, fiscal_year]
     datatype: date
@@ -106,6 +106,93 @@ view: vte_mag {
     type: number
     sql: ${TABLE}.couts ;;
   }
+
+  filter: date_filter {                 ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n"
+    type: date
+  }
+
+  filter: date_filter_1 {               ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n-1"
+    type: date
+  }
+
+  filter: date_filter_2 {               ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n-2"
+    type: date
+  }
+
+  filter: date_filter_3 {               ### Choisir la période qu'on souhaite obtenir les résultats###
+    label: "Période n-3"
+    type: date
+  }
+
+
+  dimension_group: filter_date_3 {
+    type: time
+    timeframes: [date, week, month, year, raw]
+    datatype: date
+    sql: CASE
+            WHEN {% condition date_filter_3 %} CAST(${dte_vente_date} AS TIMESTAMP)  {% endcondition %}
+            THEN ${dte_vente_date}
+          END ;;
+  }
+
+  measure: min_filter_date_3 {
+    type:  date
+    sql:  min(${filter_date_3_raw}) ;;
+    convert_tz: no
+  }
+
+  #measure: min_date_ouv_date {
+  #  type:  date
+  #  sql:  min(${magasin.date_ouv}) ;;
+  #  convert_tz: no
+  #}
+
+  #measure: diff_date {
+  #  type: number
+  #  sql: DATE_DIFF(${max_filter_date}, ${min_date_ouv_date}, YEAR) ;;
+  #}
+
+  #dimension: diff_date {
+  #  type: number
+  #  sql: DATE_DIFF(${filter_date_date}, ${magasin.date_ouv_date}, YEAR) ;;
+  #}
+
+  #measure: categorie {
+  #  label: "Catégorie"
+  #  sql:
+  #      CASE
+  #        WHEN  ${min_date_ouv_date} <= ${min_filter_date_3} AND ${max_dte_vente} >= ${max_filter_date} THEN "P. comparable"
+  #        ELSE "P.non comparable"
+  #      END
+  #    ;;
+  #}
+
+  #measure: anciennete {
+  #  label: "Ancienneté"
+  #  sql:
+  #      CASE
+  #        WHEN  ${diff_date} <= 2 THEN "A≤2 ans"
+  #        WHEN  ${diff_date} <= 5 AND ${diff_date}> 2 THEN "2 ans<A≤ 5 ans"
+  #        WHEN  ${diff_date} <= 10 AND ${diff_date} > 5 THEN "5 ans<A≤10 ans"
+  #        WHEN  ${diff_date} > 10 THEN "A>10 ans"
+  #      END
+  #    ;;
+  #}
+
+
+
+  #dimension: categorie {
+  #    label: "Catégorie"
+  #    sql:
+  #        CASE
+  #          WHEN  ${date_ouv_date} <= ${min_filter_date_3}  THEN "P. comparable"
+  #          WHEN  ${date_ouv_date} > ${min_filter_date_3}  AND ${typ_mag} = "S" THEN "P. non comparable"
+  #        END
+  #      ;;
+  #}
 
   set: detail {
     fields: [
